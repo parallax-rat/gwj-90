@@ -1,0 +1,100 @@
+[gd_scene format=3 uid="uid://tdnaod8tqcwu"]
+
+[ext_resource type="Script" uid="uid://chdll73md08bm" path="res://scenes/player.gd" id="1_3vyb7"]
+[ext_resource type="Texture2D" uid="uid://g6oecvsdemq" path="res://assets/Scud/MainShip.png" id="2_g2els"]
+[ext_resource type="Texture2D" uid="uid://mw62i6m4n881" path="res://assets/Scud/BasicSea.png" id="2_qhqgy"]
+
+[node name="Player" type="Node2D" unique_id=1154284220 groups=["player"]]
+script = ExtResource("1_3vyb7")
+
+[node name="DEBUG_SEA" type="Node2D" parent="." unique_id=1739564981]
+visible = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="DEBUG_SEA" unique_id=1872990826]
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(32, 32)
+texture = ExtResource("2_qhqgy")
+
+[node name="Sprite2D3" type="Sprite2D" parent="DEBUG_SEA" unique_id=331449025]
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(96, 32)
+texture = ExtResource("2_qhqgy")
+
+[node name="Sprite2D4" type="Sprite2D" parent="DEBUG_SEA" unique_id=139156314]
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(160, 32)
+texture = ExtResource("2_qhqgy")
+
+[node name="Sprite2D7" type="Sprite2D" parent="DEBUG_SEA" unique_id=1444702782]
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(128, -16)
+texture = ExtResource("2_qhqgy")
+
+[node name="Sprite2D8" type="Sprite2D" parent="DEBUG_SEA" unique_id=1723709942]
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(128, 80)
+texture = ExtResource("2_qhqgy")
+
+[node name="Sprite2D9" type="Sprite2D" parent="DEBUG_SEA" unique_id=1069328952]
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(64, 80)
+texture = ExtResource("2_qhqgy")
+
+[node name="Sprite2D10" type="Sprite2D" parent="DEBUG_SEA" unique_id=1835199251]
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(64, -16)
+texture = ExtResource("2_qhqgy")
+
+[node name="Sprite2D11" type="Sprite2D" parent="DEBUG_SEA" unique_id=673415198]
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(96, -64)
+texture = ExtResource("2_qhqgy")
+
+[node name="Sprite2D12" type="Sprite2D" parent="DEBUG_SEA" unique_id=197030905]
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(96, 128)
+texture = ExtResource("2_qhqgy")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1531603503]
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(48, 16)
+rotation = 1.571371
+texture = ExtResource("2_g2els")
+centered = false
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=889165243]
+path_desired_distance = 1.0
+target_desired_distance = 1.0
+path_max_distance = 16.0
+path_postprocessing = 1
+debug_enabled = true
+debug_use_custom = true
+debug_path_custom_color = Color(0.105882354, 0.9529412, 0, 0.7176471)
+
+[node name="ScanRange" type="Area2D" parent="." unique_id=245210188]
+position = Vector2(32, 32)
+collision_layer = 16
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ScanRange" unique_id=1364931045]
+rotation = 1.5707964
+scale = Vector2(1, 1.0208334)
+polygon = PackedVector2Array(-112.00001, -62.69387, -5.722046e-06, -141.06122, 112, -62.69388, 1.9073486e-06, 15.67347)
+
+[node name="PassiveFogReveal" type="Area2D" parent="." unique_id=1345862567]
+position = Vector2(32, 32)
+collision_layer = 16
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PassiveFogReveal" unique_id=818443360]
+polygon = PackedVector2Array(-16, 0, 32, -64, 80, 0, 32, 64)
+
+[connection signal="navigation_finished" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_navigation_finished"]

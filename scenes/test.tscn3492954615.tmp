@@ -1,0 +1,2314 @@
+[gd_scene format=4 uid="uid://sphpm5x52u7b"]
+
+[ext_resource type="Texture2D" uid="uid://mw62i6m4n881" path="res://assets/TestSprites/BasicSea.png" id="1_at5dv"]
+[ext_resource type="PackedScene" uid="uid://cmi6in65o5kab" path="res://scenes/grid_space.tscn" id="1_bl13t"]
+[ext_resource type="PackedScene" uid="uid://tdnaod8tqcwu" path="res://scenes/player.tscn" id="2_iyx0m"]
+[ext_resource type="Script" uid="uid://drdttfm2jfp8j" path="res://scenes/turn_manager.gd" id="3_74lek"]
+[ext_resource type="PackedScene" uid="uid://ejnqbexecoa1" path="res://scenes/destination.tscn" id="3_iyx0m"]
+[ext_resource type="Script" uid="uid://c2peannp5s8an" path="res://scenes/ui_manager.gd" id="4_j5jx5"]
+[ext_resource type="Script" uid="uid://dmevx4ufycew7" path="res://scenes/game_manager.gd" id="6_lpvoh"]
+
+[sub_resource type="Gradient" id="Gradient_iyx0m"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_74lek"]
+gradient = SubResource("Gradient_iyx0m")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jcd4p"]
+texture = ExtResource("1_at5dv")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_uacia"]
+tile_shape = 3
+tile_size = Vector2i(64, 64)
+custom_data_layer_0/name = "OpenSea"
+custom_data_layer_0/type = 26
+sources/0 = SubResource("TileSetAtlasSource_jcd4p")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iyx0m"]
+bg_color = Color(0.54901963, 0.54901963, 0.54901963, 0.84313726)
+border_width_top = 4
+border_color = Color(0, 0, 0, 1)
+
+[node name="Test" type="Node2D" unique_id=1454434500]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=924317028]
+position = Vector2(1199, 717)
+scale = Vector2(10.5, 1696.25)
+texture = SubResource("GradientTexture1D_74lek")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=339087602]
+tile_map_data = PackedByteArray("AAAGAAYAAAAAAAAAAAAFAAcAAAAAAAAAAAAGAAcAAAAAAAAAAAAHAAYAAAAAAAAAAAAGAAUAAAAAAAAAAAAFAAUAAAAAAAAAAAAFAAYAAAAAAAAAAAAFAAgAAAAAAAAAAAAGAAgAAAAAAAAAAAAHAAgAAAAAAAAAAAAHAAcAAAAAAAAAAAAIAAYAAAAAAAAAAAAHAAUAAAAAAAAAAAAHAAQAAAAAAAAAAAAGAAQAAAAAAAAAAAAFAAQAAAAAAAAAAAAEAAUAAAAAAAAAAAAEAAYAAAAAAAAAAAAEAAcAAAAAAAAAAAAFAAkAAAAAAAAAAAAEAAkAAAAAAAAAAAADAAkAAAAAAAAAAAADAAgAAAAAAAAAAAADAAcAAAAAAAAAAAADAAYAAAAAAAAAAAADAAUAAAAAAAAAAAAEAAQAAAAAAAAAAAAEAAMAAAAAAAAAAAAFAAMAAAAAAAAAAAAEAAgAAAAAAAAAAAADAAQAAAAAAAAAAAADAAMAAAAAAAAAAAADAAIAAAAAAAAAAAACAAEAAAAAAAAAAAACAAIAAAAAAAAAAAABAAIAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAACAAAAAAAAAAAAAAADAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAFAAEAAAAAAAAAAAAGAAAAAAAAAAAAAAAGAAEAAAAAAAAAAAAHAAEAAAAAAAAAAAAIAAEAAAAAAAAAAAAJAAEAAAAAAAAAAAAKAAEAAAAAAAAAAAALAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAANAAAAAAAAAAAAAAAOAAAAAAAAAAAAAAAOAAEAAAAAAAAAAAAPAAAAAAAAAAAAAAAPAAEAAAAAAAAAAAAQAAAAAAAAAAAAAAAQAAEAAAAAAAAAAAARAAAAAAAAAAAAAAARAAEAAAAAAAAAAAASAAAAAAAAAAAAAAATAAAAAAAAAAAAAAASAAEAAAAAAAAAAAATAAIAAAAAAAAAAAASAAMAAAAAAAAAAAATAAQAAAAAAAAAAAATAAUAAAAAAAAAAAATAAYAAAAAAAAAAAATAAcAAAAAAAAAAAATAAgAAAAAAAAAAAATAAkAAAAAAAAAAAATAAoAAAAAAAAAAAATAAsAAAAAAAAAAAATAAwAAAAAAAAAAAATAA0AAAAAAAAAAAATAA4AAAAAAAAAAAATAA8AAAAAAAAAAAATABAAAAAAAAAAAAASAA8AAAAAAAAAAAASABAAAAAAAAAAAAARAA8AAAAAAAAAAAARABAAAAAAAAAAAAAQABAAAAAAAAAAAAAPABAAAAAAAAAAAAAOABAAAAAAAAAAAAANABAAAAAAAAAAAAAMABAAAAAAAAAAAAALABAAAAAAAAAAAAAKAA8AAAAAAAAAAAAKABAAAAAAAAAAAAAJAA8AAAAAAAAAAAAJABAAAAAAAAAAAAAIAA8AAAAAAAAAAAAIABAAAAAAAAAAAAAHAA8AAAAAAAAAAAAHABAAAAAAAAAAAAAGAA8AAAAAAAAAAAAGABAAAAAAAAAAAAAFAA8AAAAAAAAAAAAFABAAAAAAAAAAAAAEAA8AAAAAAAAAAAAEABAAAAAAAAAAAAADABAAAAAAAAAAAAACAA8AAAAAAAAAAAACABAAAAAAAAAAAAABABAAAAAAAAAAAAAAAA8AAAAAAAAAAAD//w8AAAAAAAAAAAAAAA4AAAAAAAAAAAD//w0AAAAAAAAAAAAAAAwAAAAAAAAAAAD//wwAAAAAAAAAAAD/////AAAAAAAAAAD//wAAAAAAAAAAAAD//wEAAAAAAAAAAAD//wIAAAAAAAAAAAD//wMAAAAAAAAAAAD//wQAAAAAAAAAAAD//wUAAAAAAAAAAAD//wYAAAAAAAAAAAD//wcAAAAAAAAAAAD//wgAAAAAAAAAAAD//wkAAAAAAAAAAAD//woAAAAAAAAAAAD//wsAAAAAAAAAAAD//w4AAAAAAAAAAAD//xAAAAAAAAAAAAD//xEAAAAAAAAAAAAAAP//AAAAAAAAAAAAAAIAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA0AAAAAAAAAAAAAABAAAAAAAAAAAAAAABEAAAAAAAAAAAABAP//AAAAAAAAAAABAAEAAAAAAAAAAAABAAMAAAAAAAAAAAABAAQAAAAAAAAAAAABAAUAAAAAAAAAAAABAAYAAAAAAAAAAAABAAcAAAAAAAAAAAABAAgAAAAAAAAAAAABAAkAAAAAAAAAAAABAAoAAAAAAAAAAAABAAsAAAAAAAAAAAABAAwAAAAAAAAAAAABAA0AAAAAAAAAAAABAA4AAAAAAAAAAAABAA8AAAAAAAAAAAABABEAAAAAAAAAAAACAP//AAAAAAAAAAACAAMAAAAAAAAAAAACAAQAAAAAAAAAAAACAAUAAAAAAAAAAAACAAYAAAAAAAAAAAACAAcAAAAAAAAAAAACAAgAAAAAAAAAAAACAAkAAAAAAAAAAAACAAoAAAAAAAAAAAACAAsAAAAAAAAAAAACAAwAAAAAAAAAAAACAA0AAAAAAAAAAAACAA4AAAAAAAAAAAACABEAAAAAAAAAAAADAP//AAAAAAAAAAADAAEAAAAAAAAAAAADAAoAAAAAAAAAAAADAAsAAAAAAAAAAAADAAwAAAAAAAAAAAADAA0AAAAAAAAAAAADAA4AAAAAAAAAAAADAA8AAAAAAAAAAAADABEAAAAAAAAAAAAEAP//AAAAAAAAAAAEAAEAAAAAAAAAAAAEAAIAAAAAAAAAAAAEAAoAAAAAAAAAAAAEAAsAAAAAAAAAAAAEAAwAAAAAAAAAAAAEAA0AAAAAAAAAAAAEAA4AAAAAAAAAAAAEABEAAAAAAAAAAAAFAP//AAAAAAAAAAAFAAIAAAAAAAAAAAAFAAoAAAAAAAAAAAAFAAsAAAAAAAAAAAAFAAwAAAAAAAAAAAAFAA0AAAAAAAAAAAAFAA4AAAAAAAAAAAAFABEAAAAAAAAAAAAGAP//AAAAAAAAAAAGAAIAAAAAAAAAAAAGAAMAAAAAAAAAAAAGAAkAAAAAAAAAAAAGAAoAAAAAAAAAAAAGAAsAAAAAAAAAAAAGAAwAAAAAAAAAAAAGAA0AAAAAAAAAAAAGAA4AAAAAAAAAAAAGABEAAAAAAAAAAAAHAP//AAAAAAAAAAAHAAAAAAAAAAAAAAAHAAIAAAAAAAAAAAAHAAMAAAAAAAAAAAAHAAkAAAAAAAAAAAAHAAoAAAAAAAAAAAAHAAsAAAAAAAAAAAAHAAwAAAAAAAAAAAAHAA0AAAAAAAAAAAAHAA4AAAAAAAAAAAAHABEAAAAAAAAAAAAIAP//AAAAAAAAAAAIAAAAAAAAAAAAAAAIAAIAAAAAAAAAAAAIAAMAAAAAAAAAAAAIAAQAAAAAAAAAAAAIAAUAAAAAAAAAAAAIAAcAAAAAAAAAAAAIAAgAAAAAAAAAAAAIAAkAAAAAAAAAAAAIAAoAAAAAAAAAAAAIAAsAAAAAAAAAAAAIAAwAAAAAAAAAAAAIAA0AAAAAAAAAAAAIAA4AAAAAAAAAAAAIABEAAAAAAAAAAAAJAP//AAAAAAAAAAAJAAAAAAAAAAAAAAAJAAIAAAAAAAAAAAAJAAMAAAAAAAAAAAAJAAQAAAAAAAAAAAAJAAUAAAAAAAAAAAAJAAYAAAAAAAAAAAAJAAcAAAAAAAAAAAAJAAgAAAAAAAAAAAAJAAkAAAAAAAAAAAAJAAoAAAAAAAAAAAAJAAsAAAAAAAAAAAAJAAwAAAAAAAAAAAAJAA0AAAAAAAAAAAAJAA4AAAAAAAAAAAAJABEAAAAAAAAAAAAKAP//AAAAAAAAAAAKAAAAAAAAAAAAAAAKAAIAAAAAAAAAAAAKAAMAAAAAAAAAAAAKAAQAAAAAAAAAAAAKAAUAAAAAAAAAAAAKAAYAAAAAAAAAAAAKAAcAAAAAAAAAAAAKAAgAAAAAAAAAAAAKAAkAAAAAAAAAAAAKAAoAAAAAAAAAAAAKAAsAAAAAAAAAAAAKAAwAAAAAAAAAAAAKAA0AAAAAAAAAAAAKAA4AAAAAAAAAAAAKABEAAAAAAAAAAAALAP//AAAAAAAAAAALAAEAAAAAAAAAAAALAAIAAAAAAAAAAAALAAMAAAAAAAAAAAALAAQAAAAAAAAAAAALAAUAAAAAAAAAAAALAAYAAAAAAAAAAAALAAcAAAAAAAAAAAALAAgAAAAAAAAAAAALAAkAAAAAAAAAAAALAAoAAAAAAAAAAAALAAsAAAAAAAAAAAALAAwAAAAAAAAAAAALAA0AAAAAAAAAAAALAA4AAAAAAAAAAAALAA8AAAAAAAAAAAALABEAAAAAAAAAAAAMAP//AAAAAAAAAAAMAAEAAAAAAAAAAAAMAAIAAAAAAAAAAAAMAAMAAAAAAAAAAAAMAAQAAAAAAAAAAAAMAAUAAAAAAAAAAAAMAAYAAAAAAAAAAAAMAAcAAAAAAAAAAAAMAAgAAAAAAAAAAAAMAAkAAAAAAAAAAAAMAAoAAAAAAAAAAAAMAAsAAAAAAAAAAAAMAAwAAAAAAAAAAAAMAA0AAAAAAAAAAAAMAA4AAAAAAAAAAAAMAA8AAAAAAAAAAAAMABEAAAAAAAAAAAANAP//AAAAAAAAAAANAAEAAAAAAAAAAAANAAIAAAAAAAAAAAANAAMAAAAAAAAAAAANAAQAAAAAAAAAAAANAAUAAAAAAAAAAAANAAYAAAAAAAAAAAANAAcAAAAAAAAAAAANAAgAAAAAAAAAAAANAAkAAAAAAAAAAAANAAoAAAAAAAAAAAANAAsAAAAAAAAAAAANAAwAAAAAAAAAAAANAA0AAAAAAAAAAAANAA4AAAAAAAAAAAANAA8AAAAAAAAAAAANABEAAAAAAAAAAAAOAP//AAAAAAAAAAAOAAIAAAAAAAAAAAAOAAMAAAAAAAAAAAAOAAQAAAAAAAAAAAAOAAUAAAAAAAAAAAAOAAYAAAAAAAAAAAAOAAcAAAAAAAAAAAAOAAgAAAAAAAAAAAAOAAkAAAAAAAAAAAAOAAoAAAAAAAAAAAAOAAsAAAAAAAAAAAAOAAwAAAAAAAAAAAAOAA0AAAAAAAAAAAAOAA4AAAAAAAAAAAAOAA8AAAAAAAAAAAAOABEAAAAAAAAAAAAPAP//AAAAAAAAAAAPAAIAAAAAAAAAAAAPAAMAAAAAAAAAAAAPAAQAAAAAAAAAAAAPAAUAAAAAAAAAAAAPAAYAAAAAAAAAAAAPAAcAAAAAAAAAAAAPAAgAAAAAAAAAAAAPAAkAAAAAAAAAAAAPAAoAAAAAAAAAAAAPAAsAAAAAAAAAAAAPAAwAAAAAAAAAAAAPAA0AAAAAAAAAAAAPAA4AAAAAAAAAAAAPAA8AAAAAAAAAAAAPABEAAAAAAAAAAAAQAP//AAAAAAAAAAAQAAIAAAAAAAAAAAAQAAMAAAAAAAAAAAAQAAQAAAAAAAAAAAAQAAUAAAAAAAAAAAAQAAYAAAAAAAAAAAAQAAcAAAAAAAAAAAAQAAgAAAAAAAAAAAAQAAkAAAAAAAAAAAAQAAoAAAAAAAAAAAAQAAsAAAAAAAAAAAAQAAwAAAAAAAAAAAAQAA0AAAAAAAAAAAAQAA4AAAAAAAAAAAAQAA8AAAAAAAAAAAAQABEAAAAAAAAAAAARAP//AAAAAAAAAAARAAIAAAAAAAAAAAARAAMAAAAAAAAAAAARAAQAAAAAAAAAAAARAAUAAAAAAAAAAAARAAYAAAAAAAAAAAARAAcAAAAAAAAAAAARAAgAAAAAAAAAAAARAAkAAAAAAAAAAAARAAoAAAAAAAAAAAARAAsAAAAAAAAAAAARAAwAAAAAAAAAAAARAA0AAAAAAAAAAAARAA4AAAAAAAAAAAARABEAAAAAAAAAAAASAP//AAAAAAAAAAASAAIAAAAAAAAAAAASAAQAAAAAAAAAAAASAAUAAAAAAAAAAAASAAYAAAAAAAAAAAASAAcAAAAAAAAAAAASAAgAAAAAAAAAAAASAAkAAAAAAAAAAAASAAoAAAAAAAAAAAASAAsAAAAAAAAAAAASAAwAAAAAAAAAAAASAA0AAAAAAAAAAAASAA4AAAAAAAAAAAASABEAAAAAAAAAAAATAP//AAAAAAAAAAATAAEAAAAAAAAAAAATAAMAAAAAAAAAAAATABEAAAAAAAAAAAAUAP//AAAAAAAAAAAUAAAAAAAAAAAAAAAUAAEAAAAAAAAAAAAUAAIAAAAAAAAAAAAUAAMAAAAAAAAAAAAUAAQAAAAAAAAAAAAUAAUAAAAAAAAAAAAUAAYAAAAAAAAAAAAUAAcAAAAAAAAAAAAUAAgAAAAAAAAAAAAUAAkAAAAAAAAAAAAUAAoAAAAAAAAAAAAUAAsAAAAAAAAAAAAUAAwAAAAAAAAAAAAUAA0AAAAAAAAAAAAUAA4AAAAAAAAAAAAUAA8AAAAAAAAAAAAUABAAAAAAAAAAAAAUABEAAAAAAAAAAAD9//3/AAAAAAAAAAD9//7/AAAAAAAAAAD9////AAAAAAAAAAD9/wAAAAAAAAAAAAD9/wEAAAAAAAAAAAD9/wIAAAAAAAAAAAD9/wMAAAAAAAAAAAD9/wQAAAAAAAAAAAD9/wUAAAAAAAAAAAD9/wYAAAAAAAAAAAD9/wcAAAAAAAAAAAD9/wgAAAAAAAAAAAD9/wkAAAAAAAAAAAD9/woAAAAAAAAAAAD9/wsAAAAAAAAAAAD9/wwAAAAAAAAAAAD9/w0AAAAAAAAAAAD9/w4AAAAAAAAAAAD9/w8AAAAAAAAAAAD9/xAAAAAAAAAAAAD9/xEAAAAAAAAAAAD9/xIAAAAAAAAAAAD9/xMAAAAAAAAAAAD9/xQAAAAAAAAAAAD9/xUAAAAAAAAAAAD9/xYAAAAAAAAAAAD9/xcAAAAAAAAAAAD+//3/AAAAAAAAAAD+//7/AAAAAAAAAAD+////AAAAAAAAAAD+/wAAAAAAAAAAAAD+/wEAAAAAAAAAAAD+/wIAAAAAAAAAAAD+/wMAAAAAAAAAAAD+/wQAAAAAAAAAAAD+/wUAAAAAAAAAAAD+/wYAAAAAAAAAAAD+/wcAAAAAAAAAAAD+/wgAAAAAAAAAAAD+/wkAAAAAAAAAAAD+/woAAAAAAAAAAAD+/wsAAAAAAAAAAAD+/wwAAAAAAAAAAAD+/w0AAAAAAAAAAAD+/w4AAAAAAAAAAAD+/w8AAAAAAAAAAAD+/xAAAAAAAAAAAAD+/xEAAAAAAAAAAAD+/xIAAAAAAAAAAAD+/xMAAAAAAAAAAAD+/xQAAAAAAAAAAAD+/xUAAAAAAAAAAAD+/xYAAAAAAAAAAAD+/xcAAAAAAAAAAAD///3/AAAAAAAAAAD///7/AAAAAAAAAAD//xIAAAAAAAAAAAD//xMAAAAAAAAAAAD//xQAAAAAAAAAAAD//xUAAAAAAAAAAAD//xYAAAAAAAAAAAD//xcAAAAAAAAAAAAAAP3/AAAAAAAAAAAAAP7/AAAAAAAAAAAAABIAAAAAAAAAAAAAABMAAAAAAAAAAAAAABQAAAAAAAAAAAAAABUAAAAAAAAAAAAAABYAAAAAAAAAAAAAABcAAAAAAAAAAAABAP3/AAAAAAAAAAABAP7/AAAAAAAAAAABABIAAAAAAAAAAAABABMAAAAAAAAAAAABABQAAAAAAAAAAAABABUAAAAAAAAAAAABABYAAAAAAAAAAAABABcAAAAAAAAAAAACAP3/AAAAAAAAAAACAP7/AAAAAAAAAAACABIAAAAAAAAAAAACABMAAAAAAAAAAAACABQAAAAAAAAAAAACABUAAAAAAAAAAAACABYAAAAAAAAAAAACABcAAAAAAAAAAAADAP3/AAAAAAAAAAADAP7/AAAAAAAAAAADABIAAAAAAAAAAAADABMAAAAAAAAAAAADABQAAAAAAAAAAAADABUAAAAAAAAAAAADABYAAAAAAAAAAAADABcAAAAAAAAAAAAEAP3/AAAAAAAAAAAEAP7/AAAAAAAAAAAEABIAAAAAAAAAAAAEABMAAAAAAAAAAAAEABQAAAAAAAAAAAAEABUAAAAAAAAAAAAEABYAAAAAAAAAAAAEABcAAAAAAAAAAAAFAP3/AAAAAAAAAAAFAP7/AAAAAAAAAAAFABIAAAAAAAAAAAAFABMAAAAAAAAAAAAFABQAAAAAAAAAAAAFABUAAAAAAAAAAAAFABYAAAAAAAAAAAAFABcAAAAAAAAAAAAGAP3/AAAAAAAAAAAGAP7/AAAAAAAAAAAGABIAAAAAAAAAAAAGABMAAAAAAAAAAAAGABQAAAAAAAAAAAAGABUAAAAAAAAAAAAGABYAAAAAAAAAAAAGABcAAAAAAAAAAAAHAP3/AAAAAAAAAAAHAP7/AAAAAAAAAAAHABIAAAAAAAAAAAAHABMAAAAAAAAAAAAHABQAAAAAAAAAAAAHABUAAAAAAAAAAAAHABYAAAAAAAAAAAAHABcAAAAAAAAAAAAIAP3/AAAAAAAAAAAIAP7/AAAAAAAAAAAIABIAAAAAAAAAAAAIABMAAAAAAAAAAAAIABQAAAAAAAAAAAAIABUAAAAAAAAAAAAIABYAAAAAAAAAAAAIABcAAAAAAAAAAAAJAP3/AAAAAAAAAAAJAP7/AAAAAAAAAAAJABIAAAAAAAAAAAAJABMAAAAAAAAAAAAJABQAAAAAAAAAAAAJABUAAAAAAAAAAAAJABYAAAAAAAAAAAAJABcAAAAAAAAAAAAKAP3/AAAAAAAAAAAKAP7/AAAAAAAAAAAKABIAAAAAAAAAAAAKABMAAAAAAAAAAAAKABQAAAAAAAAAAAAKABUAAAAAAAAAAAAKABYAAAAAAAAAAAAKABcAAAAAAAAAAAALAP3/AAAAAAAAAAALAP7/AAAAAAAAAAALABIAAAAAAAAAAAALABMAAAAAAAAAAAALABQAAAAAAAAAAAALABUAAAAAAAAAAAALABYAAAAAAAAAAAALABcAAAAAAAAAAAAMAP3/AAAAAAAAAAAMAP7/AAAAAAAAAAAMABIAAAAAAAAAAAAMABMAAAAAAAAAAAAMABQAAAAAAAAAAAAMABUAAAAAAAAAAAAMABYAAAAAAAAAAAAMABcAAAAAAAAAAAANAP3/AAAAAAAAAAANAP7/AAAAAAAAAAANABIAAAAAAAAAAAANABMAAAAAAAAAAAANABQAAAAAAAAAAAANABUAAAAAAAAAAAANABYAAAAAAAAAAAANABcAAAAAAAAAAAAOAP3/AAAAAAAAAAAOAP7/AAAAAAAAAAAOABIAAAAAAAAAAAAOABMAAAAAAAAAAAAOABQAAAAAAAAAAAAOABUAAAAAAAAAAAAOABYAAAAAAAAAAAAOABcAAAAAAAAAAAAPAP3/AAAAAAAAAAAPAP7/AAAAAAAAAAAPABIAAAAAAAAAAAAPABMAAAAAAAAAAAAPABQAAAAAAAAAAAAPABUAAAAAAAAAAAAPABYAAAAAAAAAAAAPABcAAAAAAAAAAAAQAP3/AAAAAAAAAAAQAP7/AAAAAAAAAAAQABIAAAAAAAAAAAAQABMAAAAAAAAAAAAQABQAAAAAAAAAAAAQABUAAAAAAAAAAAAQABYAAAAAAAAAAAAQABcAAAAAAAAAAAARAP3/AAAAAAAAAAARAP7/AAAAAAAAAAARABIAAAAAAAAAAAARABMAAAAAAAAAAAARABQAAAAAAAAAAAARABUAAAAAAAAAAAARABYAAAAAAAAAAAARABcAAAAAAAAAAAASAP3/AAAAAAAAAAASAP7/AAAAAAAAAAASABIAAAAAAAAAAAASABMAAAAAAAAAAAASABQAAAAAAAAAAAASABUAAAAAAAAAAAASABYAAAAAAAAAAAASABcAAAAAAAAAAAATAP3/AAAAAAAAAAATAP7/AAAAAAAAAAATABIAAAAAAAAAAAATABMAAAAAAAAAAAATABQAAAAAAAAAAAATABUAAAAAAAAAAAATABYAAAAAAAAAAAATABcAAAAAAAAAAAAUAP3/AAAAAAAAAAAUAP7/AAAAAAAAAAAUABIAAAAAAAAAAAAUABMAAAAAAAAAAAAUABQAAAAAAAAAAAAUABUAAAAAAAAAAAAUABYAAAAAAAAAAAAUABcAAAAAAAAAAAAVAP3/AAAAAAAAAAAVAP7/AAAAAAAAAAAVAP//AAAAAAAAAAAVAAAAAAAAAAAAAAAVAAEAAAAAAAAAAAAVAAIAAAAAAAAAAAAVAAMAAAAAAAAAAAAVAAQAAAAAAAAAAAAVAAUAAAAAAAAAAAAVAAYAAAAAAAAAAAAVAAcAAAAAAAAAAAAVAAgAAAAAAAAAAAAVAAkAAAAAAAAAAAAVAAoAAAAAAAAAAAAVAAsAAAAAAAAAAAAVAAwAAAAAAAAAAAAVAA0AAAAAAAAAAAAVAA4AAAAAAAAAAAAVAA8AAAAAAAAAAAAVABAAAAAAAAAAAAAVABEAAAAAAAAAAAAVABIAAAAAAAAAAAAVABMAAAAAAAAAAAAVABQAAAAAAAAAAAAVABUAAAAAAAAAAAAVABYAAAAAAAAAAAAVABcAAAAAAAAAAAAWAP3/AAAAAAAAAAAWAP7/AAAAAAAAAAAWAP//AAAAAAAAAAAWAAAAAAAAAAAAAAAWAAEAAAAAAAAAAAAWAAIAAAAAAAAAAAAWAAMAAAAAAAAAAAAWAAQAAAAAAAAAAAAWAAUAAAAAAAAAAAAWAAYAAAAAAAAAAAAWAAcAAAAAAAAAAAAWAAgAAAAAAAAAAAAWAAkAAAAAAAAAAAAWAAoAAAAAAAAAAAAWAAsAAAAAAAAAAAAWAAwAAAAAAAAAAAAWAA0AAAAAAAAAAAAWAA4AAAAAAAAAAAAWAA8AAAAAAAAAAAAWABAAAAAAAAAAAAAWABEAAAAAAAAAAAAWABIAAAAAAAAAAAAWABMAAAAAAAAAAAAWABQAAAAAAAAAAAAWABUAAAAAAAAAAAAWABYAAAAAAAAAAAAWABcAAAAAAAAAAAAXAP3/AAAAAAAAAAAXAP7/AAAAAAAAAAAXAP//AAAAAAAAAAAXAAAAAAAAAAAAAAAXAAEAAAAAAAAAAAAXAAIAAAAAAAAAAAAXAAMAAAAAAAAAAAAXAAQAAAAAAAAAAAAXAAUAAAAAAAAAAAAXAAYAAAAAAAAAAAAXAAcAAAAAAAAAAAAXAAgAAAAAAAAAAAAXAAkAAAAAAAAAAAAXAAoAAAAAAAAAAAAXAAsAAAAAAAAAAAAXAAwAAAAAAAAAAAAXAA0AAAAAAAAAAAAXAA4AAAAAAAAAAAAXAA8AAAAAAAAAAAAXABAAAAAAAAAAAAAXABEAAAAAAAAAAAAXABIAAAAAAAAAAAAXABMAAAAAAAAAAAAXABQAAAAAAAAAAAAXABUAAAAAAAAAAAAXABYAAAAAAAAAAAAXABcAAAAAAAAAAAAYAP3/AAAAAAAAAAAYAP7/AAAAAAAAAAAYAP//AAAAAAAAAAAYAAAAAAAAAAAAAAAYAAEAAAAAAAAAAAAYAAIAAAAAAAAAAAAYAAMAAAAAAAAAAAAYAAQAAAAAAAAAAAAYAAUAAAAAAAAAAAAYAAYAAAAAAAAAAAAYAAcAAAAAAAAAAAAYAAgAAAAAAAAAAAAYAAkAAAAAAAAAAAAYAAoAAAAAAAAAAAAYAAsAAAAAAAAAAAAYAAwAAAAAAAAAAAAYAA0AAAAAAAAAAAAYAA4AAAAAAAAAAAAYAA8AAAAAAAAAAAAYABAAAAAAAAAAAAAYABEAAAAAAAAAAAAYABIAAAAAAAAAAAAYABMAAAAAAAAAAAAYABQAAAAAAAAAAAAYABUAAAAAAAAAAAAYABYAAAAAAAAAAAAYABcAAAAAAAAAAAAZAP3/AAAAAAAAAAAZAP7/AAAAAAAAAAAZAP//AAAAAAAAAAAZAAAAAAAAAAAAAAAZAAEAAAAAAAAAAAAZAAIAAAAAAAAAAAAZAAMAAAAAAAAAAAAZAAQAAAAAAAAAAAAZAAUAAAAAAAAAAAAZAAYAAAAAAAAAAAAZAAcAAAAAAAAAAAAZAAgAAAAAAAAAAAAZAAkAAAAAAAAAAAAZAAoAAAAAAAAAAAAZAAsAAAAAAAAAAAAZAAwAAAAAAAAAAAAZAA0AAAAAAAAAAAAZAA4AAAAAAAAAAAAZAA8AAAAAAAAAAAAZABAAAAAAAAAAAAAZABEAAAAAAAAAAAAZABIAAAAAAAAAAAAZABMAAAAAAAAAAAAZABQAAAAAAAAAAAAZABUAAAAAAAAAAAAZABYAAAAAAAAAAAAZABcAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_uacia")
+
+[node name="Grid" type="Node2D" parent="." unique_id=1041991176]
+visible = false
+
+[node name="GridSpace" parent="Grid" unique_id=1093710814 instance=ExtResource("1_bl13t")]
+position = Vector2(32, 32)
+
+[node name="GridSpace2" parent="Grid" unique_id=1163598057 instance=ExtResource("1_bl13t")]
+position = Vector2(96, 32)
+
+[node name="GridSpace3" parent="Grid" unique_id=519598278 instance=ExtResource("1_bl13t")]
+position = Vector2(160, 32)
+
+[node name="GridSpace4" parent="Grid" unique_id=1242242346 instance=ExtResource("1_bl13t")]
+position = Vector2(224, 32)
+
+[node name="GridSpace5" parent="Grid" unique_id=104021426 instance=ExtResource("1_bl13t")]
+position = Vector2(288, 32)
+
+[node name="GridSpace6" parent="Grid" unique_id=1717349630 instance=ExtResource("1_bl13t")]
+position = Vector2(352, 32)
+
+[node name="GridSpace7" parent="Grid" unique_id=987764249 instance=ExtResource("1_bl13t")]
+position = Vector2(416, 32)
+
+[node name="GridSpace8" parent="Grid" unique_id=1156169302 instance=ExtResource("1_bl13t")]
+position = Vector2(480, 32)
+
+[node name="GridSpace9" parent="Grid" unique_id=255098368 instance=ExtResource("1_bl13t")]
+position = Vector2(544, 32)
+
+[node name="GridSpace10" parent="Grid" unique_id=299715352 instance=ExtResource("1_bl13t")]
+position = Vector2(608, 32)
+
+[node name="GridSpace11" parent="Grid" unique_id=292473200 instance=ExtResource("1_bl13t")]
+position = Vector2(672, 32)
+
+[node name="GridSpace12" parent="Grid" unique_id=325085869 instance=ExtResource("1_bl13t")]
+position = Vector2(736, 32)
+
+[node name="GridSpace13" parent="Grid" unique_id=337746186 instance=ExtResource("1_bl13t")]
+position = Vector2(800, 32)
+
+[node name="GridSpace14" parent="Grid" unique_id=695514193 instance=ExtResource("1_bl13t")]
+position = Vector2(864, 32)
+
+[node name="GridSpace15" parent="Grid" unique_id=546044888 instance=ExtResource("1_bl13t")]
+position = Vector2(928, 32)
+
+[node name="GridSpace16" parent="Grid" unique_id=840606430 instance=ExtResource("1_bl13t")]
+position = Vector2(992, 32)
+
+[node name="GridSpace17" parent="Grid" unique_id=1856071883 instance=ExtResource("1_bl13t")]
+position = Vector2(1056, 32)
+
+[node name="GridSpace18" parent="Grid" unique_id=1177163492 instance=ExtResource("1_bl13t")]
+position = Vector2(1120, 32)
+
+[node name="GridSpace19" parent="Grid" unique_id=2036575545 instance=ExtResource("1_bl13t")]
+position = Vector2(32, 96)
+
+[node name="GridSpace20" parent="Grid" unique_id=778765225 instance=ExtResource("1_bl13t")]
+position = Vector2(96, 96)
+
+[node name="GridSpace21" parent="Grid" unique_id=476937430 instance=ExtResource("1_bl13t")]
+position = Vector2(160, 96)
+
+[node name="GridSpace22" parent="Grid" unique_id=307538904 instance=ExtResource("1_bl13t")]
+position = Vector2(224, 96)
+
+[node name="GridSpace23" parent="Grid" unique_id=1616398269 instance=ExtResource("1_bl13t")]
+position = Vector2(288, 96)
+
+[node name="GridSpace24" parent="Grid" unique_id=466608301 instance=ExtResource("1_bl13t")]
+position = Vector2(352, 96)
+
+[node name="GridSpace25" parent="Grid" unique_id=899145445 instance=ExtResource("1_bl13t")]
+position = Vector2(416, 96)
+
+[node name="GridSpace26" parent="Grid" unique_id=737621931 instance=ExtResource("1_bl13t")]
+position = Vector2(480, 96)
+
+[node name="GridSpace27" parent="Grid" unique_id=1176215347 instance=ExtResource("1_bl13t")]
+position = Vector2(544, 96)
+
+[node name="GridSpace28" parent="Grid" unique_id=1904711021 instance=ExtResource("1_bl13t")]
+position = Vector2(608, 96)
+
+[node name="GridSpace29" parent="Grid" unique_id=570273250 instance=ExtResource("1_bl13t")]
+position = Vector2(672, 96)
+
+[node name="GridSpace30" parent="Grid" unique_id=835103301 instance=ExtResource("1_bl13t")]
+position = Vector2(736, 96)
+
+[node name="GridSpace31" parent="Grid" unique_id=264891930 instance=ExtResource("1_bl13t")]
+position = Vector2(800, 96)
+
+[node name="GridSpace32" parent="Grid" unique_id=426286698 instance=ExtResource("1_bl13t")]
+position = Vector2(864, 96)
+
+[node name="GridSpace33" parent="Grid" unique_id=480773124 instance=ExtResource("1_bl13t")]
+position = Vector2(928, 96)
+
+[node name="GridSpace34" parent="Grid" unique_id=219342330 instance=ExtResource("1_bl13t")]
+position = Vector2(992, 96)
+
+[node name="GridSpace35" parent="Grid" unique_id=553599698 instance=ExtResource("1_bl13t")]
+position = Vector2(1056, 96)
+
+[node name="GridSpace36" parent="Grid" unique_id=1826100709 instance=ExtResource("1_bl13t")]
+position = Vector2(1120, 96)
+
+[node name="GridSpace37" parent="Grid" unique_id=1920205674 instance=ExtResource("1_bl13t")]
+position = Vector2(32, 160)
+
+[node name="GridSpace38" parent="Grid" unique_id=65052905 instance=ExtResource("1_bl13t")]
+position = Vector2(96, 160)
+
+[node name="GridSpace39" parent="Grid" unique_id=1408226219 instance=ExtResource("1_bl13t")]
+position = Vector2(160, 160)
+
+[node name="GridSpace40" parent="Grid" unique_id=1805543997 instance=ExtResource("1_bl13t")]
+position = Vector2(224, 160)
+
+[node name="GridSpace41" parent="Grid" unique_id=1880084515 instance=ExtResource("1_bl13t")]
+position = Vector2(288, 160)
+
+[node name="GridSpace42" parent="Grid" unique_id=554835988 instance=ExtResource("1_bl13t")]
+position = Vector2(352, 160)
+
+[node name="GridSpace43" parent="Grid" unique_id=1478917762 instance=ExtResource("1_bl13t")]
+position = Vector2(416, 160)
+
+[node name="GridSpace44" parent="Grid" unique_id=1596238719 instance=ExtResource("1_bl13t")]
+position = Vector2(480, 160)
+
+[node name="GridSpace45" parent="Grid" unique_id=860065095 instance=ExtResource("1_bl13t")]
+position = Vector2(544, 160)
+
+[node name="GridSpace46" parent="Grid" unique_id=458106356 instance=ExtResource("1_bl13t")]
+position = Vector2(608, 160)
+
+[node name="GridSpace47" parent="Grid" unique_id=973407034 instance=ExtResource("1_bl13t")]
+position = Vector2(672, 160)
+
+[node name="GridSpace48" parent="Grid" unique_id=262577820 instance=ExtResource("1_bl13t")]
+position = Vector2(736, 160)
+
+[node name="GridSpace49" parent="Grid" unique_id=1572942610 instance=ExtResource("1_bl13t")]
+position = Vector2(800, 160)
+
+[node name="GridSpace50" parent="Grid" unique_id=262790983 instance=ExtResource("1_bl13t")]
+position = Vector2(864, 160)
+
+[node name="GridSpace51" parent="Grid" unique_id=1732218645 instance=ExtResource("1_bl13t")]
+position = Vector2(928, 160)
+
+[node name="GridSpace52" parent="Grid" unique_id=1918497718 instance=ExtResource("1_bl13t")]
+position = Vector2(992, 160)
+
+[node name="GridSpace53" parent="Grid" unique_id=1668596567 instance=ExtResource("1_bl13t")]
+position = Vector2(1056, 160)
+
+[node name="GridSpace54" parent="Grid" unique_id=1268577838 instance=ExtResource("1_bl13t")]
+position = Vector2(1120, 160)
+
+[node name="GridSpace55" parent="Grid" unique_id=2128472912 instance=ExtResource("1_bl13t")]
+position = Vector2(32, 224)
+
+[node name="GridSpace56" parent="Grid" unique_id=1229149545 instance=ExtResource("1_bl13t")]
+position = Vector2(96, 224)
+
+[node name="GridSpace57" parent="Grid" unique_id=837651986 instance=ExtResource("1_bl13t")]
+position = Vector2(160, 224)
+
+[node name="GridSpace58" parent="Grid" unique_id=1814135608 instance=ExtResource("1_bl13t")]
+position = Vector2(224, 224)
+
+[node name="GridSpace59" parent="Grid" unique_id=584038243 instance=ExtResource("1_bl13t")]
+position = Vector2(288, 224)
+
+[node name="GridSpace60" parent="Grid" unique_id=1434867827 instance=ExtResource("1_bl13t")]
+position = Vector2(352, 224)
+
+[node name="GridSpace61" parent="Grid" unique_id=1031332303 instance=ExtResource("1_bl13t")]
+position = Vector2(416, 224)
+
+[node name="GridSpace62" parent="Grid" unique_id=1656714403 instance=ExtResource("1_bl13t")]
+position = Vector2(480, 224)
+
+[node name="GridSpace63" parent="Grid" unique_id=1225462641 instance=ExtResource("1_bl13t")]
+position = Vector2(544, 224)
+
+[node name="GridSpace64" parent="Grid" unique_id=1375859387 instance=ExtResource("1_bl13t")]
+position = Vector2(608, 224)
+
+[node name="GridSpace65" parent="Grid" unique_id=1861368188 instance=ExtResource("1_bl13t")]
+position = Vector2(672, 224)
+
+[node name="GridSpace66" parent="Grid" unique_id=1379656643 instance=ExtResource("1_bl13t")]
+position = Vector2(736, 224)
+
+[node name="GridSpace67" parent="Grid" unique_id=2108190056 instance=ExtResource("1_bl13t")]
+position = Vector2(800, 224)
+
+[node name="GridSpace68" parent="Grid" unique_id=545749230 instance=ExtResource("1_bl13t")]
+position = Vector2(864, 224)
+
+[node name="GridSpace69" parent="Grid" unique_id=2127255741 instance=ExtResource("1_bl13t")]
+position = Vector2(928, 224)
+
+[node name="GridSpace70" parent="Grid" unique_id=1478913980 instance=ExtResource("1_bl13t")]
+position = Vector2(992, 224)
+
+[node name="GridSpace71" parent="Grid" unique_id=679060170 instance=ExtResource("1_bl13t")]
+position = Vector2(1056, 224)
+
+[node name="GridSpace72" parent="Grid" unique_id=2094274790 instance=ExtResource("1_bl13t")]
+position = Vector2(1120, 224)
+
+[node name="GridSpace73" parent="Grid" unique_id=1115378305 instance=ExtResource("1_bl13t")]
+position = Vector2(32, 288)
+
+[node name="GridSpace74" parent="Grid" unique_id=337821583 instance=ExtResource("1_bl13t")]
+position = Vector2(96, 288)
+
+[node name="GridSpace75" parent="Grid" unique_id=210251850 instance=ExtResource("1_bl13t")]
+position = Vector2(160, 288)
+
+[node name="GridSpace76" parent="Grid" unique_id=1663720296 instance=ExtResource("1_bl13t")]
+position = Vector2(224, 288)
+
+[node name="GridSpace77" parent="Grid" unique_id=1056729394 instance=ExtResource("1_bl13t")]
+position = Vector2(288, 288)
+
+[node name="GridSpace78" parent="Grid" unique_id=1161021722 instance=ExtResource("1_bl13t")]
+position = Vector2(352, 288)
+
+[node name="GridSpace79" parent="Grid" unique_id=1501888006 instance=ExtResource("1_bl13t")]
+position = Vector2(416, 288)
+
+[node name="GridSpace80" parent="Grid" unique_id=1524455976 instance=ExtResource("1_bl13t")]
+position = Vector2(480, 288)
+
+[node name="GridSpace81" parent="Grid" unique_id=2105072844 instance=ExtResource("1_bl13t")]
+position = Vector2(544, 288)
+
+[node name="GridSpace82" parent="Grid" unique_id=536396138 instance=ExtResource("1_bl13t")]
+position = Vector2(608, 288)
+
+[node name="GridSpace83" parent="Grid" unique_id=741949365 instance=ExtResource("1_bl13t")]
+position = Vector2(672, 288)
+
+[node name="GridSpace84" parent="Grid" unique_id=477300908 instance=ExtResource("1_bl13t")]
+position = Vector2(736, 288)
+
+[node name="GridSpace85" parent="Grid" unique_id=1711920978 instance=ExtResource("1_bl13t")]
+position = Vector2(800, 288)
+
+[node name="GridSpace86" parent="Grid" unique_id=190340270 instance=ExtResource("1_bl13t")]
+position = Vector2(864, 288)
+
+[node name="GridSpace87" parent="Grid" unique_id=955039266 instance=ExtResource("1_bl13t")]
+position = Vector2(928, 288)
+
+[node name="GridSpace88" parent="Grid" unique_id=1458093803 instance=ExtResource("1_bl13t")]
+position = Vector2(992, 288)
+
+[node name="GridSpace89" parent="Grid" unique_id=761529763 instance=ExtResource("1_bl13t")]
+position = Vector2(1056, 288)
+
+[node name="GridSpace90" parent="Grid" unique_id=700925084 instance=ExtResource("1_bl13t")]
+position = Vector2(1120, 288)
+
+[node name="GridSpace91" parent="Grid" unique_id=1285374527 instance=ExtResource("1_bl13t")]
+position = Vector2(32, 352)
+
+[node name="GridSpace92" parent="Grid" unique_id=610033797 instance=ExtResource("1_bl13t")]
+position = Vector2(96, 352)
+
+[node name="GridSpace93" parent="Grid" unique_id=1085676547 instance=ExtResource("1_bl13t")]
+position = Vector2(160, 352)
+
+[node name="GridSpace94" parent="Grid" unique_id=147248458 instance=ExtResource("1_bl13t")]
+position = Vector2(224, 352)
+
+[node name="GridSpace95" parent="Grid" unique_id=1403830825 instance=ExtResource("1_bl13t")]
+position = Vector2(288, 352)
+
+[node name="GridSpace96" parent="Grid" unique_id=1478670631 instance=ExtResource("1_bl13t")]
+position = Vector2(352, 352)
+
+[node name="GridSpace97" parent="Grid" unique_id=1849118014 instance=ExtResource("1_bl13t")]
+position = Vector2(416, 352)
+
+[node name="GridSpace98" parent="Grid" unique_id=415914172 instance=ExtResource("1_bl13t")]
+position = Vector2(480, 352)
+
+[node name="GridSpace99" parent="Grid" unique_id=1778965050 instance=ExtResource("1_bl13t")]
+position = Vector2(544, 352)
+
+[node name="GridSpace100" parent="Grid" unique_id=1212783881 instance=ExtResource("1_bl13t")]
+position = Vector2(608, 352)
+
+[node name="GridSpace101" parent="Grid" unique_id=430291290 instance=ExtResource("1_bl13t")]
+position = Vector2(672, 352)
+
+[node name="GridSpace102" parent="Grid" unique_id=866428183 instance=ExtResource("1_bl13t")]
+position = Vector2(736, 352)
+
+[node name="GridSpace103" parent="Grid" unique_id=1014573924 instance=ExtResource("1_bl13t")]
+position = Vector2(800, 352)
+
+[node name="GridSpace104" parent="Grid" unique_id=1156912986 instance=ExtResource("1_bl13t")]
+position = Vector2(864, 352)
+
+[node name="GridSpace105" parent="Grid" unique_id=2124229314 instance=ExtResource("1_bl13t")]
+position = Vector2(928, 352)
+
+[node name="GridSpace106" parent="Grid" unique_id=1100049807 instance=ExtResource("1_bl13t")]
+position = Vector2(992, 352)
+
+[node name="GridSpace107" parent="Grid" unique_id=884048911 instance=ExtResource("1_bl13t")]
+position = Vector2(1056, 352)
+
+[node name="GridSpace108" parent="Grid" unique_id=441261752 instance=ExtResource("1_bl13t")]
+position = Vector2(1120, 352)
+
+[node name="GridSpace109" parent="Grid" unique_id=1312364634 instance=ExtResource("1_bl13t")]
+position = Vector2(32, 416)
+
+[node name="GridSpace110" parent="Grid" unique_id=230398558 instance=ExtResource("1_bl13t")]
+position = Vector2(96, 416)
+
+[node name="GridSpace111" parent="Grid" unique_id=1327584230 instance=ExtResource("1_bl13t")]
+position = Vector2(160, 416)
+
+[node name="GridSpace112" parent="Grid" unique_id=356503876 instance=ExtResource("1_bl13t")]
+position = Vector2(224, 416)
+
+[node name="GridSpace113" parent="Grid" unique_id=505782698 instance=ExtResource("1_bl13t")]
+position = Vector2(288, 416)
+
+[node name="GridSpace114" parent="Grid" unique_id=978591570 instance=ExtResource("1_bl13t")]
+position = Vector2(352, 416)
+
+[node name="GridSpace115" parent="Grid" unique_id=1597436950 instance=ExtResource("1_bl13t")]
+position = Vector2(416, 416)
+
+[node name="GridSpace116" parent="Grid" unique_id=1408135551 instance=ExtResource("1_bl13t")]
+position = Vector2(480, 416)
+
+[node name="GridSpace117" parent="Grid" unique_id=593188401 instance=ExtResource("1_bl13t")]
+position = Vector2(544, 416)
+
+[node name="GridSpace118" parent="Grid" unique_id=796292231 instance=ExtResource("1_bl13t")]
+position = Vector2(608, 416)
+
+[node name="GridSpace119" parent="Grid" unique_id=223726381 instance=ExtResource("1_bl13t")]
+position = Vector2(672, 416)
+
+[node name="GridSpace120" parent="Grid" unique_id=2116279194 instance=ExtResource("1_bl13t")]
+position = Vector2(736, 416)
+
+[node name="GridSpace121" parent="Grid" unique_id=927195764 instance=ExtResource("1_bl13t")]
+position = Vector2(800, 416)
+
+[node name="GridSpace122" parent="Grid" unique_id=588541481 instance=ExtResource("1_bl13t")]
+position = Vector2(864, 416)
+
+[node name="GridSpace123" parent="Grid" unique_id=1755481529 instance=ExtResource("1_bl13t")]
+position = Vector2(928, 416)
+
+[node name="GridSpace124" parent="Grid" unique_id=1761992828 instance=ExtResource("1_bl13t")]
+position = Vector2(992, 416)
+
+[node name="GridSpace125" parent="Grid" unique_id=1684918968 instance=ExtResource("1_bl13t")]
+position = Vector2(1056, 416)
+
+[node name="GridSpace126" parent="Grid" unique_id=1559504739 instance=ExtResource("1_bl13t")]
+position = Vector2(1120, 416)
+
+[node name="GridSpace127" parent="Grid" unique_id=2021177337 instance=ExtResource("1_bl13t")]
+position = Vector2(32, 480)
+
+[node name="GridSpace128" parent="Grid" unique_id=2053243969 instance=ExtResource("1_bl13t")]
+position = Vector2(96, 480)
+
+[node name="GridSpace129" parent="Grid" unique_id=2066773674 instance=ExtResource("1_bl13t")]
+position = Vector2(160, 480)
+
+[node name="GridSpace130" parent="Grid" unique_id=537555981 instance=ExtResource("1_bl13t")]
+position = Vector2(224, 480)
+
+[node name="GridSpace131" parent="Grid" unique_id=1592579037 instance=ExtResource("1_bl13t")]
+position = Vector2(288, 480)
+
+[node name="GridSpace132" parent="Grid" unique_id=132344966 instance=ExtResource("1_bl13t")]
+position = Vector2(352, 480)
+
+[node name="GridSpace133" parent="Grid" unique_id=376318911 instance=ExtResource("1_bl13t")]
+position = Vector2(416, 480)
+
+[node name="GridSpace134" parent="Grid" unique_id=251207280 instance=ExtResource("1_bl13t")]
+position = Vector2(480, 480)
+
+[node name="GridSpace135" parent="Grid" unique_id=2091639751 instance=ExtResource("1_bl13t")]
+position = Vector2(544, 480)
+
+[node name="GridSpace136" parent="Grid" unique_id=2139840364 instance=ExtResource("1_bl13t")]
+position = Vector2(608, 480)
+
+[node name="GridSpace137" parent="Grid" unique_id=2134970772 instance=ExtResource("1_bl13t")]
+position = Vector2(672, 480)
+
+[node name="GridSpace138" parent="Grid" unique_id=458124671 instance=ExtResource("1_bl13t")]
+position = Vector2(736, 480)
+
+[node name="GridSpace139" parent="Grid" unique_id=263473829 instance=ExtResource("1_bl13t")]
+position = Vector2(800, 480)
+
+[node name="GridSpace140" parent="Grid" unique_id=1239534448 instance=ExtResource("1_bl13t")]
+position = Vector2(864, 480)
+
+[node name="GridSpace141" parent="Grid" unique_id=679622403 instance=ExtResource("1_bl13t")]
+position = Vector2(928, 480)
+
+[node name="GridSpace142" parent="Grid" unique_id=1915635022 instance=ExtResource("1_bl13t")]
+position = Vector2(992, 480)
+
+[node name="GridSpace143" parent="Grid" unique_id=380670048 instance=ExtResource("1_bl13t")]
+position = Vector2(1056, 480)
+
+[node name="GridSpace144" parent="Grid" unique_id=1342891665 instance=ExtResource("1_bl13t")]
+position = Vector2(1120, 480)
+
+[node name="GridSpace145" parent="Grid" unique_id=1599583330 instance=ExtResource("1_bl13t")]
+position = Vector2(32, 544)
+
+[node name="GridSpace146" parent="Grid" unique_id=567192105 instance=ExtResource("1_bl13t")]
+position = Vector2(96, 544)
+
+[node name="GridSpace147" parent="Grid" unique_id=682580509 instance=ExtResource("1_bl13t")]
+position = Vector2(160, 544)
+
+[node name="GridSpace148" parent="Grid" unique_id=697413869 instance=ExtResource("1_bl13t")]
+position = Vector2(224, 544)
+
+[node name="GridSpace149" parent="Grid" unique_id=1165921172 instance=ExtResource("1_bl13t")]
+position = Vector2(288, 544)
+
+[node name="GridSpace150" parent="Grid" unique_id=632077859 instance=ExtResource("1_bl13t")]
+position = Vector2(352, 544)
+
+[node name="GridSpace151" parent="Grid" unique_id=264498977 instance=ExtResource("1_bl13t")]
+position = Vector2(416, 544)
+
+[node name="GridSpace152" parent="Grid" unique_id=2046204597 instance=ExtResource("1_bl13t")]
+position = Vector2(480, 544)
+
+[node name="GridSpace153" parent="Grid" unique_id=669880483 instance=ExtResource("1_bl13t")]
+position = Vector2(544, 544)
+
+[node name="GridSpace154" parent="Grid" unique_id=198734067 instance=ExtResource("1_bl13t")]
+position = Vector2(608, 544)
+
+[node name="GridSpace155" parent="Grid" unique_id=705027720 instance=ExtResource("1_bl13t")]
+position = Vector2(672, 544)
+
+[node name="GridSpace156" parent="Grid" unique_id=1984675442 instance=ExtResource("1_bl13t")]
+position = Vector2(736, 544)
+
+[node name="GridSpace157" parent="Grid" unique_id=1119218381 instance=ExtResource("1_bl13t")]
+position = Vector2(800, 544)
+
+[node name="GridSpace158" parent="Grid" unique_id=157767281 instance=ExtResource("1_bl13t")]
+position = Vector2(864, 544)
+
+[node name="GridSpace159" parent="Grid" unique_id=600817318 instance=ExtResource("1_bl13t")]
+position = Vector2(928, 544)
+
+[node name="GridSpace160" parent="Grid" unique_id=774830943 instance=ExtResource("1_bl13t")]
+position = Vector2(992, 544)
+
+[node name="GridSpace161" parent="Grid" unique_id=1933807256 instance=ExtResource("1_bl13t")]
+position = Vector2(1056, 544)
+
+[node name="GridSpace162" parent="Grid" unique_id=395673977 instance=ExtResource("1_bl13t")]
+position = Vector2(1120, 544)
+
+[node name="GridSpace163" parent="Grid" unique_id=1571088332 instance=ExtResource("1_bl13t")]
+position = Vector2(32, 608)
+
+[node name="GridSpace164" parent="Grid" unique_id=1316940725 instance=ExtResource("1_bl13t")]
+position = Vector2(96, 608)
+
+[node name="GridSpace165" parent="Grid" unique_id=1069049086 instance=ExtResource("1_bl13t")]
+position = Vector2(160, 608)
+
+[node name="GridSpace166" parent="Grid" unique_id=594203213 instance=ExtResource("1_bl13t")]
+position = Vector2(224, 608)
+
+[node name="GridSpace167" parent="Grid" unique_id=934810428 instance=ExtResource("1_bl13t")]
+position = Vector2(288, 608)
+
+[node name="GridSpace168" parent="Grid" unique_id=420406983 instance=ExtResource("1_bl13t")]
+position = Vector2(352, 608)
+
+[node name="GridSpace169" parent="Grid" unique_id=609450514 instance=ExtResource("1_bl13t")]
+position = Vector2(416, 608)
+
+[node name="GridSpace170" parent="Grid" unique_id=1583091814 instance=ExtResource("1_bl13t")]
+position = Vector2(480, 608)
+
+[node name="GridSpace171" parent="Grid" unique_id=493191503 instance=ExtResource("1_bl13t")]
+position = Vector2(544, 608)
+
+[node name="GridSpace172" parent="Grid" unique_id=2032492228 instance=ExtResource("1_bl13t")]
+position = Vector2(608, 608)
+
+[node name="GridSpace173" parent="Grid" unique_id=1560801753 instance=ExtResource("1_bl13t")]
+position = Vector2(672, 608)
+
+[node name="GridSpace174" parent="Grid" unique_id=1514826153 instance=ExtResource("1_bl13t")]
+position = Vector2(736, 608)
+
+[node name="GridSpace175" parent="Grid" unique_id=1858341635 instance=ExtResource("1_bl13t")]
+position = Vector2(800, 608)
+
+[node name="GridSpace176" parent="Grid" unique_id=71792021 instance=ExtResource("1_bl13t")]
+position = Vector2(864, 608)
+
+[node name="GridSpace177" parent="Grid" unique_id=224702597 instance=ExtResource("1_bl13t")]
+position = Vector2(928, 608)
+
+[node name="GridSpace178" parent="Grid" unique_id=1087157204 instance=ExtResource("1_bl13t")]
+position = Vector2(992, 608)
+
+[node name="GridSpace179" parent="Grid" unique_id=1415093336 instance=ExtResource("1_bl13t")]
+position = Vector2(1056, 608)
+
+[node name="GridSpace180" parent="Grid" unique_id=1144269012 instance=ExtResource("1_bl13t")]
+position = Vector2(1120, 608)
+
+[node name="GridSpace181" parent="Grid" unique_id=477681740 instance=ExtResource("1_bl13t")]
+position = Vector2(1184, 32)
+
+[node name="GridSpace182" parent="Grid" unique_id=1425361623 instance=ExtResource("1_bl13t")]
+position = Vector2(1248, 32)
+
+[node name="GridSpace183" parent="Grid" unique_id=62574018 instance=ExtResource("1_bl13t")]
+position = Vector2(1312, 32)
+
+[node name="GridSpace184" parent="Grid" unique_id=2035152063 instance=ExtResource("1_bl13t")]
+position = Vector2(1376, 32)
+
+[node name="GridSpace185" parent="Grid" unique_id=1763180887 instance=ExtResource("1_bl13t")]
+position = Vector2(1440, 32)
+
+[node name="GridSpace186" parent="Grid" unique_id=328436480 instance=ExtResource("1_bl13t")]
+position = Vector2(1504, 32)
+
+[node name="GridSpace187" parent="Grid" unique_id=1597526076 instance=ExtResource("1_bl13t")]
+position = Vector2(1568, 32)
+
+[node name="GridSpace188" parent="Grid" unique_id=112321851 instance=ExtResource("1_bl13t")]
+position = Vector2(1632, 32)
+
+[node name="GridSpace189" parent="Grid" unique_id=169651257 instance=ExtResource("1_bl13t")]
+position = Vector2(1696, 32)
+
+[node name="GridSpace190" parent="Grid" unique_id=1742217934 instance=ExtResource("1_bl13t")]
+position = Vector2(1760, 32)
+
+[node name="GridSpace191" parent="Grid" unique_id=856997262 instance=ExtResource("1_bl13t")]
+position = Vector2(1824, 32)
+
+[node name="GridSpace192" parent="Grid" unique_id=1851613758 instance=ExtResource("1_bl13t")]
+position = Vector2(1888, 32)
+
+[node name="GridSpace193" parent="Grid" unique_id=1121377034 instance=ExtResource("1_bl13t")]
+position = Vector2(1952, 32)
+
+[node name="GridSpace194" parent="Grid" unique_id=1456468462 instance=ExtResource("1_bl13t")]
+position = Vector2(2016, 32)
+
+[node name="GridSpace195" parent="Grid" unique_id=2106659868 instance=ExtResource("1_bl13t")]
+position = Vector2(2080, 32)
+
+[node name="GridSpace196" parent="Grid" unique_id=1440637199 instance=ExtResource("1_bl13t")]
+position = Vector2(2144, 32)
+
+[node name="GridSpace197" parent="Grid" unique_id=241487588 instance=ExtResource("1_bl13t")]
+position = Vector2(2208, 32)
+
+[node name="GridSpace198" parent="Grid" unique_id=665669106 instance=ExtResource("1_bl13t")]
+position = Vector2(2272, 32)
+
+[node name="GridSpace199" parent="Grid" unique_id=1853023227 instance=ExtResource("1_bl13t")]
+position = Vector2(1184, 96)
+
+[node name="GridSpace200" parent="Grid" unique_id=1017161111 instance=ExtResource("1_bl13t")]
+position = Vector2(1248, 96)
+
+[node name="GridSpace201" parent="Grid" unique_id=1585255153 instance=ExtResource("1_bl13t")]
+position = Vector2(1312, 96)
+
+[node name="GridSpace202" parent="Grid" unique_id=1538742864 instance=ExtResource("1_bl13t")]
+position = Vector2(1376, 96)
+
+[node name="GridSpace203" parent="Grid" unique_id=33122786 instance=ExtResource("1_bl13t")]
+position = Vector2(1440, 96)
+
+[node name="GridSpace204" parent="Grid" unique_id=417270844 instance=ExtResource("1_bl13t")]
+position = Vector2(1504, 96)
+
+[node name="GridSpace205" parent="Grid" unique_id=1035201250 instance=ExtResource("1_bl13t")]
+position = Vector2(1568, 96)
+
+[node name="GridSpace206" parent="Grid" unique_id=1142594491 instance=ExtResource("1_bl13t")]
+position = Vector2(1632, 96)
+
+[node name="GridSpace207" parent="Grid" unique_id=1930684236 instance=ExtResource("1_bl13t")]
+position = Vector2(1696, 96)
+
+[node name="GridSpace208" parent="Grid" unique_id=2047156749 instance=ExtResource("1_bl13t")]
+position = Vector2(1760, 96)
+
+[node name="GridSpace209" parent="Grid" unique_id=1433634720 instance=ExtResource("1_bl13t")]
+position = Vector2(1824, 96)
+
+[node name="GridSpace210" parent="Grid" unique_id=1014427417 instance=ExtResource("1_bl13t")]
+position = Vector2(1888, 96)
+
+[node name="GridSpace211" parent="Grid" unique_id=1518671880 instance=ExtResource("1_bl13t")]
+position = Vector2(1952, 96)
+
+[node name="GridSpace212" parent="Grid" unique_id=1160446291 instance=ExtResource("1_bl13t")]
+position = Vector2(2016, 96)
+
+[node name="GridSpace213" parent="Grid" unique_id=495469768 instance=ExtResource("1_bl13t")]
+position = Vector2(2080, 96)
+
+[node name="GridSpace214" parent="Grid" unique_id=1068915662 instance=ExtResource("1_bl13t")]
+position = Vector2(2144, 96)
+
+[node name="GridSpace215" parent="Grid" unique_id=939496497 instance=ExtResource("1_bl13t")]
+position = Vector2(2208, 96)
+
+[node name="GridSpace216" parent="Grid" unique_id=2038910035 instance=ExtResource("1_bl13t")]
+position = Vector2(2272, 96)
+
+[node name="GridSpace217" parent="Grid" unique_id=1397431470 instance=ExtResource("1_bl13t")]
+position = Vector2(1184, 160)
+
+[node name="GridSpace218" parent="Grid" unique_id=1308674528 instance=ExtResource("1_bl13t")]
+position = Vector2(1248, 160)
+
+[node name="GridSpace219" parent="Grid" unique_id=1451445454 instance=ExtResource("1_bl13t")]
+position = Vector2(1312, 160)
+
+[node name="GridSpace220" parent="Grid" unique_id=1748900817 instance=ExtResource("1_bl13t")]
+position = Vector2(1376, 160)
+
+[node name="GridSpace221" parent="Grid" unique_id=1967314208 instance=ExtResource("1_bl13t")]
+position = Vector2(1440, 160)
+
+[node name="GridSpace222" parent="Grid" unique_id=915472803 instance=ExtResource("1_bl13t")]
+position = Vector2(1504, 160)
+
+[node name="GridSpace223" parent="Grid" unique_id=1204131898 instance=ExtResource("1_bl13t")]
+position = Vector2(1568, 160)
+
+[node name="GridSpace224" parent="Grid" unique_id=1335901286 instance=ExtResource("1_bl13t")]
+position = Vector2(1632, 160)
+
+[node name="GridSpace225" parent="Grid" unique_id=1657323071 instance=ExtResource("1_bl13t")]
+position = Vector2(1696, 160)
+
+[node name="GridSpace226" parent="Grid" unique_id=516059929 instance=ExtResource("1_bl13t")]
+position = Vector2(1760, 160)
+
+[node name="GridSpace227" parent="Grid" unique_id=2003578182 instance=ExtResource("1_bl13t")]
+position = Vector2(1824, 160)
+
+[node name="GridSpace228" parent="Grid" unique_id=1421158394 instance=ExtResource("1_bl13t")]
+position = Vector2(1888, 160)
+
+[node name="GridSpace229" parent="Grid" unique_id=871639133 instance=ExtResource("1_bl13t")]
+position = Vector2(1952, 160)
+
+[node name="GridSpace230" parent="Grid" unique_id=274312134 instance=ExtResource("1_bl13t")]
+position = Vector2(2016, 160)
+
+[node name="GridSpace231" parent="Grid" unique_id=876558922 instance=ExtResource("1_bl13t")]
+position = Vector2(2080, 160)
+
+[node name="GridSpace232" parent="Grid" unique_id=1574661714 instance=ExtResource("1_bl13t")]
+position = Vector2(2144, 160)
+
+[node name="GridSpace233" parent="Grid" unique_id=75888411 instance=ExtResource("1_bl13t")]
+position = Vector2(2208, 160)
+
+[node name="GridSpace234" parent="Grid" unique_id=1430661406 instance=ExtResource("1_bl13t")]
+position = Vector2(2272, 160)
+
+[node name="GridSpace235" parent="Grid" unique_id=1393584368 instance=ExtResource("1_bl13t")]
+position = Vector2(1184, 224)
+
+[node name="GridSpace236" parent="Grid" unique_id=1635818657 instance=ExtResource("1_bl13t")]
+position = Vector2(1248, 224)
+
+[node name="GridSpace237" parent="Grid" unique_id=283213537 instance=ExtResource("1_bl13t")]
+position = Vector2(1312, 224)
+
+[node name="GridSpace238" parent="Grid" unique_id=1373763274 instance=ExtResource("1_bl13t")]
+position = Vector2(1376, 224)
+
+[node name="GridSpace239" parent="Grid" unique_id=338021164 instance=ExtResource("1_bl13t")]
+position = Vector2(1440, 224)
+
+[node name="GridSpace240" parent="Grid" unique_id=494504450 instance=ExtResource("1_bl13t")]
+position = Vector2(1504, 224)
+
+[node name="GridSpace241" parent="Grid" unique_id=680925180 instance=ExtResource("1_bl13t")]
+position = Vector2(1568, 224)
+
+[node name="GridSpace242" parent="Grid" unique_id=1548714606 instance=ExtResource("1_bl13t")]
+position = Vector2(1632, 224)
+
+[node name="GridSpace243" parent="Grid" unique_id=1119164266 instance=ExtResource("1_bl13t")]
+position = Vector2(1696, 224)
+
+[node name="GridSpace244" parent="Grid" unique_id=911657605 instance=ExtResource("1_bl13t")]
+position = Vector2(1760, 224)
+
+[node name="GridSpace245" parent="Grid" unique_id=431176114 instance=ExtResource("1_bl13t")]
+position = Vector2(1824, 224)
+
+[node name="GridSpace246" parent="Grid" unique_id=839533708 instance=ExtResource("1_bl13t")]
+position = Vector2(1888, 224)
+
+[node name="GridSpace247" parent="Grid" unique_id=788554656 instance=ExtResource("1_bl13t")]
+position = Vector2(1952, 224)
+
+[node name="GridSpace248" parent="Grid" unique_id=636218880 instance=ExtResource("1_bl13t")]
+position = Vector2(2016, 224)
+
+[node name="GridSpace249" parent="Grid" unique_id=499707941 instance=ExtResource("1_bl13t")]
+position = Vector2(2080, 224)
+
+[node name="GridSpace250" parent="Grid" unique_id=1955217030 instance=ExtResource("1_bl13t")]
+position = Vector2(2144, 224)
+
+[node name="GridSpace251" parent="Grid" unique_id=1939335853 instance=ExtResource("1_bl13t")]
+position = Vector2(2208, 224)
+
+[node name="GridSpace252" parent="Grid" unique_id=1660038830 instance=ExtResource("1_bl13t")]
+position = Vector2(2272, 224)
+
+[node name="GridSpace253" parent="Grid" unique_id=2081042045 instance=ExtResource("1_bl13t")]
+position = Vector2(1184, 288)
+
+[node name="GridSpace254" parent="Grid" unique_id=1095710868 instance=ExtResource("1_bl13t")]
+position = Vector2(1248, 288)
+
+[node name="GridSpace255" parent="Grid" unique_id=1781458513 instance=ExtResource("1_bl13t")]
+position = Vector2(1312, 288)
+
+[node name="GridSpace256" parent="Grid" unique_id=2015763408 instance=ExtResource("1_bl13t")]
+position = Vector2(1376, 288)
+
+[node name="GridSpace257" parent="Grid" unique_id=1275266477 instance=ExtResource("1_bl13t")]
+position = Vector2(1440, 288)
+
+[node name="GridSpace258" parent="Grid" unique_id=208924665 instance=ExtResource("1_bl13t")]
+position = Vector2(1504, 288)
+
+[node name="GridSpace259" parent="Grid" unique_id=1752275384 instance=ExtResource("1_bl13t")]
+position = Vector2(1568, 288)
+
+[node name="GridSpace260" parent="Grid" unique_id=510176123 instance=ExtResource("1_bl13t")]
+position = Vector2(1632, 288)
+
+[node name="GridSpace261" parent="Grid" unique_id=1897428477 instance=ExtResource("1_bl13t")]
+position = Vector2(1696, 288)
+
+[node name="GridSpace262" parent="Grid" unique_id=1421466721 instance=ExtResource("1_bl13t")]
+position = Vector2(1760, 288)
+
+[node name="GridSpace263" parent="Grid" unique_id=3653424 instance=ExtResource("1_bl13t")]
+position = Vector2(1824, 288)
+
+[node name="GridSpace264" parent="Grid" unique_id=1342962021 instance=ExtResource("1_bl13t")]
+position = Vector2(1888, 288)
+
+[node name="GridSpace265" parent="Grid" unique_id=923579859 instance=ExtResource("1_bl13t")]
+position = Vector2(1952, 288)
+
+[node name="GridSpace266" parent="Grid" unique_id=1365914781 instance=ExtResource("1_bl13t")]
+position = Vector2(2016, 288)
+
+[node name="GridSpace267" parent="Grid" unique_id=746979595 instance=ExtResource("1_bl13t")]
+position = Vector2(2080, 288)
+
+[node name="GridSpace268" parent="Grid" unique_id=267673639 instance=ExtResource("1_bl13t")]
+position = Vector2(2144, 288)
+
+[node name="GridSpace269" parent="Grid" unique_id=1236575115 instance=ExtResource("1_bl13t")]
+position = Vector2(2208, 288)
+
+[node name="GridSpace270" parent="Grid" unique_id=50568086 instance=ExtResource("1_bl13t")]
+position = Vector2(2272, 288)
+
+[node name="GridSpace271" parent="Grid" unique_id=966460999 instance=ExtResource("1_bl13t")]
+position = Vector2(1184, 352)
+
+[node name="GridSpace272" parent="Grid" unique_id=1205199875 instance=ExtResource("1_bl13t")]
+position = Vector2(1248, 352)
+
+[node name="GridSpace273" parent="Grid" unique_id=790143025 instance=ExtResource("1_bl13t")]
+position = Vector2(1312, 352)
+
+[node name="GridSpace274" parent="Grid" unique_id=1457071439 instance=ExtResource("1_bl13t")]
+position = Vector2(1376, 352)
+
+[node name="GridSpace275" parent="Grid" unique_id=2107993988 instance=ExtResource("1_bl13t")]
+position = Vector2(1440, 352)
+
+[node name="GridSpace276" parent="Grid" unique_id=989341229 instance=ExtResource("1_bl13t")]
+position = Vector2(1504, 352)
+
+[node name="GridSpace277" parent="Grid" unique_id=95789418 instance=ExtResource("1_bl13t")]
+position = Vector2(1568, 352)
+
+[node name="GridSpace278" parent="Grid" unique_id=878060982 instance=ExtResource("1_bl13t")]
+position = Vector2(1632, 352)
+
+[node name="GridSpace279" parent="Grid" unique_id=1594965380 instance=ExtResource("1_bl13t")]
+position = Vector2(1696, 352)
+
+[node name="GridSpace280" parent="Grid" unique_id=1198483113 instance=ExtResource("1_bl13t")]
+position = Vector2(1760, 352)
+
+[node name="GridSpace281" parent="Grid" unique_id=955679813 instance=ExtResource("1_bl13t")]
+position = Vector2(1824, 352)
+
+[node name="GridSpace282" parent="Grid" unique_id=540542558 instance=ExtResource("1_bl13t")]
+position = Vector2(1888, 352)
+
+[node name="GridSpace283" parent="Grid" unique_id=1074014584 instance=ExtResource("1_bl13t")]
+position = Vector2(1952, 352)
+
+[node name="GridSpace284" parent="Grid" unique_id=1658228420 instance=ExtResource("1_bl13t")]
+position = Vector2(2016, 352)
+
+[node name="GridSpace285" parent="Grid" unique_id=1620381190 instance=ExtResource("1_bl13t")]
+position = Vector2(2080, 352)
+
+[node name="GridSpace286" parent="Grid" unique_id=1842606250 instance=ExtResource("1_bl13t")]
+position = Vector2(2144, 352)
+
+[node name="GridSpace287" parent="Grid" unique_id=2059907299 instance=ExtResource("1_bl13t")]
+position = Vector2(2208, 352)
+
+[node name="GridSpace288" parent="Grid" unique_id=1077551686 instance=ExtResource("1_bl13t")]
+position = Vector2(2272, 352)
+
+[node name="GridSpace289" parent="Grid" unique_id=295479961 instance=ExtResource("1_bl13t")]
+position = Vector2(1184, 416)
+
+[node name="GridSpace290" parent="Grid" unique_id=1196227560 instance=ExtResource("1_bl13t")]
+position = Vector2(1248, 416)
+
+[node name="GridSpace291" parent="Grid" unique_id=297666723 instance=ExtResource("1_bl13t")]
+position = Vector2(1312, 416)
+
+[node name="GridSpace292" parent="Grid" unique_id=1610572127 instance=ExtResource("1_bl13t")]
+position = Vector2(1376, 416)
+
+[node name="GridSpace293" parent="Grid" unique_id=2066966539 instance=ExtResource("1_bl13t")]
+position = Vector2(1440, 416)
+
+[node name="GridSpace294" parent="Grid" unique_id=1069591877 instance=ExtResource("1_bl13t")]
+position = Vector2(1504, 416)
+
+[node name="GridSpace295" parent="Grid" unique_id=665976888 instance=ExtResource("1_bl13t")]
+position = Vector2(1568, 416)
+
+[node name="GridSpace296" parent="Grid" unique_id=1547048776 instance=ExtResource("1_bl13t")]
+position = Vector2(1632, 416)
+
+[node name="GridSpace297" parent="Grid" unique_id=362673549 instance=ExtResource("1_bl13t")]
+position = Vector2(1696, 416)
+
+[node name="GridSpace298" parent="Grid" unique_id=728201964 instance=ExtResource("1_bl13t")]
+position = Vector2(1760, 416)
+
+[node name="GridSpace299" parent="Grid" unique_id=2106282451 instance=ExtResource("1_bl13t")]
+position = Vector2(1824, 416)
+
+[node name="GridSpace300" parent="Grid" unique_id=1867889056 instance=ExtResource("1_bl13t")]
+position = Vector2(1888, 416)
+
+[node name="GridSpace301" parent="Grid" unique_id=1057285076 instance=ExtResource("1_bl13t")]
+position = Vector2(1952, 416)
+
+[node name="GridSpace302" parent="Grid" unique_id=1605560619 instance=ExtResource("1_bl13t")]
+position = Vector2(2016, 416)
+
+[node name="GridSpace303" parent="Grid" unique_id=2074708581 instance=ExtResource("1_bl13t")]
+position = Vector2(2080, 416)
+
+[node name="GridSpace304" parent="Grid" unique_id=945073715 instance=ExtResource("1_bl13t")]
+position = Vector2(2144, 416)
+
+[node name="GridSpace305" parent="Grid" unique_id=194284127 instance=ExtResource("1_bl13t")]
+position = Vector2(2208, 416)
+
+[node name="GridSpace306" parent="Grid" unique_id=1594158416 instance=ExtResource("1_bl13t")]
+position = Vector2(2272, 416)
+
+[node name="GridSpace307" parent="Grid" unique_id=1212700173 instance=ExtResource("1_bl13t")]
+position = Vector2(1184, 480)
+
+[node name="GridSpace308" parent="Grid" unique_id=124583143 instance=ExtResource("1_bl13t")]
+position = Vector2(1248, 480)
+
+[node name="GridSpace309" parent="Grid" unique_id=1581840893 instance=ExtResource("1_bl13t")]
+position = Vector2(1312, 480)
+
+[node name="GridSpace310" parent="Grid" unique_id=410044094 instance=ExtResource("1_bl13t")]
+position = Vector2(1376, 480)
+
+[node name="GridSpace311" parent="Grid" unique_id=313555515 instance=ExtResource("1_bl13t")]
+position = Vector2(1440, 480)
+
+[node name="GridSpace312" parent="Grid" unique_id=569318438 instance=ExtResource("1_bl13t")]
+position = Vector2(1504, 480)
+
+[node name="GridSpace313" parent="Grid" unique_id=1223115504 instance=ExtResource("1_bl13t")]
+position = Vector2(1568, 480)
+
+[node name="GridSpace314" parent="Grid" unique_id=1461548824 instance=ExtResource("1_bl13t")]
+position = Vector2(1632, 480)
+
+[node name="GridSpace315" parent="Grid" unique_id=226214844 instance=ExtResource("1_bl13t")]
+position = Vector2(1696, 480)
+
+[node name="GridSpace316" parent="Grid" unique_id=219586400 instance=ExtResource("1_bl13t")]
+position = Vector2(1760, 480)
+
+[node name="GridSpace317" parent="Grid" unique_id=2043002937 instance=ExtResource("1_bl13t")]
+position = Vector2(1824, 480)
+
+[node name="GridSpace318" parent="Grid" unique_id=257850464 instance=ExtResource("1_bl13t")]
+position = Vector2(1888, 480)
+
+[node name="GridSpace319" parent="Grid" unique_id=953621445 instance=ExtResource("1_bl13t")]
+position = Vector2(1952, 480)
+
+[node name="GridSpace320" parent="Grid" unique_id=948981337 instance=ExtResource("1_bl13t")]
+position = Vector2(2016, 480)
+
+[node name="GridSpace321" parent="Grid" unique_id=621755912 instance=ExtResource("1_bl13t")]
+position = Vector2(2080, 480)
+
+[node name="GridSpace322" parent="Grid" unique_id=458019706 instance=ExtResource("1_bl13t")]
+position = Vector2(2144, 480)
+
+[node name="GridSpace323" parent="Grid" unique_id=891969335 instance=ExtResource("1_bl13t")]
+position = Vector2(2208, 480)
+
+[node name="GridSpace324" parent="Grid" unique_id=1876587134 instance=ExtResource("1_bl13t")]
+position = Vector2(2272, 480)
+
+[node name="GridSpace325" parent="Grid" unique_id=247886146 instance=ExtResource("1_bl13t")]
+position = Vector2(1184, 544)
+
+[node name="GridSpace326" parent="Grid" unique_id=1790326277 instance=ExtResource("1_bl13t")]
+position = Vector2(1248, 544)
+
+[node name="GridSpace327" parent="Grid" unique_id=1498272855 instance=ExtResource("1_bl13t")]
+position = Vector2(1312, 544)
+
+[node name="GridSpace328" parent="Grid" unique_id=1516210320 instance=ExtResource("1_bl13t")]
+position = Vector2(1376, 544)
+
+[node name="GridSpace329" parent="Grid" unique_id=1352999329 instance=ExtResource("1_bl13t")]
+position = Vector2(1440, 544)
+
+[node name="GridSpace330" parent="Grid" unique_id=1354289928 instance=ExtResource("1_bl13t")]
+position = Vector2(1504, 544)
+
+[node name="GridSpace331" parent="Grid" unique_id=740633807 instance=ExtResource("1_bl13t")]
+position = Vector2(1568, 544)
+
+[node name="GridSpace332" parent="Grid" unique_id=41670654 instance=ExtResource("1_bl13t")]
+position = Vector2(1632, 544)
+
+[node name="GridSpace333" parent="Grid" unique_id=340475374 instance=ExtResource("1_bl13t")]
+position = Vector2(1696, 544)
+
+[node name="GridSpace334" parent="Grid" unique_id=7811401 instance=ExtResource("1_bl13t")]
+position = Vector2(1760, 544)
+
+[node name="GridSpace335" parent="Grid" unique_id=1917903450 instance=ExtResource("1_bl13t")]
+position = Vector2(1824, 544)
+
+[node name="GridSpace336" parent="Grid" unique_id=80453608 instance=ExtResource("1_bl13t")]
+position = Vector2(1888, 544)
+
+[node name="GridSpace337" parent="Grid" unique_id=2080548840 instance=ExtResource("1_bl13t")]
+position = Vector2(1952, 544)
+
+[node name="GridSpace338" parent="Grid" unique_id=1395393943 instance=ExtResource("1_bl13t")]
+position = Vector2(2016, 544)
+
+[node name="GridSpace339" parent="Grid" unique_id=448698947 instance=ExtResource("1_bl13t")]
+position = Vector2(2080, 544)
+
+[node name="GridSpace340" parent="Grid" unique_id=544968422 instance=ExtResource("1_bl13t")]
+position = Vector2(2144, 544)
+
+[node name="GridSpace341" parent="Grid" unique_id=555734622 instance=ExtResource("1_bl13t")]
+position = Vector2(2208, 544)
+
+[node name="GridSpace342" parent="Grid" unique_id=1296118377 instance=ExtResource("1_bl13t")]
+position = Vector2(2272, 544)
+
+[node name="GridSpace343" parent="Grid" unique_id=1381982954 instance=ExtResource("1_bl13t")]
+position = Vector2(1184, 608)
+
+[node name="GridSpace344" parent="Grid" unique_id=974620578 instance=ExtResource("1_bl13t")]
+position = Vector2(1248, 608)
+
+[node name="GridSpace345" parent="Grid" unique_id=1667427528 instance=ExtResource("1_bl13t")]
+position = Vector2(1312, 608)
+
+[node name="GridSpace346" parent="Grid" unique_id=1932791663 instance=ExtResource("1_bl13t")]
+position = Vector2(1376, 608)
+
+[node name="GridSpace347" parent="Grid" unique_id=2073368154 instance=ExtResource("1_bl13t")]
+position = Vector2(1440, 608)
+
+[node name="GridSpace348" parent="Grid" unique_id=1569868613 instance=ExtResource("1_bl13t")]
+position = Vector2(1504, 608)
+
+[node name="GridSpace349" parent="Grid" unique_id=1749105131 instance=ExtResource("1_bl13t")]
+position = Vector2(1568, 608)
+
+[node name="GridSpace350" parent="Grid" unique_id=1894416047 instance=ExtResource("1_bl13t")]
+position = Vector2(1632, 608)
+
+[node name="GridSpace351" parent="Grid" unique_id=1207655902 instance=ExtResource("1_bl13t")]
+position = Vector2(1696, 608)
+
+[node name="GridSpace352" parent="Grid" unique_id=1641759897 instance=ExtResource("1_bl13t")]
+position = Vector2(1760, 608)
+
+[node name="GridSpace353" parent="Grid" unique_id=2075488543 instance=ExtResource("1_bl13t")]
+position = Vector2(1824, 608)
+
+[node name="GridSpace354" parent="Grid" unique_id=718456829 instance=ExtResource("1_bl13t")]
+position = Vector2(1888, 608)
+
+[node name="GridSpace355" parent="Grid" unique_id=1647637867 instance=ExtResource("1_bl13t")]
+position = Vector2(1952, 608)
+
+[node name="GridSpace356" parent="Grid" unique_id=799379635 instance=ExtResource("1_bl13t")]
+position = Vector2(2016, 608)
+
+[node name="GridSpace357" parent="Grid" unique_id=737161919 instance=ExtResource("1_bl13t")]
+position = Vector2(2080, 608)
+
+[node name="GridSpace358" parent="Grid" unique_id=132298874 instance=ExtResource("1_bl13t")]
+position = Vector2(2144, 608)
+
+[node name="GridSpace359" parent="Grid" unique_id=755897797 instance=ExtResource("1_bl13t")]
+position = Vector2(2208, 608)
+
+[node name="GridSpace360" parent="Grid" unique_id=855345284 instance=ExtResource("1_bl13t")]
+position = Vector2(2272, 608)
+
+[node name="GridSpace361" parent="Grid" unique_id=1226959193 instance=ExtResource("1_bl13t")]
+position = Vector2(32, 672)
+
+[node name="GridSpace362" parent="Grid" unique_id=19062300 instance=ExtResource("1_bl13t")]
+position = Vector2(96, 672)
+
+[node name="GridSpace363" parent="Grid" unique_id=175000431 instance=ExtResource("1_bl13t")]
+position = Vector2(160, 672)
+
+[node name="GridSpace364" parent="Grid" unique_id=2049153989 instance=ExtResource("1_bl13t")]
+position = Vector2(224, 672)
+
+[node name="GridSpace365" parent="Grid" unique_id=1864115503 instance=ExtResource("1_bl13t")]
+position = Vector2(288, 672)
+
+[node name="GridSpace366" parent="Grid" unique_id=1330145266 instance=ExtResource("1_bl13t")]
+position = Vector2(352, 672)
+
+[node name="GridSpace367" parent="Grid" unique_id=1143441086 instance=ExtResource("1_bl13t")]
+position = Vector2(416, 672)
+
+[node name="GridSpace368" parent="Grid" unique_id=325237112 instance=ExtResource("1_bl13t")]
+position = Vector2(480, 672)
+
+[node name="GridSpace369" parent="Grid" unique_id=681274060 instance=ExtResource("1_bl13t")]
+position = Vector2(544, 672)
+
+[node name="GridSpace370" parent="Grid" unique_id=634322826 instance=ExtResource("1_bl13t")]
+position = Vector2(608, 672)
+
+[node name="GridSpace371" parent="Grid" unique_id=2059883129 instance=ExtResource("1_bl13t")]
+position = Vector2(672, 672)
+
+[node name="GridSpace372" parent="Grid" unique_id=1729592216 instance=ExtResource("1_bl13t")]
+position = Vector2(736, 672)
+
+[node name="GridSpace373" parent="Grid" unique_id=968975850 instance=ExtResource("1_bl13t")]
+position = Vector2(800, 672)
+
+[node name="GridSpace374" parent="Grid" unique_id=695296063 instance=ExtResource("1_bl13t")]
+position = Vector2(864, 672)
+
+[node name="GridSpace375" parent="Grid" unique_id=646545180 instance=ExtResource("1_bl13t")]
+position = Vector2(928, 672)
+
+[node name="GridSpace376" parent="Grid" unique_id=1540971059 instance=ExtResource("1_bl13t")]
+position = Vector2(992, 672)
+
+[node name="GridSpace377" parent="Grid" unique_id=1139446844 instance=ExtResource("1_bl13t")]
+position = Vector2(1056, 672)
+
+[node name="GridSpace378" parent="Grid" unique_id=917405791 instance=ExtResource("1_bl13t")]
+position = Vector2(1120, 672)
+
+[node name="GridSpace379" parent="Grid" unique_id=1386433728 instance=ExtResource("1_bl13t")]
+position = Vector2(32, 736)
+
+[node name="GridSpace380" parent="Grid" unique_id=1059755617 instance=ExtResource("1_bl13t")]
+position = Vector2(96, 736)
+
+[node name="GridSpace381" parent="Grid" unique_id=2064331846 instance=ExtResource("1_bl13t")]
+position = Vector2(160, 736)
+
+[node name="GridSpace382" parent="Grid" unique_id=1928465997 instance=ExtResource("1_bl13t")]
+position = Vector2(224, 736)
+
+[node name="GridSpace383" parent="Grid" unique_id=1207610299 instance=ExtResource("1_bl13t")]
+position = Vector2(288, 736)
+
+[node name="GridSpace384" parent="Grid" unique_id=471044474 instance=ExtResource("1_bl13t")]
+position = Vector2(352, 736)
+
+[node name="GridSpace385" parent="Grid" unique_id=1065328068 instance=ExtResource("1_bl13t")]
+position = Vector2(416, 736)
+
+[node name="GridSpace386" parent="Grid" unique_id=1158706987 instance=ExtResource("1_bl13t")]
+position = Vector2(480, 736)
+
+[node name="GridSpace387" parent="Grid" unique_id=770626275 instance=ExtResource("1_bl13t")]
+position = Vector2(544, 736)
+
+[node name="GridSpace388" parent="Grid" unique_id=2078662966 instance=ExtResource("1_bl13t")]
+position = Vector2(608, 736)
+
+[node name="GridSpace389" parent="Grid" unique_id=904542196 instance=ExtResource("1_bl13t")]
+position = Vector2(672, 736)
+
+[node name="GridSpace390" parent="Grid" unique_id=300901610 instance=ExtResource("1_bl13t")]
+position = Vector2(736, 736)
+
+[node name="GridSpace391" parent="Grid" unique_id=1669364479 instance=ExtResource("1_bl13t")]
+position = Vector2(800, 736)
+
+[node name="GridSpace392" parent="Grid" unique_id=174944579 instance=ExtResource("1_bl13t")]
+position = Vector2(864, 736)
+
+[node name="GridSpace393" parent="Grid" unique_id=412338662 instance=ExtResource("1_bl13t")]
+position = Vector2(928, 736)
+
+[node name="GridSpace394" parent="Grid" unique_id=1346576940 instance=ExtResource("1_bl13t")]
+position = Vector2(992, 736)
+
+[node name="GridSpace395" parent="Grid" unique_id=1456228045 instance=ExtResource("1_bl13t")]
+position = Vector2(1056, 736)
+
+[node name="GridSpace396" parent="Grid" unique_id=1038127194 instance=ExtResource("1_bl13t")]
+position = Vector2(1120, 736)
+
+[node name="GridSpace397" parent="Grid" unique_id=148095360 instance=ExtResource("1_bl13t")]
+position = Vector2(32, 800)
+
+[node name="GridSpace398" parent="Grid" unique_id=637924722 instance=ExtResource("1_bl13t")]
+position = Vector2(96, 800)
+
+[node name="GridSpace399" parent="Grid" unique_id=943077842 instance=ExtResource("1_bl13t")]
+position = Vector2(160, 800)
+
+[node name="GridSpace400" parent="Grid" unique_id=180938327 instance=ExtResource("1_bl13t")]
+position = Vector2(224, 800)
+
+[node name="GridSpace401" parent="Grid" unique_id=1240801522 instance=ExtResource("1_bl13t")]
+position = Vector2(288, 800)
+
+[node name="GridSpace402" parent="Grid" unique_id=149108977 instance=ExtResource("1_bl13t")]
+position = Vector2(352, 800)
+
+[node name="GridSpace403" parent="Grid" unique_id=475439830 instance=ExtResource("1_bl13t")]
+position = Vector2(416, 800)
+
+[node name="GridSpace404" parent="Grid" unique_id=388224486 instance=ExtResource("1_bl13t")]
+position = Vector2(480, 800)
+
+[node name="GridSpace405" parent="Grid" unique_id=893100239 instance=ExtResource("1_bl13t")]
+position = Vector2(544, 800)
+
+[node name="GridSpace406" parent="Grid" unique_id=239633583 instance=ExtResource("1_bl13t")]
+position = Vector2(608, 800)
+
+[node name="GridSpace407" parent="Grid" unique_id=1053019700 instance=ExtResource("1_bl13t")]
+position = Vector2(672, 800)
+
+[node name="GridSpace408" parent="Grid" unique_id=519450114 instance=ExtResource("1_bl13t")]
+position = Vector2(736, 800)
+
+[node name="GridSpace409" parent="Grid" unique_id=271980449 instance=ExtResource("1_bl13t")]
+position = Vector2(800, 800)
+
+[node name="GridSpace410" parent="Grid" unique_id=659120613 instance=ExtResource("1_bl13t")]
+position = Vector2(864, 800)
+
+[node name="GridSpace411" parent="Grid" unique_id=1556339049 instance=ExtResource("1_bl13t")]
+position = Vector2(928, 800)
+
+[node name="GridSpace412" parent="Grid" unique_id=1390243935 instance=ExtResource("1_bl13t")]
+position = Vector2(992, 800)
+
+[node name="GridSpace413" parent="Grid" unique_id=1312311063 instance=ExtResource("1_bl13t")]
+position = Vector2(1056, 800)
+
+[node name="GridSpace414" parent="Grid" unique_id=1402926474 instance=ExtResource("1_bl13t")]
+position = Vector2(1120, 800)
+
+[node name="GridSpace415" parent="Grid" unique_id=235003010 instance=ExtResource("1_bl13t")]
+position = Vector2(32, 864)
+
+[node name="GridSpace416" parent="Grid" unique_id=1943120127 instance=ExtResource("1_bl13t")]
+position = Vector2(96, 864)
+
+[node name="GridSpace417" parent="Grid" unique_id=1106839540 instance=ExtResource("1_bl13t")]
+position = Vector2(160, 864)
+
+[node name="GridSpace418" parent="Grid" unique_id=973177847 instance=ExtResource("1_bl13t")]
+position = Vector2(224, 864)
+
+[node name="GridSpace419" parent="Grid" unique_id=650468505 instance=ExtResource("1_bl13t")]
+position = Vector2(288, 864)
+
+[node name="GridSpace420" parent="Grid" unique_id=1967180114 instance=ExtResource("1_bl13t")]
+position = Vector2(352, 864)
+
+[node name="GridSpace421" parent="Grid" unique_id=131357666 instance=ExtResource("1_bl13t")]
+position = Vector2(416, 864)
+
+[node name="GridSpace422" parent="Grid" unique_id=1880055901 instance=ExtResource("1_bl13t")]
+position = Vector2(480, 864)
+
+[node name="GridSpace423" parent="Grid" unique_id=1929769459 instance=ExtResource("1_bl13t")]
+position = Vector2(544, 864)
+
+[node name="GridSpace424" parent="Grid" unique_id=104412745 instance=ExtResource("1_bl13t")]
+position = Vector2(608, 864)
+
+[node name="GridSpace425" parent="Grid" unique_id=1673060865 instance=ExtResource("1_bl13t")]
+position = Vector2(672, 864)
+
+[node name="GridSpace426" parent="Grid" unique_id=880508771 instance=ExtResource("1_bl13t")]
+position = Vector2(736, 864)
+
+[node name="GridSpace427" parent="Grid" unique_id=2004829218 instance=ExtResource("1_bl13t")]
+position = Vector2(800, 864)
+
+[node name="GridSpace428" parent="Grid" unique_id=309641870 instance=ExtResource("1_bl13t")]
+position = Vector2(864, 864)
+
+[node name="GridSpace429" parent="Grid" unique_id=230828446 instance=ExtResource("1_bl13t")]
+position = Vector2(928, 864)
+
+[node name="GridSpace430" parent="Grid" unique_id=883020928 instance=ExtResource("1_bl13t")]
+position = Vector2(992, 864)
+
+[node name="GridSpace431" parent="Grid" unique_id=395196194 instance=ExtResource("1_bl13t")]
+position = Vector2(1056, 864)
+
+[node name="GridSpace432" parent="Grid" unique_id=1717557934 instance=ExtResource("1_bl13t")]
+position = Vector2(1120, 864)
+
+[node name="GridSpace433" parent="Grid" unique_id=1701286933 instance=ExtResource("1_bl13t")]
+position = Vector2(32, 928)
+
+[node name="GridSpace434" parent="Grid" unique_id=1650248972 instance=ExtResource("1_bl13t")]
+position = Vector2(96, 928)
+
+[node name="GridSpace435" parent="Grid" unique_id=772530828 instance=ExtResource("1_bl13t")]
+position = Vector2(160, 928)
+
+[node name="GridSpace436" parent="Grid" unique_id=1773611937 instance=ExtResource("1_bl13t")]
+position = Vector2(224, 928)
+
+[node name="GridSpace437" parent="Grid" unique_id=1771184537 instance=ExtResource("1_bl13t")]
+position = Vector2(288, 928)
+
+[node name="GridSpace438" parent="Grid" unique_id=1291743545 instance=ExtResource("1_bl13t")]
+position = Vector2(352, 928)
+
+[node name="GridSpace439" parent="Grid" unique_id=1275150164 instance=ExtResource("1_bl13t")]
+position = Vector2(416, 928)
+
+[node name="GridSpace440" parent="Grid" unique_id=1984575668 instance=ExtResource("1_bl13t")]
+position = Vector2(480, 928)
+
+[node name="GridSpace441" parent="Grid" unique_id=1152557214 instance=ExtResource("1_bl13t")]
+position = Vector2(544, 928)
+
+[node name="GridSpace442" parent="Grid" unique_id=702306246 instance=ExtResource("1_bl13t")]
+position = Vector2(608, 928)
+
+[node name="GridSpace443" parent="Grid" unique_id=404269718 instance=ExtResource("1_bl13t")]
+position = Vector2(672, 928)
+
+[node name="GridSpace444" parent="Grid" unique_id=1801748525 instance=ExtResource("1_bl13t")]
+position = Vector2(736, 928)
+
+[node name="GridSpace445" parent="Grid" unique_id=768596658 instance=ExtResource("1_bl13t")]
+position = Vector2(800, 928)
+
+[node name="GridSpace446" parent="Grid" unique_id=336572674 instance=ExtResource("1_bl13t")]
+position = Vector2(864, 928)
+
+[node name="GridSpace447" parent="Grid" unique_id=761632469 instance=ExtResource("1_bl13t")]
+position = Vector2(928, 928)
+
+[node name="GridSpace448" parent="Grid" unique_id=478897120 instance=ExtResource("1_bl13t")]
+position = Vector2(992, 928)
+
+[node name="GridSpace449" parent="Grid" unique_id=1388299466 instance=ExtResource("1_bl13t")]
+position = Vector2(1056, 928)
+
+[node name="GridSpace450" parent="Grid" unique_id=1954534379 instance=ExtResource("1_bl13t")]
+position = Vector2(1120, 928)
+
+[node name="GridSpace451" parent="Grid" unique_id=925250598 instance=ExtResource("1_bl13t")]
+position = Vector2(32, 992)
+
+[node name="GridSpace452" parent="Grid" unique_id=2090258518 instance=ExtResource("1_bl13t")]
+position = Vector2(96, 992)
+
+[node name="GridSpace453" parent="Grid" unique_id=263217824 instance=ExtResource("1_bl13t")]
+position = Vector2(160, 992)
+
+[node name="GridSpace454" parent="Grid" unique_id=1233911747 instance=ExtResource("1_bl13t")]
+position = Vector2(224, 992)
+
+[node name="GridSpace455" parent="Grid" unique_id=597066903 instance=ExtResource("1_bl13t")]
+position = Vector2(288, 992)
+
+[node name="GridSpace456" parent="Grid" unique_id=1318655222 instance=ExtResource("1_bl13t")]
+position = Vector2(352, 992)
+
+[node name="GridSpace457" parent="Grid" unique_id=644638454 instance=ExtResource("1_bl13t")]
+position = Vector2(416, 992)
+
+[node name="GridSpace458" parent="Grid" unique_id=1783117381 instance=ExtResource("1_bl13t")]
+position = Vector2(480, 992)
+
+[node name="GridSpace459" parent="Grid" unique_id=1115853282 instance=ExtResource("1_bl13t")]
+position = Vector2(544, 992)
+
+[node name="GridSpace460" parent="Grid" unique_id=400958019 instance=ExtResource("1_bl13t")]
+position = Vector2(608, 992)
+
+[node name="GridSpace461" parent="Grid" unique_id=694798962 instance=ExtResource("1_bl13t")]
+position = Vector2(672, 992)
+
+[node name="GridSpace462" parent="Grid" unique_id=597473700 instance=ExtResource("1_bl13t")]
+position = Vector2(736, 992)
+
+[node name="GridSpace463" parent="Grid" unique_id=2065869774 instance=ExtResource("1_bl13t")]
+position = Vector2(800, 992)
+
+[node name="GridSpace464" parent="Grid" unique_id=942097253 instance=ExtResource("1_bl13t")]
+position = Vector2(864, 992)
+
+[node name="GridSpace465" parent="Grid" unique_id=1526245236 instance=ExtResource("1_bl13t")]
+position = Vector2(928, 992)
+
+[node name="GridSpace466" parent="Grid" unique_id=2039742768 instance=ExtResource("1_bl13t")]
+position = Vector2(992, 992)
+
+[node name="GridSpace467" parent="Grid" unique_id=1138135269 instance=ExtResource("1_bl13t")]
+position = Vector2(1056, 992)
+
+[node name="GridSpace468" parent="Grid" unique_id=255085203 instance=ExtResource("1_bl13t")]
+position = Vector2(1120, 992)
+
+[node name="GridSpace469" parent="Grid" unique_id=1750924548 instance=ExtResource("1_bl13t")]
+position = Vector2(32, 1056)
+
+[node name="GridSpace470" parent="Grid" unique_id=2079870432 instance=ExtResource("1_bl13t")]
+position = Vector2(96, 1056)
+
+[node name="GridSpace471" parent="Grid" unique_id=1808456902 instance=ExtResource("1_bl13t")]
+position = Vector2(160, 1056)
+
+[node name="GridSpace472" parent="Grid" unique_id=1239041981 instance=ExtResource("1_bl13t")]
+position = Vector2(224, 1056)
+
+[node name="GridSpace473" parent="Grid" unique_id=30129804 instance=ExtResource("1_bl13t")]
+position = Vector2(288, 1056)
+
+[node name="GridSpace474" parent="Grid" unique_id=1430324944 instance=ExtResource("1_bl13t")]
+position = Vector2(352, 1056)
+
+[node name="GridSpace475" parent="Grid" unique_id=1847016030 instance=ExtResource("1_bl13t")]
+position = Vector2(416, 1056)
+
+[node name="GridSpace476" parent="Grid" unique_id=1068311889 instance=ExtResource("1_bl13t")]
+position = Vector2(480, 1056)
+
+[node name="GridSpace477" parent="Grid" unique_id=1844729926 instance=ExtResource("1_bl13t")]
+position = Vector2(544, 1056)
+
+[node name="GridSpace478" parent="Grid" unique_id=852594307 instance=ExtResource("1_bl13t")]
+position = Vector2(608, 1056)
+
+[node name="GridSpace479" parent="Grid" unique_id=1689123502 instance=ExtResource("1_bl13t")]
+position = Vector2(672, 1056)
+
+[node name="GridSpace480" parent="Grid" unique_id=1347799911 instance=ExtResource("1_bl13t")]
+position = Vector2(736, 1056)
+
+[node name="GridSpace481" parent="Grid" unique_id=1794195368 instance=ExtResource("1_bl13t")]
+position = Vector2(800, 1056)
+
+[node name="GridSpace482" parent="Grid" unique_id=1605683771 instance=ExtResource("1_bl13t")]
+position = Vector2(864, 1056)
+
+[node name="GridSpace483" parent="Grid" unique_id=269929720 instance=ExtResource("1_bl13t")]
+position = Vector2(928, 1056)
+
+[node name="GridSpace484" parent="Grid" unique_id=38635493 instance=ExtResource("1_bl13t")]
+position = Vector2(992, 1056)
+
+[node name="GridSpace485" parent="Grid" unique_id=914533970 instance=ExtResource("1_bl13t")]
+position = Vector2(1056, 1056)
+
+[node name="GridSpace486" parent="Grid" unique_id=691905622 instance=ExtResource("1_bl13t")]
+position = Vector2(1120, 1056)
+
+[node name="GridSpace487" parent="Grid" unique_id=1695714867 instance=ExtResource("1_bl13t")]
+position = Vector2(32, 1120)
+
+[node name="GridSpace488" parent="Grid" unique_id=1658433788 instance=ExtResource("1_bl13t")]
+position = Vector2(96, 1120)
+
+[node name="GridSpace489" parent="Grid" unique_id=1376510295 instance=ExtResource("1_bl13t")]
+position = Vector2(160, 1120)
+
+[node name="GridSpace490" parent="Grid" unique_id=1389706 instance=ExtResource("1_bl13t")]
+position = Vector2(224, 1120)
+
+[node name="GridSpace491" parent="Grid" unique_id=251216988 instance=ExtResource("1_bl13t")]
+position = Vector2(288, 1120)
+
+[node name="GridSpace492" parent="Grid" unique_id=1164563617 instance=ExtResource("1_bl13t")]
+position = Vector2(352, 1120)
+
+[node name="GridSpace493" parent="Grid" unique_id=564293078 instance=ExtResource("1_bl13t")]
+position = Vector2(416, 1120)
+
+[node name="GridSpace494" parent="Grid" unique_id=1757954995 instance=ExtResource("1_bl13t")]
+position = Vector2(480, 1120)
+
+[node name="GridSpace495" parent="Grid" unique_id=944134178 instance=ExtResource("1_bl13t")]
+position = Vector2(544, 1120)
+
+[node name="GridSpace496" parent="Grid" unique_id=11412911 instance=ExtResource("1_bl13t")]
+position = Vector2(608, 1120)
+
+[node name="GridSpace497" parent="Grid" unique_id=31052925 instance=ExtResource("1_bl13t")]
+position = Vector2(672, 1120)
+
+[node name="GridSpace498" parent="Grid" unique_id=621620372 instance=ExtResource("1_bl13t")]
+position = Vector2(736, 1120)
+
+[node name="GridSpace499" parent="Grid" unique_id=867492362 instance=ExtResource("1_bl13t")]
+position = Vector2(800, 1120)
+
+[node name="GridSpace500" parent="Grid" unique_id=1128370782 instance=ExtResource("1_bl13t")]
+position = Vector2(864, 1120)
+
+[node name="GridSpace501" parent="Grid" unique_id=484291754 instance=ExtResource("1_bl13t")]
+position = Vector2(928, 1120)
+
+[node name="GridSpace502" parent="Grid" unique_id=1113718196 instance=ExtResource("1_bl13t")]
+position = Vector2(992, 1120)
+
+[node name="GridSpace503" parent="Grid" unique_id=492843627 instance=ExtResource("1_bl13t")]
+position = Vector2(1056, 1120)
+
+[node name="GridSpace504" parent="Grid" unique_id=1282284527 instance=ExtResource("1_bl13t")]
+position = Vector2(1120, 1120)
+
+[node name="GridSpace505" parent="Grid" unique_id=1649592745 instance=ExtResource("1_bl13t")]
+position = Vector2(32, 1184)
+
+[node name="GridSpace506" parent="Grid" unique_id=1951409755 instance=ExtResource("1_bl13t")]
+position = Vector2(96, 1184)
+
+[node name="GridSpace507" parent="Grid" unique_id=244469286 instance=ExtResource("1_bl13t")]
+position = Vector2(160, 1184)
+
+[node name="GridSpace508" parent="Grid" unique_id=1219777062 instance=ExtResource("1_bl13t")]
+position = Vector2(224, 1184)
+
+[node name="GridSpace509" parent="Grid" unique_id=815324412 instance=ExtResource("1_bl13t")]
+position = Vector2(288, 1184)
+
+[node name="GridSpace510" parent="Grid" unique_id=32913223 instance=ExtResource("1_bl13t")]
+position = Vector2(352, 1184)
+
+[node name="GridSpace511" parent="Grid" unique_id=1220724146 instance=ExtResource("1_bl13t")]
+position = Vector2(416, 1184)
+
+[node name="GridSpace512" parent="Grid" unique_id=1003963499 instance=ExtResource("1_bl13t")]
+position = Vector2(480, 1184)
+
+[node name="GridSpace513" parent="Grid" unique_id=1447920635 instance=ExtResource("1_bl13t")]
+position = Vector2(544, 1184)
+
+[node name="GridSpace514" parent="Grid" unique_id=689253456 instance=ExtResource("1_bl13t")]
+position = Vector2(608, 1184)
+
+[node name="GridSpace515" parent="Grid" unique_id=1163071457 instance=ExtResource("1_bl13t")]
+position = Vector2(672, 1184)
+
+[node name="GridSpace516" parent="Grid" unique_id=1280912628 instance=ExtResource("1_bl13t")]
+position = Vector2(736, 1184)
+
+[node name="GridSpace517" parent="Grid" unique_id=402335776 instance=ExtResource("1_bl13t")]
+position = Vector2(800, 1184)
+
+[node name="GridSpace518" parent="Grid" unique_id=1259623275 instance=ExtResource("1_bl13t")]
+position = Vector2(864, 1184)
+
+[node name="GridSpace519" parent="Grid" unique_id=1044507870 instance=ExtResource("1_bl13t")]
+position = Vector2(928, 1184)
+
+[node name="GridSpace520" parent="Grid" unique_id=1532850901 instance=ExtResource("1_bl13t")]
+position = Vector2(992, 1184)
+
+[node name="GridSpace521" parent="Grid" unique_id=433307439 instance=ExtResource("1_bl13t")]
+position = Vector2(1056, 1184)
+
+[node name="GridSpace522" parent="Grid" unique_id=350476533 instance=ExtResource("1_bl13t")]
+position = Vector2(1120, 1184)
+
+[node name="GridSpace523" parent="Grid" unique_id=889267076 instance=ExtResource("1_bl13t")]
+position = Vector2(32, 1248)
+
+[node name="GridSpace524" parent="Grid" unique_id=1184201575 instance=ExtResource("1_bl13t")]
+position = Vector2(96, 1248)
+
+[node name="GridSpace525" parent="Grid" unique_id=1908123758 instance=ExtResource("1_bl13t")]
+position = Vector2(160, 1248)
+
+[node name="GridSpace526" parent="Grid" unique_id=256289508 instance=ExtResource("1_bl13t")]
+position = Vector2(224, 1248)
+
+[node name="GridSpace527" parent="Grid" unique_id=2119928528 instance=ExtResource("1_bl13t")]
+position = Vector2(288, 1248)
+
+[node name="GridSpace528" parent="Grid" unique_id=200449367 instance=ExtResource("1_bl13t")]
+position = Vector2(352, 1248)
+
+[node name="GridSpace529" parent="Grid" unique_id=1338304112 instance=ExtResource("1_bl13t")]
+position = Vector2(416, 1248)
+
+[node name="GridSpace530" parent="Grid" unique_id=774280025 instance=ExtResource("1_bl13t")]
+position = Vector2(480, 1248)
+
+[node name="GridSpace531" parent="Grid" unique_id=1257692627 instance=ExtResource("1_bl13t")]
+position = Vector2(544, 1248)
+
+[node name="GridSpace532" parent="Grid" unique_id=1761667039 instance=ExtResource("1_bl13t")]
+position = Vector2(608, 1248)
+
+[node name="GridSpace533" parent="Grid" unique_id=970096392 instance=ExtResource("1_bl13t")]
+position = Vector2(672, 1248)
+
+[node name="GridSpace534" parent="Grid" unique_id=1012411693 instance=ExtResource("1_bl13t")]
+position = Vector2(736, 1248)
+
+[node name="GridSpace535" parent="Grid" unique_id=1265527601 instance=ExtResource("1_bl13t")]
+position = Vector2(800, 1248)
+
+[node name="GridSpace536" parent="Grid" unique_id=174024362 instance=ExtResource("1_bl13t")]
+position = Vector2(864, 1248)
+
+[node name="GridSpace537" parent="Grid" unique_id=412881234 instance=ExtResource("1_bl13t")]
+position = Vector2(928, 1248)
+
+[node name="GridSpace538" parent="Grid" unique_id=1467226106 instance=ExtResource("1_bl13t")]
+position = Vector2(992, 1248)
+
+[node name="GridSpace539" parent="Grid" unique_id=702830606 instance=ExtResource("1_bl13t")]
+position = Vector2(1056, 1248)
+
+[node name="GridSpace540" parent="Grid" unique_id=234250121 instance=ExtResource("1_bl13t")]
+position = Vector2(1120, 1248)
+
+[node name="GridSpace541" parent="Grid" unique_id=19727521 instance=ExtResource("1_bl13t")]
+position = Vector2(1184, 672)
+
+[node name="GridSpace542" parent="Grid" unique_id=1701210079 instance=ExtResource("1_bl13t")]
+position = Vector2(1248, 672)
+
+[node name="GridSpace543" parent="Grid" unique_id=153128673 instance=ExtResource("1_bl13t")]
+position = Vector2(1312, 672)
+
+[node name="GridSpace544" parent="Grid" unique_id=1576104194 instance=ExtResource("1_bl13t")]
+position = Vector2(1376, 672)
+
+[node name="GridSpace545" parent="Grid" unique_id=1936883539 instance=ExtResource("1_bl13t")]
+position = Vector2(1440, 672)
+
+[node name="GridSpace546" parent="Grid" unique_id=1756502407 instance=ExtResource("1_bl13t")]
+position = Vector2(1504, 672)
+
+[node name="GridSpace547" parent="Grid" unique_id=368330188 instance=ExtResource("1_bl13t")]
+position = Vector2(1568, 672)
+
+[node name="GridSpace548" parent="Grid" unique_id=158419550 instance=ExtResource("1_bl13t")]
+position = Vector2(1632, 672)
+
+[node name="GridSpace549" parent="Grid" unique_id=397469111 instance=ExtResource("1_bl13t")]
+position = Vector2(1696, 672)
+
+[node name="GridSpace550" parent="Grid" unique_id=1638475013 instance=ExtResource("1_bl13t")]
+position = Vector2(1760, 672)
+
+[node name="GridSpace551" parent="Grid" unique_id=1354211950 instance=ExtResource("1_bl13t")]
+position = Vector2(1824, 672)
+
+[node name="GridSpace552" parent="Grid" unique_id=309089917 instance=ExtResource("1_bl13t")]
+position = Vector2(1888, 672)
+
+[node name="GridSpace553" parent="Grid" unique_id=1888638500 instance=ExtResource("1_bl13t")]
+position = Vector2(1952, 672)
+
+[node name="GridSpace554" parent="Grid" unique_id=331084341 instance=ExtResource("1_bl13t")]
+position = Vector2(2016, 672)
+
+[node name="GridSpace555" parent="Grid" unique_id=476115295 instance=ExtResource("1_bl13t")]
+position = Vector2(2080, 672)
+
+[node name="GridSpace556" parent="Grid" unique_id=1612332502 instance=ExtResource("1_bl13t")]
+position = Vector2(2144, 672)
+
+[node name="GridSpace557" parent="Grid" unique_id=234294094 instance=ExtResource("1_bl13t")]
+position = Vector2(2208, 672)
+
+[node name="GridSpace558" parent="Grid" unique_id=1392497886 instance=ExtResource("1_bl13t")]
+position = Vector2(2272, 672)
+
+[node name="GridSpace559" parent="Grid" unique_id=1915278694 instance=ExtResource("1_bl13t")]
+position = Vector2(1184, 736)
+
+[node name="GridSpace560" parent="Grid" unique_id=1113450543 instance=ExtResource("1_bl13t")]
+position = Vector2(1248, 736)
+
+[node name="GridSpace561" parent="Grid" unique_id=1113638043 instance=ExtResource("1_bl13t")]
+position = Vector2(1312, 736)
+
+[node name="GridSpace562" parent="Grid" unique_id=603085928 instance=ExtResource("1_bl13t")]
+position = Vector2(1376, 736)
+
+[node name="GridSpace563" parent="Grid" unique_id=1389697339 instance=ExtResource("1_bl13t")]
+position = Vector2(1440, 736)
+
+[node name="GridSpace564" parent="Grid" unique_id=267988174 instance=ExtResource("1_bl13t")]
+position = Vector2(1504, 736)
+
+[node name="GridSpace565" parent="Grid" unique_id=600827695 instance=ExtResource("1_bl13t")]
+position = Vector2(1568, 736)
+
+[node name="GridSpace566" parent="Grid" unique_id=1945285325 instance=ExtResource("1_bl13t")]
+position = Vector2(1632, 736)
+
+[node name="GridSpace567" parent="Grid" unique_id=190272447 instance=ExtResource("1_bl13t")]
+position = Vector2(1696, 736)
+
+[node name="GridSpace568" parent="Grid" unique_id=1542051742 instance=ExtResource("1_bl13t")]
+position = Vector2(1760, 736)
+
+[node name="GridSpace569" parent="Grid" unique_id=1488339440 instance=ExtResource("1_bl13t")]
+position = Vector2(1824, 736)
+
+[node name="GridSpace570" parent="Grid" unique_id=1107099336 instance=ExtResource("1_bl13t")]
+position = Vector2(1888, 736)
+
+[node name="GridSpace571" parent="Grid" unique_id=1383560439 instance=ExtResource("1_bl13t")]
+position = Vector2(1952, 736)
+
+[node name="GridSpace572" parent="Grid" unique_id=801348291 instance=ExtResource("1_bl13t")]
+position = Vector2(2016, 736)
+
+[node name="GridSpace573" parent="Grid" unique_id=1301266817 instance=ExtResource("1_bl13t")]
+position = Vector2(2080, 736)
+
+[node name="GridSpace574" parent="Grid" unique_id=1190998657 instance=ExtResource("1_bl13t")]
+position = Vector2(2144, 736)
+
+[node name="GridSpace575" parent="Grid" unique_id=324314581 instance=ExtResource("1_bl13t")]
+position = Vector2(2208, 736)
+
+[node name="GridSpace576" parent="Grid" unique_id=1752070782 instance=ExtResource("1_bl13t")]
+position = Vector2(2272, 736)
+
+[node name="GridSpace577" parent="Grid" unique_id=1998811788 instance=ExtResource("1_bl13t")]
+position = Vector2(1184, 800)
+
+[node name="GridSpace578" parent="Grid" unique_id=1160482467 instance=ExtResource("1_bl13t")]
+position = Vector2(1248, 800)
+
+[node name="GridSpace579" parent="Grid" unique_id=1645131373 instance=ExtResource("1_bl13t")]
+position = Vector2(1312, 800)
+
+[node name="GridSpace580" parent="Grid" unique_id=476824377 instance=ExtResource("1_bl13t")]
+position = Vector2(1376, 800)
+
+[node name="GridSpace581" parent="Grid" unique_id=181066168 instance=ExtResource("1_bl13t")]
+position = Vector2(1440, 800)
+
+[node name="GridSpace582" parent="Grid" unique_id=1089253414 instance=ExtResource("1_bl13t")]
+position = Vector2(1504, 800)
+
+[node name="GridSpace583" parent="Grid" unique_id=910283096 instance=ExtResource("1_bl13t")]
+position = Vector2(1568, 800)
+
+[node name="GridSpace584" parent="Grid" unique_id=1361476301 instance=ExtResource("1_bl13t")]
+position = Vector2(1632, 800)
+
+[node name="GridSpace585" parent="Grid" unique_id=1654311648 instance=ExtResource("1_bl13t")]
+position = Vector2(1696, 800)
+
+[node name="GridSpace586" parent="Grid" unique_id=20787392 instance=ExtResource("1_bl13t")]
+position = Vector2(1760, 800)
+
+[node name="GridSpace587" parent="Grid" unique_id=54187960 instance=ExtResource("1_bl13t")]
+position = Vector2(1824, 800)
+
+[node name="GridSpace588" parent="Grid" unique_id=1550125646 instance=ExtResource("1_bl13t")]
+position = Vector2(1888, 800)
+
+[node name="GridSpace589" parent="Grid" unique_id=120325119 instance=ExtResource("1_bl13t")]
+position = Vector2(1952, 800)
+
+[node name="GridSpace590" parent="Grid" unique_id=138446605 instance=ExtResource("1_bl13t")]
+position = Vector2(2016, 800)
+
+[node name="GridSpace591" parent="Grid" unique_id=1194787345 instance=ExtResource("1_bl13t")]
+position = Vector2(2080, 800)
+
+[node name="GridSpace592" parent="Grid" unique_id=903786778 instance=ExtResource("1_bl13t")]
+position = Vector2(2144, 800)
+
+[node name="GridSpace593" parent="Grid" unique_id=803526410 instance=ExtResource("1_bl13t")]
+position = Vector2(2208, 800)
+
+[node name="GridSpace594" parent="Grid" unique_id=208145678 instance=ExtResource("1_bl13t")]
+position = Vector2(2272, 800)
+
+[node name="GridSpace595" parent="Grid" unique_id=133764436 instance=ExtResource("1_bl13t")]
+position = Vector2(1184, 864)
+
+[node name="GridSpace596" parent="Grid" unique_id=1608696215 instance=ExtResource("1_bl13t")]
+position = Vector2(1248, 864)
+
+[node name="GridSpace597" parent="Grid" unique_id=1372483481 instance=ExtResource("1_bl13t")]
+position = Vector2(1312, 864)
+
+[node name="GridSpace598" parent="Grid" unique_id=1738340313 instance=ExtResource("1_bl13t")]
+position = Vector2(1376, 864)
+
+[node name="GridSpace599" parent="Grid" unique_id=157916089 instance=ExtResource("1_bl13t")]
+position = Vector2(1440, 864)
+
+[node name="GridSpace600" parent="Grid" unique_id=1312482831 instance=ExtResource("1_bl13t")]
+position = Vector2(1504, 864)
+
+[node name="GridSpace601" parent="Grid" unique_id=1524063033 instance=ExtResource("1_bl13t")]
+position = Vector2(1568, 864)
+
+[node name="GridSpace602" parent="Grid" unique_id=39880441 instance=ExtResource("1_bl13t")]
+position = Vector2(1632, 864)
+
+[node name="GridSpace603" parent="Grid" unique_id=1757560885 instance=ExtResource("1_bl13t")]
+position = Vector2(1696, 864)
+
+[node name="GridSpace604" parent="Grid" unique_id=972375571 instance=ExtResource("1_bl13t")]
+position = Vector2(1760, 864)
+
+[node name="GridSpace605" parent="Grid" unique_id=392064471 instance=ExtResource("1_bl13t")]
+position = Vector2(1824, 864)
+
+[node name="GridSpace606" parent="Grid" unique_id=1857677030 instance=ExtResource("1_bl13t")]
+position = Vector2(1888, 864)
+
+[node name="GridSpace607" parent="Grid" unique_id=233459102 instance=ExtResource("1_bl13t")]
+position = Vector2(1952, 864)
+
+[node name="GridSpace608" parent="Grid" unique_id=713537138 instance=ExtResource("1_bl13t")]
+position = Vector2(2016, 864)
+
+[node name="GridSpace609" parent="Grid" unique_id=1894810994 instance=ExtResource("1_bl13t")]
+position = Vector2(2080, 864)
+
+[node name="GridSpace610" parent="Grid" unique_id=181430094 instance=ExtResource("1_bl13t")]
+position = Vector2(2144, 864)
+
+[node name="GridSpace611" parent="Grid" unique_id=111587006 instance=ExtResource("1_bl13t")]
+position = Vector2(2208, 864)
+
+[node name="GridSpace612" parent="Grid" unique_id=858292577 instance=ExtResource("1_bl13t")]
+position = Vector2(2272, 864)
+
+[node name="GridSpace613" parent="Grid" unique_id=1997253389 instance=ExtResource("1_bl13t")]
+position = Vector2(1184, 928)
+
+[node name="GridSpace614" parent="Grid" unique_id=1856428187 instance=ExtResource("1_bl13t")]
+position = Vector2(1248, 928)
+
+[node name="GridSpace615" parent="Grid" unique_id=873525329 instance=ExtResource("1_bl13t")]
+position = Vector2(1312, 928)
+
+[node name="GridSpace616" parent="Grid" unique_id=1210220851 instance=ExtResource("1_bl13t")]
+position = Vector2(1376, 928)
+
+[node name="GridSpace617" parent="Grid" unique_id=2123843338 instance=ExtResource("1_bl13t")]
+position = Vector2(1440, 928)
+
+[node name="GridSpace618" parent="Grid" unique_id=1055828603 instance=ExtResource("1_bl13t")]
+position = Vector2(1504, 928)
+
+[node name="GridSpace619" parent="Grid" unique_id=237636898 instance=ExtResource("1_bl13t")]
+position = Vector2(1568, 928)
+
+[node name="GridSpace620" parent="Grid" unique_id=51975256 instance=ExtResource("1_bl13t")]
+position = Vector2(1632, 928)
+
+[node name="GridSpace621" parent="Grid" unique_id=1182963823 instance=ExtResource("1_bl13t")]
+position = Vector2(1696, 928)
+
+[node name="GridSpace622" parent="Grid" unique_id=1336132651 instance=ExtResource("1_bl13t")]
+position = Vector2(1760, 928)
+
+[node name="GridSpace623" parent="Grid" unique_id=64488908 instance=ExtResource("1_bl13t")]
+position = Vector2(1824, 928)
+
+[node name="GridSpace624" parent="Grid" unique_id=436350583 instance=ExtResource("1_bl13t")]
+position = Vector2(1888, 928)
+
+[node name="GridSpace625" parent="Grid" unique_id=340782607 instance=ExtResource("1_bl13t")]
+position = Vector2(1952, 928)
+
+[node name="GridSpace626" parent="Grid" unique_id=729138452 instance=ExtResource("1_bl13t")]
+position = Vector2(2016, 928)
+
+[node name="GridSpace627" parent="Grid" unique_id=625662216 instance=ExtResource("1_bl13t")]
+position = Vector2(2080, 928)
+
+[node name="GridSpace628" parent="Grid" unique_id=773596244 instance=ExtResource("1_bl13t")]
+position = Vector2(2144, 928)
+
+[node name="GridSpace629" parent="Grid" unique_id=643905095 instance=ExtResource("1_bl13t")]
+position = Vector2(2208, 928)
+
+[node name="GridSpace630" parent="Grid" unique_id=602425880 instance=ExtResource("1_bl13t")]
+position = Vector2(2272, 928)
+
+[node name="GridSpace631" parent="Grid" unique_id=1046442441 instance=ExtResource("1_bl13t")]
+position = Vector2(1184, 992)
+
+[node name="GridSpace632" parent="Grid" unique_id=1445111672 instance=ExtResource("1_bl13t")]
+position = Vector2(1248, 992)
+
+[node name="GridSpace633" parent="Grid" unique_id=250028930 instance=ExtResource("1_bl13t")]
+position = Vector2(1312, 992)
+
+[node name="GridSpace634" parent="Grid" unique_id=723745382 instance=ExtResource("1_bl13t")]
+position = Vector2(1376, 992)
+
+[node name="GridSpace635" parent="Grid" unique_id=1249959353 instance=ExtResource("1_bl13t")]
+position = Vector2(1440, 992)
+
+[node name="GridSpace636" parent="Grid" unique_id=1711269173 instance=ExtResource("1_bl13t")]
+position = Vector2(1504, 992)
+
+[node name="GridSpace637" parent="Grid" unique_id=1005560017 instance=ExtResource("1_bl13t")]
+position = Vector2(1568, 992)
+
+[node name="GridSpace638" parent="Grid" unique_id=185588865 instance=ExtResource("1_bl13t")]
+position = Vector2(1632, 992)
+
+[node name="GridSpace639" parent="Grid" unique_id=1136248563 instance=ExtResource("1_bl13t")]
+position = Vector2(1696, 992)
+
+[node name="GridSpace640" parent="Grid" unique_id=284065612 instance=ExtResource("1_bl13t")]
+position = Vector2(1760, 992)
+
+[node name="GridSpace641" parent="Grid" unique_id=1857001826 instance=ExtResource("1_bl13t")]
+position = Vector2(1824, 992)
+
+[node name="GridSpace642" parent="Grid" unique_id=243214238 instance=ExtResource("1_bl13t")]
+position = Vector2(1888, 992)
+
+[node name="GridSpace643" parent="Grid" unique_id=853419390 instance=ExtResource("1_bl13t")]
+position = Vector2(1952, 992)
+
+[node name="GridSpace644" parent="Grid" unique_id=1009900349 instance=ExtResource("1_bl13t")]
+position = Vector2(2016, 992)
+
+[node name="GridSpace645" parent="Grid" unique_id=1917876944 instance=ExtResource("1_bl13t")]
+position = Vector2(2080, 992)
+
+[node name="GridSpace646" parent="Grid" unique_id=814150229 instance=ExtResource("1_bl13t")]
+position = Vector2(2144, 992)
+
+[node name="GridSpace647" parent="Grid" unique_id=1599583059 instance=ExtResource("1_bl13t")]
+position = Vector2(2208, 992)
+
+[node name="GridSpace648" parent="Grid" unique_id=356380900 instance=ExtResource("1_bl13t")]
+position = Vector2(2272, 992)
+
+[node name="GridSpace649" parent="Grid" unique_id=218432692 instance=ExtResource("1_bl13t")]
+position = Vector2(1184, 1056)
+
+[node name="GridSpace650" parent="Grid" unique_id=180522518 instance=ExtResource("1_bl13t")]
+position = Vector2(1248, 1056)
+
+[node name="GridSpace651" parent="Grid" unique_id=743895118 instance=ExtResource("1_bl13t")]
+position = Vector2(1312, 1056)
+
+[node name="GridSpace652" parent="Grid" unique_id=135477407 instance=ExtResource("1_bl13t")]
+position = Vector2(1376, 1056)
+
+[node name="GridSpace653" parent="Grid" unique_id=1137984265 instance=ExtResource("1_bl13t")]
+position = Vector2(1440, 1056)
+
+[node name="GridSpace654" parent="Grid" unique_id=52710857 instance=ExtResource("1_bl13t")]
+position = Vector2(1504, 1056)
+
+[node name="GridSpace655" parent="Grid" unique_id=1234638875 instance=ExtResource("1_bl13t")]
+position = Vector2(1568, 1056)
+
+[node name="GridSpace656" parent="Grid" unique_id=766513429 instance=ExtResource("1_bl13t")]
+position = Vector2(1632, 1056)
+
+[node name="GridSpace657" parent="Grid" unique_id=595013752 instance=ExtResource("1_bl13t")]
+position = Vector2(1696, 1056)
+
+[node name="GridSpace658" parent="Grid" unique_id=1101674015 instance=ExtResource("1_bl13t")]
+position = Vector2(1760, 1056)
+
+[node name="GridSpace659" parent="Grid" unique_id=323745357 instance=ExtResource("1_bl13t")]
+position = Vector2(1824, 1056)
+
+[node name="GridSpace660" parent="Grid" unique_id=2019425174 instance=ExtResource("1_bl13t")]
+position = Vector2(1888, 1056)
+
+[node name="GridSpace661" parent="Grid" unique_id=750138824 instance=ExtResource("1_bl13t")]
+position = Vector2(1952, 1056)
+
+[node name="GridSpace662" parent="Grid" unique_id=1722458649 instance=ExtResource("1_bl13t")]
+position = Vector2(2016, 1056)
+
+[node name="GridSpace663" parent="Grid" unique_id=507094026 instance=ExtResource("1_bl13t")]
+position = Vector2(2080, 1056)
+
+[node name="GridSpace664" parent="Grid" unique_id=250726432 instance=ExtResource("1_bl13t")]
+position = Vector2(2144, 1056)
+
+[node name="GridSpace665" parent="Grid" unique_id=248664303 instance=ExtResource("1_bl13t")]
+position = Vector2(2208, 1056)
+
+[node name="GridSpace666" parent="Grid" unique_id=1383711270 instance=ExtResource("1_bl13t")]
+position = Vector2(2272, 1056)
+
+[node name="GridSpace667" parent="Grid" unique_id=1702208912 instance=ExtResource("1_bl13t")]
+position = Vector2(1184, 1120)
+
+[node name="GridSpace668" parent="Grid" unique_id=1953433577 instance=ExtResource("1_bl13t")]
+position = Vector2(1248, 1120)
+
+[node name="GridSpace669" parent="Grid" unique_id=400683172 instance=ExtResource("1_bl13t")]
+position = Vector2(1312, 1120)
+
+[node name="GridSpace670" parent="Grid" unique_id=583666093 instance=ExtResource("1_bl13t")]
+position = Vector2(1376, 1120)
+
+[node name="GridSpace671" parent="Grid" unique_id=602097401 instance=ExtResource("1_bl13t")]
+position = Vector2(1440, 1120)
+
+[node name="GridSpace672" parent="Grid" unique_id=1717643767 instance=ExtResource("1_bl13t")]
+position = Vector2(1504, 1120)
+
+[node name="GridSpace673" parent="Grid" unique_id=966075954 instance=ExtResource("1_bl13t")]
+position = Vector2(1568, 1120)
+
+[node name="GridSpace674" parent="Grid" unique_id=113785709 instance=ExtResource("1_bl13t")]
+position = Vector2(1632, 1120)
+
+[node name="GridSpace675" parent="Grid" unique_id=605458627 instance=ExtResource("1_bl13t")]
+position = Vector2(1696, 1120)
+
+[node name="GridSpace676" parent="Grid" unique_id=1187282050 instance=ExtResource("1_bl13t")]
+position = Vector2(1760, 1120)
+
+[node name="GridSpace677" parent="Grid" unique_id=1618480930 instance=ExtResource("1_bl13t")]
+position = Vector2(1824, 1120)
+
+[node name="GridSpace678" parent="Grid" unique_id=1140925320 instance=ExtResource("1_bl13t")]
+position = Vector2(1888, 1120)
+
+[node name="GridSpace679" parent="Grid" unique_id=1002844757 instance=ExtResource("1_bl13t")]
+position = Vector2(1952, 1120)
+
+[node name="GridSpace680" parent="Grid" unique_id=1773743106 instance=ExtResource("1_bl13t")]
+position = Vector2(2016, 1120)
+
+[node name="GridSpace681" parent="Grid" unique_id=558747388 instance=ExtResource("1_bl13t")]
+position = Vector2(2080, 1120)
+
+[node name="GridSpace682" parent="Grid" unique_id=1935445966 instance=ExtResource("1_bl13t")]
+position = Vector2(2144, 1120)
+
+[node name="GridSpace683" parent="Grid" unique_id=1263451742 instance=ExtResource("1_bl13t")]
+position = Vector2(2208, 1120)
+
+[node name="GridSpace684" parent="Grid" unique_id=532930466 instance=ExtResource("1_bl13t")]
+position = Vector2(2272, 1120)
+
+[node name="GridSpace685" parent="Grid" unique_id=207859437 instance=ExtResource("1_bl13t")]
+position = Vector2(1184, 1184)
+
+[node name="GridSpace686" parent="Grid" unique_id=635744983 instance=ExtResource("1_bl13t")]
+position = Vector2(1248, 1184)
+
+[node name="GridSpace687" parent="Grid" unique_id=1104999310 instance=ExtResource("1_bl13t")]
+position = Vector2(1312, 1184)
+
+[node name="GridSpace688" parent="Grid" unique_id=431100909 instance=ExtResource("1_bl13t")]
+position = Vector2(1376, 1184)
+
+[node name="GridSpace689" parent="Grid" unique_id=229311817 instance=ExtResource("1_bl13t")]
+position = Vector2(1440, 1184)
+
+[node name="GridSpace690" parent="Grid" unique_id=1861663188 instance=ExtResource("1_bl13t")]
+position = Vector2(1504, 1184)
+
+[node name="GridSpace691" parent="Grid" unique_id=759301010 instance=ExtResource("1_bl13t")]
+position = Vector2(1568, 1184)
+
+[node name="GridSpace692" parent="Grid" unique_id=90953187 instance=ExtResource("1_bl13t")]
+position = Vector2(1632, 1184)
+
+[node name="GridSpace693" parent="Grid" unique_id=1359770637 instance=ExtResource("1_bl13t")]
+position = Vector2(1696, 1184)
+
+[node name="GridSpace694" parent="Grid" unique_id=474095765 instance=ExtResource("1_bl13t")]
+position = Vector2(1760, 1184)
+
+[node name="GridSpace695" parent="Grid" unique_id=1260042956 instance=ExtResource("1_bl13t")]
+position = Vector2(1824, 1184)
+
+[node name="GridSpace696" parent="Grid" unique_id=23308432 instance=ExtResource("1_bl13t")]
+position = Vector2(1888, 1184)
+
+[node name="GridSpace697" parent="Grid" unique_id=292220062 instance=ExtResource("1_bl13t")]
+position = Vector2(1952, 1184)
+
+[node name="GridSpace698" parent="Grid" unique_id=791705137 instance=ExtResource("1_bl13t")]
+position = Vector2(2016, 1184)
+
+[node name="GridSpace699" parent="Grid" unique_id=1496170249 instance=ExtResource("1_bl13t")]
+position = Vector2(2080, 1184)
+
+[node name="GridSpace700" parent="Grid" unique_id=25193595 instance=ExtResource("1_bl13t")]
+position = Vector2(2144, 1184)
+
+[node name="GridSpace701" parent="Grid" unique_id=1146272999 instance=ExtResource("1_bl13t")]
+position = Vector2(2208, 1184)
+
+[node name="GridSpace702" parent="Grid" unique_id=44269261 instance=ExtResource("1_bl13t")]
+position = Vector2(2272, 1184)
+
+[node name="GridSpace703" parent="Grid" unique_id=601247440 instance=ExtResource("1_bl13t")]
+position = Vector2(1184, 1248)
+
+[node name="GridSpace704" parent="Grid" unique_id=537003559 instance=ExtResource("1_bl13t")]
+position = Vector2(1248, 1248)
+
+[node name="GridSpace705" parent="Grid" unique_id=603458547 instance=ExtResource("1_bl13t")]
+position = Vector2(1312, 1248)
+
+[node name="GridSpace706" parent="Grid" unique_id=381920121 instance=ExtResource("1_bl13t")]
+position = Vector2(1376, 1248)
+
+[node name="GridSpace707" parent="Grid" unique_id=353288862 instance=ExtResource("1_bl13t")]
+position = Vector2(1440, 1248)
+
+[node name="GridSpace708" parent="Grid" unique_id=243026886 instance=ExtResource("1_bl13t")]
+position = Vector2(1504, 1248)
+
+[node name="GridSpace709" parent="Grid" unique_id=605546936 instance=ExtResource("1_bl13t")]
+position = Vector2(1568, 1248)
+
+[node name="GridSpace710" parent="Grid" unique_id=264128459 instance=ExtResource("1_bl13t")]
+position = Vector2(1632, 1248)
+
+[node name="GridSpace711" parent="Grid" unique_id=831239452 instance=ExtResource("1_bl13t")]
+position = Vector2(1696, 1248)
+
+[node name="GridSpace712" parent="Grid" unique_id=186455033 instance=ExtResource("1_bl13t")]
+position = Vector2(1760, 1248)
+
+[node name="GridSpace713" parent="Grid" unique_id=126421122 instance=ExtResource("1_bl13t")]
+position = Vector2(1824, 1248)
+
+[node name="GridSpace714" parent="Grid" unique_id=1388526916 instance=ExtResource("1_bl13t")]
+position = Vector2(1888, 1248)
+
+[node name="GridSpace715" parent="Grid" unique_id=1763503731 instance=ExtResource("1_bl13t")]
+position = Vector2(1952, 1248)
+
+[node name="GridSpace716" parent="Grid" unique_id=1116839108 instance=ExtResource("1_bl13t")]
+position = Vector2(2016, 1248)
+
+[node name="GridSpace717" parent="Grid" unique_id=926693387 instance=ExtResource("1_bl13t")]
+position = Vector2(2080, 1248)
+
+[node name="GridSpace718" parent="Grid" unique_id=536433954 instance=ExtResource("1_bl13t")]
+position = Vector2(2144, 1248)
+
+[node name="GridSpace719" parent="Grid" unique_id=1645992523 instance=ExtResource("1_bl13t")]
+position = Vector2(2208, 1248)
+
+[node name="GridSpace720" parent="Grid" unique_id=174498530 instance=ExtResource("1_bl13t")]
+position = Vector2(2272, 1248)
+
+[node name="Player" parent="." unique_id=1154284220 instance=ExtResource("2_iyx0m")]
+
+[node name="Destination" parent="." unique_id=1063593230 instance=ExtResource("3_iyx0m")]
+z_index = 5
+position = Vector2(768, 256)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1975627024]
+layer = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer" unique_id=293610361]
+offset_top = 704.0
+offset_right = 1280.0
+offset_bottom = 832.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_iyx0m")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PanelContainer" unique_id=644943242]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/PanelContainer/HBoxContainer" unique_id=611508647]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="MoveButton" type="Button" parent="CanvasLayer/PanelContainer/HBoxContainer/MarginContainer" unique_id=1893158417]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 32
+toggle_mode = true
+text = "MOVE"
+
+[node name="MarginContainer3" type="MarginContainer" parent="CanvasLayer/PanelContainer/HBoxContainer" unique_id=2042224147]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="RotateButton" type="Button" parent="CanvasLayer/PanelContainer/HBoxContainer/MarginContainer3" unique_id=1715090365]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 32
+toggle_mode = true
+text = "ROTATE"
+
+[node name="MarginContainer4" type="MarginContainer" parent="CanvasLayer/PanelContainer/HBoxContainer" unique_id=2019675804]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="TrapButton" type="Button" parent="CanvasLayer/PanelContainer/HBoxContainer/MarginContainer4" unique_id=100476301]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 32
+toggle_mode = true
+text = "PLACE TRAP"
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/PanelContainer/HBoxContainer" unique_id=803469925]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 4
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/HBoxContainer/MarginContainer2" unique_id=597085871]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "MODE:"
+
+[node name="CurrentModeLabel" type="Label" parent="CanvasLayer/PanelContainer/HBoxContainer/MarginContainer2" unique_id=442335111]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Select"
+
+[node name="UIManager" type="Node" parent="CanvasLayer" unique_id=1525597301]
+script = ExtResource("4_j5jx5")
+
+[node name="TurnManager" type="Node" parent="." unique_id=938796904]
+script = ExtResource("3_74lek")
+
+[node name="GameManager" type="Node" parent="." unique_id=103410405]
+script = ExtResource("6_lpvoh")

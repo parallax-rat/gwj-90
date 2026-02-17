@@ -1,0 +1,28 @@
+[gd_resource type="TileSet" format=3 uid="uid://ce10bip3dbkai"]
+
+[ext_resource type="Texture2D" uid="uid://mw62i6m4n881" path="res://assets/Scud/BasicSea.png" id="1_152h4"]
+[ext_resource type="Texture2D" uid="uid://brtitco3jnfm1" path="res://assets/Scud/Dock.png" id="2_hvydk"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cgv5h"]
+texture = ExtResource("1_152h4")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/custom_data_0 = true
+0:0/0/custom_data_1 = 1
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_58g42"]
+texture = ExtResource("2_hvydk")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/custom_data_0 = true
+0:0/0/custom_data_1 = 1
+
+[resource]
+tile_shape = 3
+tile_size = Vector2i(64, 64)
+custom_data_layer_0/name = "can_traverse"
+custom_data_layer_0/type = 1
+custom_data_layer_1/name = "ap_cost"
+custom_data_layer_1/type = 2
+sources/0 = SubResource("TileSetAtlasSource_cgv5h")
+sources/1 = SubResource("TileSetAtlasSource_58g42")
