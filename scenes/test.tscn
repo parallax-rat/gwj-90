@@ -12,6 +12,9 @@ bg_color = Color(0.54901963, 0.54901963, 0.54901963, 0.84313726)
 border_width_top = 4
 border_color = Color(0, 0, 0, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_lpvoh"]
+font_size = 40
+
 [node name="Test" type="Node2D" unique_id=1454434500]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=339087602]
@@ -19,7 +22,8 @@ tile_map_data = PackedByteArray("AAAGAAYAAAAAAAAAAAAFAAcAAAAAAAAAAAAGAAcAAAAAAAA
 tile_set = ExtResource("1_at5dv")
 
 [node name="Player" parent="." unique_id=1154284220 instance=ExtResource("2_iyx0m")]
-position = Vector2(256, 480)
+unique_name_in_owner = true
+position = Vector2(288, 320)
 
 [node name="Destination" parent="." unique_id=1063593230 instance=ExtResource("3_iyx0m")]
 z_index = 5
@@ -37,6 +41,29 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_iyx0m")
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PanelContainer" unique_id=644943242]
 layout_mode = 2
 theme_override_constants/separation = 10
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/PanelContainer/HBoxContainer" unique_id=2017902032]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PanelContainer/HBoxContainer/MarginContainer2" unique_id=106480020]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/HBoxContainer/MarginContainer2/HBoxContainer" unique_id=1386207426]
+layout_mode = 2
+text = "AP:"
+label_settings = SubResource("LabelSettings_lpvoh")
+
+[node name="CurrentAPLabel" type="Label" parent="CanvasLayer/PanelContainer/HBoxContainer/MarginContainer2/HBoxContainer" unique_id=1954912142]
+unique_name_in_owner = true
+layout_mode = 2
+text = "1"
+label_settings = SubResource("LabelSettings_lpvoh")
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/PanelContainer/HBoxContainer" unique_id=611508647]
 layout_mode = 2
@@ -98,23 +125,37 @@ theme_override_font_sizes/font_size = 32
 toggle_mode = true
 text = "PLACE TRAP"
 
-[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/PanelContainer/HBoxContainer" unique_id=803469925]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer/HBoxContainer" unique_id=883665790]
 layout_mode = 2
 size_flags_horizontal = 10
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/PanelContainer/HBoxContainer/VBoxContainer" unique_id=803469925]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 10
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 4
 
-[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/HBoxContainer/MarginContainer2" unique_id=597085871]
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/HBoxContainer/VBoxContainer/MarginContainer2" unique_id=597085871]
 layout_mode = 2
-size_flags_horizontal = 10
+size_flags_horizontal = 3
+size_flags_vertical = 1
 text = "MODE:"
 
-[node name="CurrentModeLabel" type="Label" parent="CanvasLayer/PanelContainer/HBoxContainer/MarginContainer2" unique_id=442335111]
+[node name="MarginContainer5" type="MarginContainer" parent="CanvasLayer/PanelContainer/HBoxContainer/VBoxContainer" unique_id=1367130731]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 4
+
+[node name="CurrentModeLabel" type="Label" parent="CanvasLayer/PanelContainer/HBoxContainer/VBoxContainer/MarginContainer5" unique_id=442335111]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 10
+size_flags_vertical = 1
 text = "Select"
 
 [node name="UIManager" type="Control" parent="CanvasLayer" unique_id=323848602]
@@ -127,3 +168,7 @@ script = ExtResource("3_74lek")
 
 [node name="GameManager" type="Node2D" parent="." unique_id=1886284364]
 script = ExtResource("6_lpvoh")
+
+[node name="MapManager" type="Node2D" parent="." unique_id=209420193]
+
+[node name="Fog" type="Node2D" parent="MapManager" unique_id=1488184095]

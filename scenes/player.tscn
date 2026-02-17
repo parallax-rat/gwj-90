@@ -9,6 +9,7 @@ script = ExtResource("1_3vyb7")
 
 [node name="DEBUG_SEA" type="Node2D" parent="." unique_id=1739564981]
 visible = false
+position = Vector2(-32, -32)
 
 [node name="Sprite2D2" type="Sprite2D" parent="DEBUG_SEA" unique_id=1872990826]
 texture_filter = 1
@@ -67,22 +68,12 @@ texture = ExtResource("2_qhqgy")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1531603503]
 texture_filter = 1
 texture_repeat = 1
-position = Vector2(48, 16)
-rotation = 1.571371
+rotation = 1.5707964
 texture = ExtResource("2_g2els")
 centered = false
-
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=889165243]
-path_desired_distance = 1.0
-target_desired_distance = 1.0
-path_max_distance = 16.0
-path_postprocessing = 1
-debug_enabled = true
-debug_use_custom = true
-debug_path_custom_color = Color(0.105882354, 0.9529412, 0, 0.7176471)
+offset = Vector2(-15.429833, -16.234652)
 
 [node name="ScanRange" type="Area2D" parent="." unique_id=245210188]
-position = Vector2(32, 32)
 collision_layer = 16
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ScanRange" unique_id=1364931045]
@@ -91,10 +82,7 @@ scale = Vector2(1, 1.0208334)
 polygon = PackedVector2Array(-112.00001, -62.69387, -5.722046e-06, -141.06122, 112, -62.69388, 1.9073486e-06, 15.67347)
 
 [node name="PassiveFogReveal" type="Area2D" parent="." unique_id=1345862567]
-position = Vector2(32, 32)
 collision_layer = 16
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PassiveFogReveal" unique_id=818443360]
 polygon = PackedVector2Array(-16, 0, 32, -64, 80, 0, 32, 64)
-
-[connection signal="navigation_finished" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_navigation_finished"]

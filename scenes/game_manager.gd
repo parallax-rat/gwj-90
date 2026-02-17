@@ -12,24 +12,25 @@ var mode: Mode = Mode.MOVE
 
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("select") and mode == Mode.MOVE:
-		print("move mode enabled")
-		var tile_coords = map.local_to_map(map.to_local(get_global_mouse_position()))
-		print(tile_coords)
-		
-		if _is_tile_traversable(tile_coords):
-			var target_world = map.map_to_world(tile_coords)
-			player._rotate(target_world)
-			player._move(target_world)
+		var clicked_cell = map.local_to_map(map.get_local_mouse_position())
+		var current_occupied_cell = map.local_to_map(to_local(player.global_position))
+		print(current_occupied_cell)
+		if _is_tile_traversable(clicked_cell):
+			var half_tile = Global.HEX_SIZE / 2
+			var cell_move_target = map.map_to_local(clicked_cell) - Vector2(half_tile,half_tile)
+			cell_move_target = to_global(cell_move_target)
+			if !player._can_move_to(cell_move_target, current_occupied_cell):
+				print("Not enough AP to move there")
+				return
+			player._rotate(cell_move_target)
+			player._move(cell_move_target)
 
-#region movement
-
-func _is_tile_traversable(tile_coords:Vector2i) -> bool:
-	var data = map.get_cell_tile_data(tile_coords)
-	if data == null:
+func _is_tile_traversable(clicked_cell) -> bool:
+	var data = map.get_cell_tile_data(clicked_cell)
+	if data:
+		return data.get_custom_data("can_traverse")
+	else:
 		return false
-	return data.get_custom_data_by_layer_id(0)
-
-#endregion
 
 func _on_press_button() -> void:
 	action_buttons[0].toggle_mode = true
