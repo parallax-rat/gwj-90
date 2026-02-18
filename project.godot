@@ -22,17 +22,25 @@ Global="*uid://c0x8jjyjua73k"
 
 [display]
 
-window/size/viewport_width=1280
-window/size/viewport_height=832
+window/size/viewport_width=640
+window/size/viewport_height=360
 window/stretch/mode="viewport"
-window/stretch/aspect="ignore"
 window/stretch/scale_mode="integer"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/wfc/plugin.cfg")
 
 [global_group]
 
 player=""
 grid_space=""
 tile_maps=""
+
+[gui]
+
+theme/default_font_antialiasing=0
+theme/custom_font="uid://cgh3nipsw1p64"
 
 [input]
 
@@ -54,7 +62,7 @@ debug_add_ap={
 
 [layer_names]
 
-2d_render/layer_5="grid_"
+2d_render/layer_5="fog"
 2d_physics/layer_1="grid_space"
 2d_navigation/layer_1="traversable"
 2d_physics/layer_2="player"
@@ -70,6 +78,10 @@ debug_add_ap={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/default_filters/anisotropic_filtering_level=0
+textures/decals/filter=0
+textures/light_projectors/filter=0
