@@ -41,8 +41,6 @@ _data = {
 }
 point_count = 2
 
-[sub_resource type="QuadMesh" id="QuadMesh_jcd4p"]
-
 [node name="Test" type="Node2D" unique_id=1454434500]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1975627024]
@@ -271,11 +269,6 @@ unique_name_in_owner = true
 position = Vector2(32, 32)
 
 [node name="Camera2D" type="Camera2D" parent="MovePath/Player" unique_id=1545285726]
-
-[node name="helper" type="MeshInstance2D" parent="." unique_id=1835787793]
-unique_name_in_owner = true
-scale = Vector2(5, 5)
-mesh = SubResource("QuadMesh_jcd4p")
 
 [connection signal="input_event" from="FogLayer/Fog" to="FogLayer/Fog" method="_on_input_event"]
 [connection signal="mouse_entered" from="FogLayer/Fog" to="FogLayer/Fog" method="_show_hover_highlight"]
