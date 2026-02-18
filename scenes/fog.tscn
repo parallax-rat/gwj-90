@@ -14,8 +14,16 @@ shader_parameter/scroll_noise_tex = false
 shader_parameter/noise_scroll_direction = Vector2(0.8, -0.5)
 
 [node name="Fog" unique_id=94816565 instance=ExtResource("1_ntoob")]
+collision_layer = 16
 
-[node name="ColorRect" type="ColorRect" parent="Sprite2D" parent_id_path=PackedInt32Array(1508652628) index="0" unique_id=220482101]
+[node name="CollisionShape2D" parent="." index="1" unique_id=518778403]
+visible = false
+polygon = PackedVector2Array(0, -32, 32, -16, 32, 16, 0, 32, -32, 16, -32, -16, 0, -32)
+
+[node name="Sprite2D" parent="." index="2" unique_id=1508652628]
+clip_children = 1
+
+[node name="ColorRect" type="ColorRect" parent="Sprite2D" index="0" unique_id=220482101]
 texture_filter = 1
 material = SubResource("ShaderMaterial_1o7ot")
 offset_left = -32.0
@@ -23,7 +31,7 @@ offset_top = -32.0
 offset_right = 32.0
 offset_bottom = 32.0
 
-[node name="ColorRect2" type="ColorRect" parent="Sprite2D" parent_id_path=PackedInt32Array(1508652628) index="1" unique_id=303273338]
+[node name="ColorRect2" type="ColorRect" parent="Sprite2D" index="1" unique_id=303273338]
 material = SubResource("ShaderMaterial_1o7ot")
 offset_left = 32.0
 offset_top = -32.0
@@ -31,7 +39,7 @@ offset_right = 96.0
 offset_bottom = 32.0
 rotation = 1.5707964
 
-[node name="ColorRect3" type="ColorRect" parent="Sprite2D" parent_id_path=PackedInt32Array(1508652628) index="2" unique_id=44688494]
+[node name="ColorRect3" type="ColorRect" parent="Sprite2D" index="2" unique_id=44688494]
 material = SubResource("ShaderMaterial_1o7ot")
 offset_left = 32.0
 offset_top = 32.0

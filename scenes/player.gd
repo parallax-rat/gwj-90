@@ -1,11 +1,13 @@
 class_name Player
-extends Node2D
+extends PathFollow2D
 
 signal action_points_changed(value)
 
-@onready var scan_range: Area2D = $ScanRange
+@onready var scan_area: Area2D = $ScanRange
 @onready var passive_fog_reveal: Area2D = $PassiveFogReveal
 @onready var sprite: Sprite2D = $Sprite2D
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+
 
 var move_tween: Tween
 var current_action_points: int:
@@ -17,6 +19,7 @@ var current_action_points: int:
 
 @export var starting_action_points: int = 1
 
+@export var movement_time_duration: float = 1.0
 @export var move_ap_cost: int = 1
 @export var rotate_ap_cost: int = 1
 @export var trap_ap_cost: int = 1
@@ -25,25 +28,43 @@ var current_action_points: int:
 func _ready() -> void:
 	current_action_points = starting_action_points
 
-func _can_move_to(target:Vector2, current_occupied_cell) -> bool:
-	var distance = global_position.distance_to(target)
-	var ap_cost = distance / Global.HEX_SIZE
+func _can_move_to(target:Vector2) -> bool:
+	var distance = position.distance_to(target)
+	var ap_cost = floor(distance / Global.HEX_SIZE)
+	print(ap_cost)
 	if ap_cost > current_action_points or distance < 32.0:
 		return false
 	else:
 		return true
 
-func _move(target:Vector2) -> void:
+func _move_along_path(target:Vector2) -> void:
 	if move_tween:
 		move_tween.kill()
+	progress_ratio = 0.0
 	move_tween = create_tween()
-	move_tween.tween_property(self, "position", target, 0.5).set_ease(Tween.EASE_IN_OUT)
+	#sprite.look_at(target)
+	move_tween.tween_property(self, "progress_ratio", 1.0, movement_time_duration).set_ease(Tween.EASE_IN_OUT)
+	await move_tween.finished
 	current_action_points -= 1
 
-func _rotate(target:Vector2) -> void:
-	sprite.look_at(target)
-	#var t = create_tween()
-	#t.tween_property(sprite,"rotation",target,0.1).set_ease(Tween.EASE_IN_OUT)
+
+func _scan() -> void:
+	var detected_areas = scan_area.get_overlapping_areas()
+	for fog in detected_areas:
+		clear_fog(fog)
+
 
 func _place_trap(grid_space:GridSpace):
 	print("DEBUG: Placing trap at " + str(snapped(grid_space.global_position,1)))
+
+
+func clear_fog(area) -> void:
+	var tween = get_tree().create_tween()
+	tween.tween_property(area,"modulate:a",0.0,0.5)
+	await tween.finished
+	if area:
+		area.queue_free()
+
+
+func _on_passive_fog_reveal_area_entered(area: Area2D) -> void:
+	clear_fog(area)

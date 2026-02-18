@@ -9,11 +9,6 @@ var player: Player
 
 #endregion
 
-#region labels
-
-@onready var current_mode_label: Label = %CurrentModeLabel
-
-#endregion
 
 func _ready() -> void:
 	player = get_tree().get_nodes_in_group("player")[0]

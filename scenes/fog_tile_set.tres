@@ -1,0 +1,16 @@
+[gd_resource type="TileSet" format=3 uid="uid://dxweh7ewr34jh"]
+
+[ext_resource type="PackedScene" uid="uid://b0hog3ngstqbs" path="res://scenes/fog.tscn" id="1_c4bof"]
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_jcd4p"]
+resource_name = "Fog"
+scenes/1/scene = ExtResource("1_c4bof")
+
+[resource]
+tile_shape = 3
+tile_size = Vector2i(64, 64)
+physics_layer_0/collision_layer = 16
+physics_layer_0/collision_mask = 96
+custom_data_layer_0/name = "can_traverse"
+custom_data_layer_0/type = 1
+sources/0 = SubResource("TileSetScenesCollectionSource_jcd4p")

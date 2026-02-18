@@ -16,13 +16,10 @@ shader_parameter/fog_direction = Vector2(1, 1)
 shader_parameter/scroll_noise_tex = false
 shader_parameter/noise_scroll_direction = Vector2(1, 0)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bnktq"]
-size = Vector2(64, 64)
-
 [node name="GridSpace" type="Area2D" unique_id=94816565 groups=["grid_space"]]
 light_mask = 16
 visibility_layer = 16
-collision_mask = 30
+collision_mask = 0
 script = ExtResource("1_bnktq")
 
 [node name="Components" type="Node2D" parent="." unique_id=57922649]
@@ -43,6 +40,7 @@ color = Color(1, 1, 0.7882353, 0.08627451)
 polygon = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 
 [node name="Fog" type="Polygon2D" parent="Components" unique_id=39967073]
+visible = false
 z_index = 5
 material = SubResource("ShaderMaterial_v6xjd")
 polygon = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
@@ -57,12 +55,10 @@ polygon = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32, -32, -40, -28, 
 color = Color(1, 1, 0.7882353, 0.47058824)
 polygon = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=846847244]
-visible = false
-shape = SubResource("RectangleShape2D_bnktq")
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="." unique_id=518778403]
+polygon = PackedVector2Array(-32, -16, 0, -32, 32, -16, 32, 16, 0, 32, -32, 16)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1508652628]
-clip_children = 1
 texture_filter = 1
 texture_repeat = 1
 texture = ExtResource("2_htyn4")
