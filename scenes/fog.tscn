@@ -3,6 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://cmi6in65o5kab" path="res://scenes/grid_space.tscn" id="1_ntoob"]
 [ext_resource type="Shader" uid="uid://bqwn4tc5xj1hx" path="res://scenes/fog.gdshader" id="2_e072f"]
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_e072f"]
+polygon = PackedVector2Array(-32, -16, 0, -32, 32, -16, 32, 16, 0, 32, -32, 16)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1o7ot"]
 shader = ExtResource("2_e072f")
 shader_parameter/color = Color(0, 0, 0, 1)
@@ -20,7 +23,11 @@ collision_layer = 16
 visible = false
 polygon = PackedVector2Array(0, -32, 32, -16, 32, 16, 0, 32, -32, 16, -32, -16, 0, -32)
 
-[node name="Sprite2D" parent="." index="2" unique_id=1508652628]
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." index="2" unique_id=1696085185]
+occluder = SubResource("OccluderPolygon2D_e072f")
+occluder_light_mask = 16
+
+[node name="Sprite2D" parent="." index="3" unique_id=1508652628]
 clip_children = 1
 
 [node name="ColorRect" type="ColorRect" parent="Sprite2D" index="0" unique_id=220482101]
@@ -40,6 +47,30 @@ offset_bottom = 32.0
 rotation = 1.5707964
 
 [node name="ColorRect3" type="ColorRect" parent="Sprite2D" index="2" unique_id=44688494]
+material = SubResource("ShaderMaterial_1o7ot")
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 96.0
+offset_bottom = 96.0
+rotation = -3.1415927
+
+[node name="ColorRect4" type="ColorRect" parent="Sprite2D" index="3" unique_id=1420189773]
+texture_filter = 1
+material = SubResource("ShaderMaterial_1o7ot")
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+
+[node name="ColorRect5" type="ColorRect" parent="Sprite2D" index="4" unique_id=148550791]
+material = SubResource("ShaderMaterial_1o7ot")
+offset_left = 32.0
+offset_top = -32.0
+offset_right = 96.0
+offset_bottom = 32.0
+rotation = 1.5707964
+
+[node name="ColorRect6" type="ColorRect" parent="Sprite2D" index="5" unique_id=1432090212]
 material = SubResource("ShaderMaterial_1o7ot")
 offset_left = 32.0
 offset_top = 32.0

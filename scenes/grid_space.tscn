@@ -2,19 +2,6 @@
 
 [ext_resource type="Script" uid="uid://ds4fg6makb0pf" path="res://scenes/grid_space.gd" id="1_bnktq"]
 [ext_resource type="Texture2D" uid="uid://mw62i6m4n881" path="res://assets/Scud/BasicSea.png" id="2_htyn4"]
-[ext_resource type="Shader" uid="uid://bqwn4tc5xj1hx" path="res://scenes/fog.gdshader" id="3_e42ob"]
-[ext_resource type="Texture2D" uid="uid://bbw6u1357wgkd" path="res://assets/light.png" id="4_nl7rr"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_v6xjd"]
-shader = ExtResource("3_e42ob")
-shader_parameter/color = Color(0, 0, 0, 1)
-shader_parameter/OCTAVES = 4
-shader_parameter/enable_pixelation = true
-shader_parameter/pixelation_amount = 150
-shader_parameter/fog_mask = ExtResource("4_nl7rr")
-shader_parameter/fog_direction = Vector2(1, 1)
-shader_parameter/scroll_noise_tex = false
-shader_parameter/noise_scroll_direction = Vector2(1, 0)
 
 [node name="GridSpace" type="Area2D" unique_id=94816565 groups=["grid_space"]]
 light_mask = 16
@@ -23,37 +10,6 @@ collision_mask = 0
 script = ExtResource("1_bnktq")
 
 [node name="Components" type="Node2D" parent="." unique_id=57922649]
-
-[node name="GridVisual" type="Polygon2D" parent="Components" unique_id=1420861207]
-visible = false
-clip_children = 1
-light_mask = 16
-visibility_layer = 16
-z_index = 10
-position = Vector2(0, 1)
-polygon = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32, -32, -40, -28, -40, -28, 28, 28, 28, 28, -28, -28, -28, -28, -32)
-
-[node name="Border" type="Polygon2D" parent="Components/GridVisual" unique_id=434412998]
-light_mask = 17
-visibility_layer = 16
-color = Color(1, 1, 0.7882353, 0.08627451)
-polygon = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
-
-[node name="Fog" type="Polygon2D" parent="Components" unique_id=39967073]
-visible = false
-z_index = 5
-material = SubResource("ShaderMaterial_v6xjd")
-polygon = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
-
-[node name="Hover" type="Polygon2D" parent="Components" unique_id=1863928905]
-visible = false
-clip_children = 1
-z_index = 10
-polygon = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32, -32, -40, -28, -40, -28, 28, 28, 28, 28, -28, -28, -28, -28, -32)
-
-[node name="Border" type="Polygon2D" parent="Components/Hover" unique_id=725781688]
-color = Color(1, 1, 0.7882353, 0.47058824)
-polygon = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="." unique_id=518778403]
 polygon = PackedVector2Array(-32, -16, 0, -32, 32, -16, 32, 16, 0, 32, -32, 16)

@@ -26,7 +26,7 @@ func _move(cell_coords) -> void:
 		player._move_along_path(cell_coords)
 
 func _set_path_points(end_point) -> void:
-	move_path.curve.set_point_position(0,player.global_position)
+	move_path.curve.set_point_position(0,move_path.curve.get_point_position(1))
 	move_path.curve.set_point_position(1,end_point)
 
 func _is_tile_traversable(clicked_cell) -> bool:
