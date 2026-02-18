@@ -7,6 +7,7 @@ signal action_points_changed(value)
 @onready var passive_fog_reveal: Area2D = $PassiveFogReveal
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var scan_btn:Button = %ScanButton
 
 
 var move_tween: Tween
@@ -25,7 +26,10 @@ var current_action_points: int:
 @export var trap_ap_cost: int = 1
 @export var new_turn_ap_refresh: int = 1
 
+var is_moving = false
+
 func _ready() -> void:
+	scan_btn.pressed.connect(_scan)
 	current_action_points = starting_action_points
 
 func _can_move_to(target:Vector2) -> bool:
@@ -37,15 +41,19 @@ func _can_move_to(target:Vector2) -> bool:
 	else:
 		return true
 
-func _move_along_path(target:Vector2) -> void:
-	if move_tween:
-		move_tween.kill()
+func _move_along_path() -> void:
+	if is_moving:
+		return
+	#if move_tween:
+		#move_tween.kill()
+	is_moving = true
 	progress_ratio = 0.0
 	move_tween = create_tween()
-	#sprite.look_at(target)
 	move_tween.tween_property(self, "progress_ratio", 1.0, movement_time_duration).set_ease(Tween.EASE_IN_OUT)
 	await move_tween.finished
+	move_tween.kill();
 	current_action_points -= 1
+	is_moving = false
 
 
 func _scan() -> void:
