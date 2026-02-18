@@ -1,0 +1,10 @@
+            - name: setup-butler
+  # You may pin to the exact commit or the version.
+  # uses: remarkablegames/setup-butler@b31d4e171b18442414328e4facbca76280041dba
+  uses: remarkablegames/setup-butler@v2.0.5
+  with:
+    # butler version
+    butler-version: # optional, default is LATEST
+    # CLI name
+    cli-name: # optional, default is butler
+          
