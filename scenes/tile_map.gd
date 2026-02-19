@@ -4,7 +4,7 @@ extends TileMapLayer
 signal clicked(coords)
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("select"):
+	if Input.is_action_just_pressed("select"):
 		print('unhandled input')
 		var clicked_cell = local_to_map(get_local_mouse_position())
 		var half_tile = Global.HEX_SIZE / 2

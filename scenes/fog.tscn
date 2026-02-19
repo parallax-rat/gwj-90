@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b0hog3ngstqbs"]
 
 [ext_resource type="PackedScene" uid="uid://cmi6in65o5kab" path="res://scenes/grid_space.tscn" id="1_ntoob"]
-[ext_resource type="Shader" uid="uid://bqwn4tc5xj1hx" path="res://scenes/fog.gdshader" id="2_e072f"]
+[ext_resource type="Shader" uid="uid://w8glsxhkm3dl" path="res://resources/fog2.tres" id="2_e072f"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_e072f"]
 polygon = PackedVector2Array(-32, -16, 0, -32, 32, -16, 32, 16, 0, 32, -32, 16)
@@ -17,7 +17,7 @@ shader_parameter/scroll_noise_tex = false
 shader_parameter/noise_scroll_direction = Vector2(0.8, -0.5)
 
 [node name="Fog" unique_id=94816565 instance=ExtResource("1_ntoob")]
-collision_layer = 16
+collision_layer = 17
 
 [node name="CollisionShape2D" parent="." index="1" unique_id=518778403]
 visible = false
@@ -28,7 +28,7 @@ occluder = SubResource("OccluderPolygon2D_e072f")
 occluder_light_mask = 16
 
 [node name="Sprite2D" parent="." index="3" unique_id=1508652628]
-clip_children = 1
+clip_children = 2
 
 [node name="ColorRect" type="ColorRect" parent="Sprite2D" index="0" unique_id=220482101]
 texture_filter = 1

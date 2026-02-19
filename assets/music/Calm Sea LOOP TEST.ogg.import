@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://c04uvixk0vrkq"
+path="res://.godot/imported/Calm Sea LOOP TEST.ogg-d5edf34701d898f0a032cbca5ecd548e.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/music/Calm Sea LOOP TEST.ogg"
+dest_files=["res://.godot/imported/Calm Sea LOOP TEST.ogg-d5edf34701d898f0a032cbca5ecd548e.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

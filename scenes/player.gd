@@ -51,7 +51,7 @@ func _move_along_path() -> void:
 	move_tween = create_tween()
 	move_tween.tween_property(self, "progress_ratio", 1.0, movement_time_duration).set_ease(Tween.EASE_IN_OUT)
 	await move_tween.finished
-	move_tween.kill();
+	move_tween.kill()
 	current_action_points -= 1
 	is_moving = false
 

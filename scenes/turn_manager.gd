@@ -2,8 +2,8 @@ class_name TurnManager extends Node
 
 signal start_turn(turn_number:int, current_turn:int)
 
-@export var current_turn_label:Label
-@export var finish_turn_button:Button
+@onready var current_turn_label: Label = %CurrentTurnLabel
+@onready var finish_turn_button: Button = %FinishTurnBtn
 
 enum State {READY, BUSY}
 enum Turn {PLAYER, ENVIRONMENT}
