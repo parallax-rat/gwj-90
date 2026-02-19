@@ -1,4 +1,4 @@
-class_name GameManager extends Node
+class_name GameManager extends Node2D
 
 @onready var helper: Area2D = %Helper
 @onready var move_path: Path2D = $"../MovePath"
@@ -29,15 +29,12 @@ func _move(end_point) -> void:
 	print("progress_ratio", player.progress_ratio)
 
 func _set_path_points(end_point) -> void:
-	print("progress_ratio", player.progress_ratio)
-	print("end_point", end_point)
 	if !player._can_move_to(end_point):
-		print("Not enough AP to move there")
 		return
-	move_path.curve.set_point_position(0,player.global_position)
+	var start = player.global_position - Global.HEX_SIZE_V / 2
+	end_point = end_point - Global.HEX_SIZE_V / 2
+	move_path.curve.set_point_position(0,start)
 	move_path.curve.set_point_position(1,end_point)
-	helper.global_position = end_point
-	#print("set points", move_path.curve.get_point_position(0), move_path.curve.get_point_position(1))
 
 func _is_tile_traversable(clicked_cell) -> bool:
 	var data = ocean_map.get_cell_tile_data(clicked_cell)
@@ -45,6 +42,21 @@ func _is_tile_traversable(clicked_cell) -> bool:
 		return data.get_custom_data("can_traverse")
 	else:
 		return false
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("select"):
+		match Global.current_action:
+			Global.Actions.MOVE:
+				print("Move action - GameManager unhandled input")
+				var clicked_cell = ocean_map.local_to_map(get_local_mouse_position())
+				if !_is_tile_traversable(clicked_cell):
+					return
+				var coords = to_global(ocean_map.map_to_local(clicked_cell))
+				_set_path_points(coords)
+				await player._move_along_path()
+				print("move finished")
+
 
 func _on_press_button() -> void:
 	action_buttons[0].toggle_mode = true

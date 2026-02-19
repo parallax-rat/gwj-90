@@ -14,7 +14,8 @@ config/name="GWJ90"
 run/main_scene="uid://sphpm5x52u7b"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 boot_splash/bg_color=Color(0, 0, 0, 1)
-config/icon="res://icon.svg"
+boot_splash/image="uid://dy8teb5gx1a4j"
+config/icon="uid://dy8teb5gx1a4j"
 
 [autoload]
 
@@ -40,8 +41,9 @@ button=""
 
 [gui]
 
+fonts/dynamic_fonts/use_oversampling=false
 theme/default_font_antialiasing=0
-theme/custom_font="uid://cgh3nipsw1p64"
+theme/custom_font="uid://csvh533g0b3te"
 
 [input]
 
@@ -93,6 +95,9 @@ end_turn={
 2d_physics/layer_6="fog_light"
 2d_physics/layer_7="fog_scan"
 2d_physics/layer_8="helper"
+2d_physics/layer_9="treasure"
+2d_physics/layer_10="rocks"
+2d_physics/layer_11="whirlpool"
 
 [physics]
 

@@ -1,20 +1,10 @@
 [gd_scene format=3 uid="uid://b0hog3ngstqbs"]
 
 [ext_resource type="PackedScene" uid="uid://cmi6in65o5kab" path="res://scenes/grid_space.tscn" id="1_ntoob"]
-[ext_resource type="Shader" uid="uid://w8glsxhkm3dl" path="res://resources/fog2.tres" id="2_e072f"]
+[ext_resource type="Texture2D" uid="uid://c46s1no3w86bw" path="res://assets/Scud/DockToDockTileSheet.png" id="2_1o7ot"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_e072f"]
 polygon = PackedVector2Array(-32, -16, 0, -32, 32, -16, 32, 16, 0, 32, -32, 16)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1o7ot"]
-shader = ExtResource("2_e072f")
-shader_parameter/color = Color(0, 0, 0, 1)
-shader_parameter/OCTAVES = 4
-shader_parameter/enable_pixelation = true
-shader_parameter/pixelation_amount = 150
-shader_parameter/fog_direction = Vector2(0.5, -0.5)
-shader_parameter/scroll_noise_tex = false
-shader_parameter/noise_scroll_direction = Vector2(0.8, -0.5)
 
 [node name="Fog" unique_id=94816565 instance=ExtResource("1_ntoob")]
 collision_layer = 16
@@ -23,66 +13,13 @@ collision_layer = 16
 visible = false
 polygon = PackedVector2Array(0, -32, 32, -16, 32, 16, 0, 32, -32, 16, -32, -16, 0, -32)
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="." index="2" unique_id=1696085185]
+[node name="Sprite2D" parent="." index="2" unique_id=1508652628]
+clip_children = 2
+texture = ExtResource("2_1o7ot")
+region_enabled = true
+region_rect = Rect2(0, 192, 64, 64)
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." index="3" unique_id=1696085185]
+self_modulate = Color(1, 1, 1, 0.5882353)
 occluder = SubResource("OccluderPolygon2D_e072f")
 occluder_light_mask = 16
-
-[node name="Sprite2D" parent="." index="3" unique_id=1508652628]
-clip_children = 2
-
-[node name="ColorRect" type="ColorRect" parent="Sprite2D" index="0" unique_id=220482101]
-texture_filter = 1
-material = SubResource("ShaderMaterial_1o7ot")
-offset_left = -32.0
-offset_top = -32.0
-offset_right = 32.0
-offset_bottom = 32.0
-mouse_filter = 2
-
-[node name="ColorRect2" type="ColorRect" parent="Sprite2D" index="1" unique_id=303273338]
-material = SubResource("ShaderMaterial_1o7ot")
-offset_left = 32.0
-offset_top = -32.0
-offset_right = 96.0
-offset_bottom = 32.0
-rotation = 1.5707964
-mouse_filter = 2
-
-[node name="ColorRect3" type="ColorRect" parent="Sprite2D" index="2" unique_id=44688494]
-material = SubResource("ShaderMaterial_1o7ot")
-offset_left = 32.0
-offset_top = 32.0
-offset_right = 96.0
-offset_bottom = 96.0
-rotation = -3.1415927
-mouse_filter = 2
-
-[node name="ColorRect4" type="ColorRect" parent="Sprite2D" index="3" unique_id=1420189773]
-visible = false
-texture_filter = 1
-material = SubResource("ShaderMaterial_1o7ot")
-offset_left = -32.0
-offset_top = -32.0
-offset_right = 32.0
-offset_bottom = 32.0
-mouse_filter = 2
-
-[node name="ColorRect5" type="ColorRect" parent="Sprite2D" index="4" unique_id=148550791]
-visible = false
-material = SubResource("ShaderMaterial_1o7ot")
-offset_left = 32.0
-offset_top = -32.0
-offset_right = 96.0
-offset_bottom = 32.0
-rotation = 1.5707964
-mouse_filter = 2
-
-[node name="ColorRect6" type="ColorRect" parent="Sprite2D" index="5" unique_id=1432090212]
-visible = false
-material = SubResource("ShaderMaterial_1o7ot")
-offset_left = 32.0
-offset_top = 32.0
-offset_right = 96.0
-offset_bottom = 96.0
-rotation = -3.1415927
-mouse_filter = 2

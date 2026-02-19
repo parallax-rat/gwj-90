@@ -33,30 +33,28 @@ func _ready() -> void:
 
 func _can_move_to(target:Vector2) -> bool:
 	var distance = position.distance_to(target)
-	var ap_cost = floor(distance / Global.HEX_SIZE)
-	print(ap_cost)
+	var ap_cost = floor(distance / Global.HEX_SIZE_I)
+	print("AP Cost", ap_cost)
 	if ap_cost > current_action_points or distance < 32.0:
 		return false
 	else:
+		print("Not enough AP")
 		return true
 
 func _move_along_path() -> void:
 	if is_moving:
 		return
-	#if move_tween:
-		#move_tween.kill()
 	is_moving = true
 	progress_ratio = 0.0
 	move_tween = create_tween()
 	move_tween.tween_property(self, "progress_ratio", 1.0, movement_time_duration).set_ease(Tween.EASE_IN_OUT)
 	await move_tween.finished
-	move_tween.kill()
 	current_action_points -= 1
 	is_moving = false
 
 
 func _scan() -> void:
-	var detected_areas = scan_area.get_overlapping_areas()
+	var detected_areas = scan_area.get_overlapping_bodies()
 	for fog in detected_areas:
 		clear_fog(fog)
 
@@ -75,3 +73,7 @@ func clear_fog(area) -> void:
 
 func _on_passive_fog_reveal_area_entered(area: Area2D) -> void:
 	clear_fog(area)
+
+
+func _on_passive_fog_reveal_body_entered(body: Node2D) -> void:
+	clear_fog(body)
