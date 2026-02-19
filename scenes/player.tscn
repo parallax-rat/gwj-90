@@ -196,4 +196,6 @@ polygon = PackedVector2Array(0, 0, 0, 0, 64, -112, 144, 0, 64, 112)
 libraries/ = SubResource("AnimationLibrary_tuyoq")
 speed_scale = 2.426
 
+[node name="Actions" type="Node" parent="." unique_id=1042661254]
+
 [connection signal="area_entered" from="PassiveFogReveal" to="." method="_on_passive_fog_reveal_area_entered"]

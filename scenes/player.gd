@@ -19,7 +19,6 @@ var current_action_points: int:
 		return current_action_points
 
 @export var starting_action_points: int = 1
-
 @export var movement_time_duration: float = 1.0
 @export var move_ap_cost: int = 1
 @export var rotate_ap_cost: int = 1
