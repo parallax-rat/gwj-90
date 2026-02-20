@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://tdnaod8tqcwu"]
 
 [ext_resource type="Script" uid="uid://chdll73md08bm" path="res://scenes/player.gd" id="1_3vyb7"]
+[ext_resource type="Texture2D" uid="uid://bmcibsxo4p568" path="res://assets/512x512 textures (36).png" id="2_dqkch"]
 [ext_resource type="Texture2D" uid="uid://g6oecvsdemq" path="res://assets/Scud/MainShip.png" id="2_g2els"]
-[ext_resource type="Texture2D" uid="uid://c12bbploq5v54" path="res://assets/512x512 textures (76).png" id="2_qlg0r"]
 [ext_resource type="Script" uid="uid://b1j81pmf4u2sp" path="res://scenes/debug_commands.gd" id="4_dqkch"]
 
 [node name="Player" type="PathFollow2D" unique_id=545152215 groups=["player"]]
@@ -15,7 +15,7 @@ position = Vector2(3.8146973e-06, 2.861023e-06)
 shadow_enabled = true
 shadow_color = Color(0, 0, 0, 0.68235296)
 shadow_item_cull_mask = 16
-texture = ExtResource("2_qlg0r")
+texture = ExtResource("2_dqkch")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1531603503]
 visibility_layer = 16

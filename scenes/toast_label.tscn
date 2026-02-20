@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://cxi7x643863a0"]
+
+[ext_resource type="FontFile" uid="uid://jp4vp16j3qrx" path="res://assets/fonts/ClassicShit.ttf" id="1_s5ose"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xkd57"]
+font = ExtResource("1_s5ose")
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.5254902)
+shadow_offset = Vector2(2, 2)
+
+[node name="ToastLabel" type="Label" unique_id=821388694]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1.5
+offset_right = -525.0
+offset_bottom = -345.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Not enough AP"
+label_settings = SubResource("LabelSettings_xkd57")

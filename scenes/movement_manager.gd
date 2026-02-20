@@ -14,16 +14,20 @@ func _ready() -> void:
 	move_path.curve.add_point(move_path_origin)
 
 func _on_move_request() -> void:
+	var current_position: Vector2 = get_cell_position_from_player()
 	var destination_position: Vector2 = get_cell_position_from_mouse()
 	var destination_cell: Vector2i = get_cell_coords_from_mouse()
 	prints("Move Destination:", destination_position, destination_cell)
+	if destination_position == current_position:
+		print("Cannot move to current location")
+		return
 	if !is_tile_traversable(destination_cell):
 		print("Not traversable")
 		return
 	var ap_cost = player.get_ap_cost(destination_position)
 	print("Current AP: ",player.current_action_points)
 	if player.current_action_points >= player.get_ap_cost(destination_position):
-		set_path_destination(destination_position)
+		await set_path_destination(destination_position)
 		reset_player_progress()
 		await player.move_along_path()
 		reset_path_origin()
@@ -48,7 +52,7 @@ func get_cell_position_from_mouse() -> Vector2:
 
 
 func get_cell_position_from_player() -> Vector2:
-	var cell_coords: Vector2i = get_cell_coords_from_mouse()
+	var cell_coords: Vector2i = player.global_position
 	var local_cell_position: Vector2i = ocean_layer.map_to_local(cell_coords)
 	var global_cell_position: Vector2 = ocean_layer.to_global(local_cell_position) # Centered global_position of the selected cell
 	return cell_coords
