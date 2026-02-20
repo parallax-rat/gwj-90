@@ -10,17 +10,26 @@ config_version=5
 
 [application]
 
-config/name="GWJ90"
-run/main_scene="uid://sphpm5x52u7b"
+config/name="Dock to Dock"
+config/version="0.1 GWJ"
+run/main_scene="res://scenes/scenes/opening/opening.tscn"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/image="uid://dy8teb5gx1a4j"
 config/icon="uid://dy8teb5gx1a4j"
 
+[audio]
+
+buses/default_bus_layout="uid://bjnt6gx6ev7j7"
+
 [autoload]
 
 Global="*uid://c0x8jjyjua73k"
 Utils="*uid://dh6cvqgqmxiq8"
+AppConfig="*uid://cjke6crjg14a0"
+SceneLoader="*uid://cbwmrnp0af35y"
+ProjectMusicController="*uid://r5t485lr3p7t"
+ProjectUISoundController="*uid://cc37235kj4384"
 
 [display]
 
@@ -31,7 +40,7 @@ window/stretch/scale_mode="integer"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/wfc/plugin.cfg")
+enabled=PackedStringArray("res://addons/maaacks_game_template/plugin.cfg", "res://addons/wfc/plugin.cfg")
 
 [global_group]
 
@@ -44,6 +53,7 @@ button=""
 
 fonts/dynamic_fonts/use_oversampling=false
 theme/default_font_antialiasing=0
+theme/custom="uid://fbwgj6t26a11"
 theme/custom_font="uid://csvh533g0b3te"
 
 [input]
@@ -84,6 +94,10 @@ end_turn={
 ]
 }
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://addons/maaacks_game_template/base/translations/menus_translations.en.translation", "res://addons/maaacks_game_template/base/translations/menus_translations.fr.translation")
+
 [layer_names]
 
 2d_render/layer_5="fog"
@@ -99,6 +113,13 @@ end_turn={
 2d_physics/layer_9="treasure"
 2d_physics/layer_10="rocks"
 2d_physics/layer_11="whirlpool"
+
+[maaacks_game_template]
+
+disable_install_audio_busses=true
+disable_update_check=false
+disable_install_wizard=true
+copy_path="res://scenes/"
 
 [physics]
 

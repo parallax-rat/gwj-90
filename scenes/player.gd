@@ -31,7 +31,7 @@ func get_ap_cost(destination:Vector2) -> float:
 	print(distance)
 	var ap_cost = floor(distance / Global.HEX_SIZE_I)
 	print("AP Cost: ", ap_cost)
-	return ap_cost
+	return clampf(ap_cost,1.0,99.0)
 
 func move_along_path() -> void:
 	var move_tween = get_tree().create_tween()

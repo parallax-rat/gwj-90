@@ -15,11 +15,13 @@ enum Actions{NONE, ROTATE, MOVE, SCAN, PLACE_TRAP, FINISH_TURN}
 @onready var scan_button: Button =  current_scene.get_node("%ScanButton")
 @onready var trap_button: Button =  current_scene.get_node("%TrapButton")
 @onready var finish_button: Button =  current_scene.get_node("%FinishTurnButton")
-@onready var button_group: ButtonGroup = null_button.button_group
+var button_group: ButtonGroup 
 
 var current_action: Actions = Actions.MOVE
 
-func _ready() -> void:
+
+func connect_button_group() -> void:
+	button_group = null_button.button_group
 	button_group.pressed.connect(_on_button_group_pressed)
 	null_button.set_pressed(true)
 
