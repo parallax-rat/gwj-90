@@ -30,7 +30,10 @@ func _on_button_group_pressed(button: BaseButton) -> void:
 		rotate_button:
 			_set_action(Actions.ROTATE)
 		move_button:
-			_set_action(Actions.MOVE)
+			if current_action == Actions.MOVE:
+				_set_action(Actions.NONE)
+			else:
+				_set_action(Actions.MOVE)
 		scan_button:
 			_set_action(Actions.SCAN)
 		trap_button:

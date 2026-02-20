@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://cif073xnmb8m"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7yos8"]
+font_size = 8
+font_color = Color(0, 0, 0, 1)
+
+[node name="GlobalPosition" type="Polygon2D" unique_id=583158080]
+polygon = PackedVector2Array(-16, 0, 0, 16, 16, 0, 0, -16)
+
+[node name="Label" type="Label" parent="." unique_id=1118521865]
+offset_left = -24.0
+offset_top = -8.0
+offset_right = 31.0
+offset_bottom = 5.0
+text = "mouse"
+label_settings = SubResource("LabelSettings_7yos8")

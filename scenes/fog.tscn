@@ -1,25 +1,36 @@
 [gd_scene format=3 uid="uid://b0hog3ngstqbs"]
 
-[ext_resource type="PackedScene" uid="uid://cmi6in65o5kab" path="res://scenes/grid_space.tscn" id="1_ntoob"]
+[ext_resource type="Script" uid="uid://ds4fg6makb0pf" path="res://scenes/grid_space.gd" id="1_e072f"]
 [ext_resource type="Texture2D" uid="uid://c46s1no3w86bw" path="res://assets/Scud/DockToDockTileSheet.png" id="2_1o7ot"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_e072f"]
-polygon = PackedVector2Array(-32, -16, 0, -32, 32, -16, 32, 16, 0, 32, -32, 16)
+polygon = PackedVector2Array(-32, -15, 0, -32, 32, -15, 32, 15, 0, 32, -32, 15)
 
-[node name="Fog" unique_id=94816565 instance=ExtResource("1_ntoob")]
+[node name="Fog" type="Area2D" unique_id=94816565 groups=["grid_space"]]
+light_mask = 16
+visibility_layer = 16
 collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_e072f")
 
-[node name="CollisionShape2D" parent="." index="1" unique_id=518778403]
-visible = false
+[node name="Components" type="Node2D" parent="." unique_id=57922649]
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="." unique_id=518778403]
 polygon = PackedVector2Array(0, -32, 32, -16, 32, 16, 0, 32, -32, 16, -32, -16, 0, -32)
 
-[node name="Sprite2D" parent="." index="2" unique_id=1508652628]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1508652628]
 clip_children = 2
+texture_filter = 1
+texture_repeat = 1
 texture = ExtResource("2_1o7ot")
 region_enabled = true
 region_rect = Rect2(0, 192, 64, 64)
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="." index="3" unique_id=1696085185]
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=1696085185]
 self_modulate = Color(1, 1, 1, 0.5882353)
 occluder = SubResource("OccluderPolygon2D_e072f")
 occluder_light_mask = 16
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_show_hover_highlight"]
+[connection signal="mouse_exited" from="." to="." method="_hide_hover_highlight"]

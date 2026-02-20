@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cmus8jhoraepm"]
+
+[ext_resource type="PackedScene" uid="uid://cif073xnmb8m" path="res://scenes/global_mouse_marker.tscn" id="1_q4djh"]
+
+[node name="TileMapCellMarker" unique_id=583158080 instance=ExtResource("1_q4djh")]
+color = Color(1, 0.8392157, 0.15686275, 1)
+
+[node name="Label" parent="." index="0" unique_id=1118521865]
+offset_left = -16.0
+offset_right = 20.0
+text = "cell"
