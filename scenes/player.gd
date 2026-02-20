@@ -59,8 +59,7 @@ func scan() -> void:
 		
 	print('scan')
 	current_action_points -= scan_ap_cost
-	var detected_areas = scan_area.get_overlapping_bodies()
-	for fog in detected_areas:
+	for fog in $ScanRange.get_overlapping_areas():
 		clear_fog(fog)
 		
 func trap() -> void:
