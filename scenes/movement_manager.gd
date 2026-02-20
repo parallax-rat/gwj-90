@@ -13,7 +13,7 @@ func _ready() -> void:
 	move_path.curve.clear_points()
 	move_path.curve.add_point(move_path_origin)
 
-func _on_move_request() -> void:
+func _on_move_request(root:Node2D) -> void:
 	var current_position: Vector2 = get_cell_position_from_player()
 	var destination_position: Vector2 = get_cell_position_from_mouse()
 	var destination_cell: Vector2i = get_cell_coords_from_mouse()
@@ -33,7 +33,7 @@ func _on_move_request() -> void:
 		reset_path_origin()
 		print("Move completed.")
 	else:
-		print("Move failed. Insufficient AP.")
+		root.create_toast_message_at_mouse("Insufficient AP")
 
 
 func get_cell_coords_from_mouse() -> Vector2i:

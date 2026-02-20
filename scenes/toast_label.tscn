@@ -10,14 +10,103 @@ shadow_size = 2
 shadow_color = Color(0, 0, 0, 0.5254902)
 shadow_offset = Vector2(2, 2)
 
+[sub_resource type="GDScript" id="GDScript_s5ose"]
+resource_name = "Toast"
+script/source = "extends Label
+
+func _remove() -> void:
+	queue_free()
+"
+
+[sub_resource type="Animation" id="Animation_s5ose"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -1.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_xkd57"]
+resource_name = "toast"
+length = 5.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2, 2.2, 2.4, 2.6, 2.8, 3, 3.2, 3.4, 3.6, 3.8, 4, 4.2, 4.4, 4.6, 4.8, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -1.5), Vector2(0, -16.64899), Vector2(0, -28.12978), Vector2(0, -36.83059), Vector2(0, -43.424572), Vector2(0, -48.421875), Vector2(0, -52.209126), Vector2(0, -55.07932), Vector2(0, -57.254524), Vector2(0, -58.903015), Vector2(0, -60.152344), Vector2(0, -61.09916), Vector2(0, -61.816704), Vector2(0, -62.360508), Vector2(0, -62.77263), Vector2(0, -63.08496), Vector2(0, -63.321667), Vector2(0, -63.50105), Vector2(0, -63.637), Vector2(0, -63.740032), Vector2(0, -63.818115), Vector2(0, -63.877293), Vector2(0, -63.92214), Vector2(0, -63.956123), Vector2(0, -63.981884), Vector2(0, -64)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2, 2.2, 2.4, 2.6, 2.8, 3, 3.2, 3.4, 3.6, 3.8, 4, 4.2, 4.4, 4.6, 4.8, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.75761616), Color(1, 1, 1, 0.5739235), Color(1, 1, 1, 0.43471056), Color(1, 1, 1, 0.32920682), Color(1, 1, 1, 0.24925), Color(1, 1, 1, 0.188654), Color(1, 1, 1, 0.14273089), Color(1, 1, 1, 0.10792762), Color(1, 1, 1, 0.08155173), Color(1, 1, 1, 0.06156248), Color(1, 1, 1, 0.04641348), Color(1, 1, 1, 0.034932733), Color(1, 1, 1, 0.026231885), Color(1, 1, 1, 0.019637942), Color(1, 1, 1, 0.014640629), Color(1, 1, 1, 0.01085335), Color(1, 1, 1, 0.007983208), Color(1, 1, 1, 0.005807996), Color(1, 1, 1, 0.00415951), Color(1, 1, 1, 0.0029101372), Color(1, 1, 1, 0.0019633174), Color(1, 1, 1, 0.0012457967), Color(1, 1, 1, 0.0007020235), Color(1, 1, 1, 0.0002898574), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_remove"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m8wgh"]
+_data = {
+&"RESET": SubResource("Animation_s5ose"),
+&"toast": SubResource("Animation_xkd57")
+}
+
 [node name="ToastLabel" type="Label" unique_id=821388694]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = -1.5
 offset_right = -525.0
-offset_bottom = -345.5
+offset_bottom = -345.48004
 grow_horizontal = 2
 grow_vertical = 2
 text = "Not enough AP"
 label_settings = SubResource("LabelSettings_xkd57")
+script = SubResource("GDScript_s5ose")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2043656958]
+libraries/ = SubResource("AnimationLibrary_m8wgh")
+autoplay = &"toast"
