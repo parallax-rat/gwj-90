@@ -17,3 +17,6 @@ mono_crash.*.json
 
 .builds/
 .builds/web/
+.builds/windows/
+.builds/linux/
+.builds/mac/
