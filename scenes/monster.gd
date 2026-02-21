@@ -1,6 +1,5 @@
 class_name Actor extends PathFollow2D
 
-
 signal action_points_changed(value)
 
 @onready var move_component: MoveComponent = $MoveComponent

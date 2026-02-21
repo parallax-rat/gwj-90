@@ -5,6 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://g6oecvsdemq" path="res://assets/Scud/MainShip.png" id="2_g2els"]
 [ext_resource type="Script" uid="uid://b1j81pmf4u2sp" path="res://scenes/debug_commands.gd" id="4_dqkch"]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dqkch"]
+
 [node name="Player" type="PathFollow2D" unique_id=545152215 groups=["player"]]
 script = ExtResource("1_3vyb7")
 
@@ -18,8 +20,6 @@ shadow_item_cull_mask = 16
 texture = ExtResource("2_dqkch")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1531603503]
-light_mask = 16
-visibility_layer = 16
 texture_filter = 1
 texture_repeat = 1
 rotation = 1.5707964
@@ -28,26 +28,24 @@ centered = false
 offset = Vector2(-15.429833, -16.234652)
 
 [node name="ScanRange" type="Area2D" parent="." unique_id=245210188]
-visible = false
 collision_layer = 64
 collision_mask = 16
 input_pickable = false
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ScanRange" unique_id=1495344513]
-position = Vector2(48, 0)
-scale = Vector2(2.1071427, 2.1071427)
-polygon = PackedVector2Array(-22.779663, -30.372885, 4, -12, 4, 12, -22.779663, 30.372885, 7.5932217, 37.966106, 37.966106, 30.372885, 53.15255, 0, 37.966106, -30.372885, 7.5932217, -45.559326)
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="ScanRange" unique_id=818443360]
+position = Vector2(-64, 0)
+scale = Vector2(2, 2)
+polygon = PackedVector2Array(48, -24, 48, 24, 72, 0)
 
 [node name="PassiveFogReveal" type="Area2D" parent="." unique_id=1345862567]
-visible = false
-collision_layer = 32
+collision_layer = 34
 collision_mask = 16
 input_pickable = false
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PassiveFogReveal" unique_id=818443360]
-position = Vector2(-64, 0)
-scale = Vector2(2, 2)
-polygon = PackedVector2Array(32, -28, 4, -12, 4, 12, 32, 28, 60, 12, 60, -12)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PassiveFogReveal" unique_id=1946267791]
+position = Vector2(5, 0)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_dqkch")
 
 [node name="debug_commands" type="Node" parent="." unique_id=816004501]
 script = ExtResource("4_dqkch")

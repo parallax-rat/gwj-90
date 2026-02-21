@@ -1,0 +1,288 @@
+[gd_scene format=3 uid="uid://clgao1vwlau0f"]
+
+[ext_resource type="Texture2D" uid="uid://cdm7k0ro4ijmq" path="res://assets/Scud/DocktoDockMenu.png" id="1_jc7ji"]
+[ext_resource type="Theme" uid="uid://fbwgj6t26a11" path="res://resources/theme.tres" id="2_87vmq"]
+[ext_resource type="FontFile" uid="uid://csvh533g0b3te" path="res://assets/fonts/Righteous.ttf" id="3_87vmq"]
+[ext_resource type="Texture2D" uid="uid://dta02i3y5m7ws" path="res://assets/Scud/Screenshot_2026-02-20_162019.png" id="3_g44xs"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_g44xs"]
+font = ExtResource("3_87vmq")
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 0.2509804)
+shadow_offset = Vector2(4, 4)
+
+[sub_resource type="LabelSettings" id="LabelSettings_vj8vg"]
+font_size = 8
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[node name="EndScreen" type="Control" unique_id=203405136]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="Control" parent="." unique_id=1577714046]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Background" unique_id=1755060347]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="Background" unique_id=1818070807]
+modulate = Color(1, 1, 1, 0.627451)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_jc7ji")
+stretch_mode = 6
+
+[node name="Fade" type="ColorRect" parent="." unique_id=1882003254]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="StatsMargin" type="MarginContainer" parent="." unique_id=1777088252]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 32
+
+[node name="Panel" type="Panel" parent="StatsMargin" unique_id=1639579170]
+layout_mode = 2
+theme = ExtResource("2_87vmq")
+
+[node name="MarginContainer" type="MarginContainer" parent="StatsMargin/Panel" unique_id=372382656]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="StatsMargin/Panel/MarginContainer" unique_id=638184385]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="TitleLabel" type="Label" parent="StatsMargin/Panel/MarginContainer/VBoxContainer" unique_id=1765802535]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 48
+text = "Dock to Dock"
+label_settings = SubResource("LabelSettings_g44xs")
+vertical_alignment = 1
+
+[node name="StatsVbox" type="VBoxContainer" parent="StatsMargin/Panel/MarginContainer/VBoxContainer" unique_id=282952078]
+layout_mode = 2
+
+[node name="Stat" type="HBoxContainer" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox" unique_id=2052660536]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox/Stat" unique_id=1308313111]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Ocean Mapped:"
+label_settings = SubResource("LabelSettings_vj8vg")
+
+[node name="Value" type="Label" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox/Stat" unique_id=1114017296]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "0%"
+label_settings = SubResource("LabelSettings_vj8vg")
+
+[node name="Stat2" type="HBoxContainer" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox" unique_id=55949262]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox/Stat2" unique_id=401412908]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Ocean Mapped:"
+label_settings = SubResource("LabelSettings_vj8vg")
+
+[node name="Value" type="Label" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox/Stat2" unique_id=1852429331]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "0%"
+label_settings = SubResource("LabelSettings_vj8vg")
+
+[node name="Stat3" type="HBoxContainer" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox" unique_id=190567398]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox/Stat3" unique_id=557007586]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Ocean Mapped:"
+label_settings = SubResource("LabelSettings_vj8vg")
+
+[node name="Value" type="Label" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox/Stat3" unique_id=888302130]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "0%"
+label_settings = SubResource("LabelSettings_vj8vg")
+
+[node name="Stat4" type="HBoxContainer" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox" unique_id=1080307239]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox/Stat4" unique_id=1958439139]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Ocean Mapped:"
+label_settings = SubResource("LabelSettings_vj8vg")
+
+[node name="Value" type="Label" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox/Stat4" unique_id=1164204275]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "0%"
+label_settings = SubResource("LabelSettings_vj8vg")
+
+[node name="Stat5" type="HBoxContainer" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox" unique_id=407959879]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox/Stat5" unique_id=1428078061]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Ocean Mapped:"
+label_settings = SubResource("LabelSettings_vj8vg")
+
+[node name="Value" type="Label" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox/Stat5" unique_id=1436051876]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "0%"
+label_settings = SubResource("LabelSettings_vj8vg")
+
+[node name="Stat6" type="HBoxContainer" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox" unique_id=138967428]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox/Stat6" unique_id=1741703906]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Ocean Mapped:"
+label_settings = SubResource("LabelSettings_vj8vg")
+
+[node name="Value" type="Label" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox/Stat6" unique_id=1036298311]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "0%"
+label_settings = SubResource("LabelSettings_vj8vg")
+
+[node name="Stat7" type="HBoxContainer" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox" unique_id=1258453379]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox/Stat7" unique_id=594412176]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Ocean Mapped:"
+label_settings = SubResource("LabelSettings_vj8vg")
+
+[node name="Value" type="Label" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox/Stat7" unique_id=1606582632]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "0%"
+label_settings = SubResource("LabelSettings_vj8vg")
+
+[node name="Stat8" type="HBoxContainer" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox" unique_id=154231638]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox/Stat8" unique_id=1927243072]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Ocean Mapped:"
+label_settings = SubResource("LabelSettings_vj8vg")
+
+[node name="Value" type="Label" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox/Stat8" unique_id=2131747977]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "0%"
+label_settings = SubResource("LabelSettings_vj8vg")
+
+[node name="Stat9" type="HBoxContainer" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox" unique_id=674495077]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox/Stat9" unique_id=124311506]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Ocean Mapped:"
+label_settings = SubResource("LabelSettings_vj8vg")
+
+[node name="Value" type="Label" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox/Stat9" unique_id=1239244342]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "0%"
+label_settings = SubResource("LabelSettings_vj8vg")
+
+[node name="Stat10" type="HBoxContainer" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox" unique_id=1631319637]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox/Stat10" unique_id=131440015]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Ocean Mapped:"
+label_settings = SubResource("LabelSettings_vj8vg")
+
+[node name="Value" type="Label" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox/Stat10" unique_id=493945349]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "0%"
+label_settings = SubResource("LabelSettings_vj8vg")
+
+[node name="MarginContainer" type="MarginContainer" parent="StatsMargin/Panel/MarginContainer/VBoxContainer" unique_id=85495348]
+layout_mode = 2
+theme_override_constants/margin_top = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/MarginContainer" unique_id=715463389]
+layout_mode = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="Button2" type="Button" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=883964326]
+layout_mode = 2
+text = "Play Again"
+
+[node name="Button4" type="Button" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=1378296565]
+layout_mode = 2
+text = "Share Stats"
+
+[node name="Button" type="Button" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=471983863]
+layout_mode = 2
+text = "Menu"
+
+[node name="Button3" type="Button" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=1259940158]
+layout_mode = 2
+text = "Exit"
+
+[node name="Screenshot20260220162019" type="Sprite2D" parent="StatsMargin" unique_id=769542483]
+position = Vector2(608, -80)
+texture = ExtResource("3_g44xs")

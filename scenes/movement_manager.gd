@@ -16,15 +16,13 @@ func _on_move_request() -> void:
 	var current_position: Vector2 = get_cell_position_from_player()
 	var destination_position: Vector2 = get_cell_position_from_mouse()
 	var destination_cell: Vector2i = get_cell_coords_from_mouse()
-	prints("Move Destination:", destination_position, destination_cell)
 	if destination_position == current_position:
 		print("Cannot move to current location")
 		return
 	if !is_tile_traversable(destination_cell):
-		print("Not traversable")
+		game_manager.create_toast_message("Not traversable")
 		return
 	var ap_cost = player.get_ap_cost(destination_position)
-	print("Current AP: ",player.current_action_points)
 	if player.current_action_points >= player.get_ap_cost(destination_position):
 		set_path_destination(destination_position)
 		reset_player_progress()

@@ -150,10 +150,11 @@ loop = false
 
 [node name="Camera2D" type="Camera2D" parent="MovePath/Player" unique_id=1545285726]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1975627024]
+[node name="UI" type="CanvasLayer" parent="." unique_id=1975627024]
+unique_name_in_owner = true
 layer = 5
 
-[node name="UIManager" type="Control" parent="CanvasLayer" unique_id=323848602]
+[node name="UIManager" type="Control" parent="UI" unique_id=323848602]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -164,7 +165,7 @@ mouse_filter = 2
 script = ExtResource("4_j5jx5")
 metadata/_edit_lock_ = true
 
-[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/UIManager" unique_id=293610361]
+[node name="PanelContainer" type="PanelContainer" parent="UI/UIManager" unique_id=293610361]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -175,17 +176,17 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxTexture_daiq8")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UIManager/PanelContainer" unique_id=644943242]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/UIManager/PanelContainer" unique_id=644943242]
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UIManager/PanelContainer/HBoxContainer" unique_id=181629816]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/UIManager/PanelContainer/HBoxContainer" unique_id=181629816]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 40
 alignment = 1
 
-[node name="MarginContainer3" type="MarginContainer" parent="CanvasLayer/UIManager/PanelContainer/HBoxContainer/HBoxContainer" unique_id=2042224147]
+[node name="MarginContainer3" type="MarginContainer" parent="UI/UIManager/PanelContainer/HBoxContainer/HBoxContainer" unique_id=2042224147]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 0
@@ -195,7 +196,7 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="RotateButton" type="Button" parent="CanvasLayer/UIManager/PanelContainer/HBoxContainer/HBoxContainer/MarginContainer3" unique_id=1715090365 groups=["button"]]
+[node name="RotateButton" type="Button" parent="UI/UIManager/PanelContainer/HBoxContainer/HBoxContainer/MarginContainer3" unique_id=1715090365 groups=["button"]]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
@@ -207,7 +208,7 @@ shortcut = SubResource("Shortcut_7yos8")
 text = "SPIN"
 icon = ExtResource("11_daiq8")
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/UIManager/PanelContainer/HBoxContainer/HBoxContainer" unique_id=611508647]
+[node name="MarginContainer" type="MarginContainer" parent="UI/UIManager/PanelContainer/HBoxContainer/HBoxContainer" unique_id=611508647]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 0
@@ -217,7 +218,7 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="MoveButton" type="Button" parent="CanvasLayer/UIManager/PanelContainer/HBoxContainer/HBoxContainer/MarginContainer" unique_id=1893158417 groups=["button"]]
+[node name="MoveButton" type="Button" parent="UI/UIManager/PanelContainer/HBoxContainer/HBoxContainer/MarginContainer" unique_id=1893158417 groups=["button"]]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
@@ -229,22 +230,22 @@ shortcut = SubResource("Shortcut_ff6ho")
 text = "MOVE"
 icon = ExtResource("14_n74k2")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UIManager/PanelContainer/HBoxContainer/HBoxContainer" unique_id=883665790]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/UIManager/PanelContainer/HBoxContainer/HBoxContainer" unique_id=883665790]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
 alignment = 1
 
-[node name="AP" type="MarginContainer" parent="CanvasLayer/UIManager/PanelContainer/HBoxContainer/HBoxContainer/VBoxContainer" unique_id=2017902032]
+[node name="AP" type="MarginContainer" parent="UI/UIManager/PanelContainer/HBoxContainer/HBoxContainer/VBoxContainer" unique_id=2017902032]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 3
 theme_override_constants/margin_top = 4
 
-[node name="AP" type="VBoxContainer" parent="CanvasLayer/UIManager/PanelContainer/HBoxContainer/HBoxContainer/VBoxContainer/AP" unique_id=1012248894]
+[node name="AP" type="VBoxContainer" parent="UI/UIManager/PanelContainer/HBoxContainer/HBoxContainer/VBoxContainer/AP" unique_id=1012248894]
 layout_mode = 2
 
-[node name="MarginContainer5" type="MarginContainer" parent="CanvasLayer/UIManager/PanelContainer/HBoxContainer/HBoxContainer" unique_id=1412526914]
+[node name="MarginContainer5" type="MarginContainer" parent="UI/UIManager/PanelContainer/HBoxContainer/HBoxContainer" unique_id=1412526914]
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_constants/margin_left = 4
@@ -252,7 +253,7 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="ScanButton" type="Button" parent="CanvasLayer/UIManager/PanelContainer/HBoxContainer/HBoxContainer/MarginContainer5" unique_id=875389075 groups=["button"]]
+[node name="ScanButton" type="Button" parent="UI/UIManager/PanelContainer/HBoxContainer/HBoxContainer/MarginContainer5" unique_id=875389075 groups=["button"]]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
@@ -264,11 +265,11 @@ shortcut = SubResource("Shortcut_5jxlq")
 text = "SCAN"
 icon = ExtResource("12_daiq8")
 
-[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/UIManager/PanelContainer/HBoxContainer/HBoxContainer" unique_id=827631985]
+[node name="MarginContainer2" type="MarginContainer" parent="UI/UIManager/PanelContainer/HBoxContainer/HBoxContainer" unique_id=827631985]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="CurrentAPLabel" type="Label" parent="CanvasLayer/UIManager/PanelContainer/HBoxContainer/HBoxContainer/MarginContainer2" unique_id=1954912142]
+[node name="CurrentAPLabel" type="Label" parent="UI/UIManager/PanelContainer/HBoxContainer/HBoxContainer/MarginContainer2" unique_id=1954912142]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
@@ -278,7 +279,7 @@ label_settings = SubResource("LabelSettings_7mbro")
 horizontal_alignment = 1
 vertical_alignment = 3
 
-[node name="MarginContainer4" type="MarginContainer" parent="CanvasLayer/UIManager/PanelContainer/HBoxContainer/HBoxContainer" unique_id=2019675804]
+[node name="MarginContainer4" type="MarginContainer" parent="UI/UIManager/PanelContainer/HBoxContainer/HBoxContainer" unique_id=2019675804]
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_constants/margin_left = 4
@@ -286,7 +287,7 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="TrapButton" type="Button" parent="CanvasLayer/UIManager/PanelContainer/HBoxContainer/HBoxContainer/MarginContainer4" unique_id=100476301 groups=["button"]]
+[node name="TrapButton" type="Button" parent="UI/UIManager/PanelContainer/HBoxContainer/HBoxContainer/MarginContainer4" unique_id=100476301 groups=["button"]]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
@@ -298,7 +299,8 @@ shortcut = SubResource("Shortcut_daiq8")
 text = "TRAP"
 icon = ExtResource("13_c6rvn")
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/UIManager" unique_id=1693039061]
+[node name="Screen" type="MarginContainer" parent="UI/UIManager" unique_id=1693039061]
+unique_name_in_owner = true
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -307,20 +309,20 @@ grow_vertical = 2
 mouse_filter = 2
 metadata/_edit_lock_ = true
 
-[node name="Panel" type="PanelContainer" parent="CanvasLayer/UIManager/MarginContainer" unique_id=947459502]
+[node name="Panel" type="PanelContainer" parent="UI/UIManager/Screen" unique_id=947459502]
 layout_mode = 2
 size_flags_vertical = 0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_daiq8")
 
-[node name="ProgressContainer" type="VBoxContainer" parent="CanvasLayer/UIManager/MarginContainer/Panel" unique_id=1572344244]
+[node name="ProgressContainer" type="VBoxContainer" parent="UI/UIManager/Screen/Panel" unique_id=1572344244]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(320, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Turn" type="MarginContainer" parent="CanvasLayer/UIManager/MarginContainer/Panel/ProgressContainer" unique_id=1191418228]
+[node name="Turn" type="MarginContainer" parent="UI/UIManager/Screen/Panel/ProgressContainer" unique_id=1191418228]
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
@@ -329,12 +331,12 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UIManager/MarginContainer/Panel/ProgressContainer/Turn" unique_id=1320721490]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/UIManager/Screen/Panel/ProgressContainer/Turn" unique_id=1320721490]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 12
 
-[node name="Label" type="Label" parent="CanvasLayer/UIManager/MarginContainer/Panel/ProgressContainer/Turn/HBoxContainer" unique_id=1139047805]
+[node name="Label" type="Label" parent="UI/UIManager/Screen/Panel/ProgressContainer/Turn/HBoxContainer" unique_id=1139047805]
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 1
@@ -342,11 +344,11 @@ text = "Ocean Mapped"
 label_settings = SubResource("LabelSettings_daiq8")
 horizontal_alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/UIManager/MarginContainer/Panel/ProgressContainer" unique_id=1984193702]
+[node name="MarginContainer" type="MarginContainer" parent="UI/UIManager/Screen/Panel/ProgressContainer" unique_id=1984193702]
 layout_mode = 2
 theme_override_constants/margin_bottom = 4
 
-[node name="MappingProgress" type="ProgressBar" parent="CanvasLayer/UIManager/MarginContainer/Panel/ProgressContainer/MarginContainer" unique_id=2029118038]
+[node name="MappingProgress" type="ProgressBar" parent="UI/UIManager/Screen/Panel/ProgressContainer/MarginContainer" unique_id=2029118038]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -354,12 +356,12 @@ size_flags_vertical = 4
 theme = ExtResource("8_xrtyr")
 value = 30.4
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/UIManager/MarginContainer" unique_id=540295926]
+[node name="MarginContainer" type="MarginContainer" parent="UI/UIManager/Screen" unique_id=540295926]
 layout_mode = 2
 theme_override_constants/margin_top = 32
 metadata/_edit_lock_ = true
 
-[node name="CurrentTurnLabel" type="Label" parent="CanvasLayer/UIManager/MarginContainer" unique_id=1509222945]
+[node name="CurrentTurnLabel" type="Label" parent="UI/UIManager/Screen" unique_id=1509222945]
 unique_name_in_owner = true
 visible = false
 modulate = Color(1, 1, 1, 0.5882353)
@@ -369,7 +371,7 @@ text = "Player"
 label_settings = SubResource("LabelSettings_xrtyr")
 horizontal_alignment = 1
 
-[node name="ActionPoints" type="Label" parent="CanvasLayer/UIManager" unique_id=1386207426]
+[node name="ActionPoints" type="Label" parent="UI/UIManager" unique_id=1386207426]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -413,17 +415,25 @@ one_shot = true
 position = Vector2(64, 0)
 curve = SubResource("Curve2D_gm488")
 
-[node name="Monster" type="PathFollow2D" parent="MonsterPath" unique_id=815059508]
+[node name="Monster" type="PathFollow2D" parent="MonsterPath" unique_id=37895140]
 script = ExtResource("20_si7kk")
 
-[node name="Sprite2D" type="Sprite2D" parent="MonsterPath/Monster" unique_id=1740170672]
+[node name="Sprite2D" type="Sprite2D" parent="MonsterPath/Monster" unique_id=1785626512]
 texture = ExtResource("21_pn65j")
 region_enabled = true
 region_rect = Rect2(128, 0, 64, 64)
 
-[node name="MoveComponent" type="Node" parent="MonsterPath/Monster" unique_id=1672258021]
+[node name="MoveComponent" type="Node" parent="MonsterPath/Monster" unique_id=1606495288]
 script = ExtResource("22_5f8cm")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1269936917]
 position = Vector2(224, -416)
 texture = ExtResource("22_si7kk")
+
+[node name="GoalDock" type="Area2D" parent="." unique_id=1980325163]
+position = Vector2(448, -192)
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GoalDock" unique_id=2093853857]
+polygon = PackedVector2Array(-16, 0, 0, -16, 16, 0, 0, 16)

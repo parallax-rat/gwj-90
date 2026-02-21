@@ -9,7 +9,7 @@ const TOAST_LABEL = preload("uid://cxi7x643863a0")
 @onready var player: Player = get_tree().get_nodes_in_group("player")[0]
 @onready var movement_manager: Node = $Managers/MovementManager
 @onready var toast_timer: Timer = $ToastTimer
-@onready var ap_label: Label = %CurrentAPLabel
+@onready var ui: CanvasLayer = %UI
 @onready var canvas_modulate: CanvasModulate = $CanvasModulate
 
 
@@ -40,6 +40,5 @@ func create_toast_message(message:String, toast_position: Vector2 = get_local_mo
 		return
 	var toast: Label = TOAST_LABEL.instantiate()
 	toast.text = message
-	toast.global_position = toast_position
-	ap_label.add_child(toast)
+	ui.add_child(toast)
 	toast_timer.start()

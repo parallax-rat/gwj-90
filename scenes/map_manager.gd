@@ -10,6 +10,7 @@ var fog_mapped: float = 0
 func _ready() -> void:
 	mapping_progress.max_value = fog_to_map
 	mapping_progress.value = (fog_mapped / fog_to_map) * 100
+	prints("Total Fog Cells:",fog_to_map)
 
 func get_cell_count() -> float:
 	return fog_layer.get_used_cells().size()

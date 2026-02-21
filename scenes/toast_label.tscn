@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://cxi7x643863a0"]
 
-[ext_resource type="FontFile" uid="uid://jp4vp16j3qrx" path="res://assets/fonts/ClassicShit.ttf" id="1_s5ose"]
+[ext_resource type="FontFile" uid="uid://csvh533g0b3te" path="res://assets/fonts/Righteous.ttf" id="1_s5ose"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_xkd57"]
 font = ExtResource("1_s5ose")
+font_size = 8
 outline_size = 2
 outline_color = Color(0, 0, 0, 1)
 shadow_size = 2
@@ -14,7 +15,16 @@ shadow_offset = Vector2(2, 2)
 resource_name = "Toast"
 script/source = "extends Label
 
-func _remove() -> void:
+var vertical_slide: float = 64
+var toast_time: float = 5
+
+func _ready() -> void:
+	var tween = get_tree().create_tween()
+	var spawn_position = get_global_mouse_position()
+	var center_position = Vector2(get_viewport().size.x / 2,get_viewport().size.y / 2)
+	global_position = spawn_position
+	tween.tween_property(self,\"position\",position - Vector2(0,vertical_slide),toast_time)
+	await tween.finished
 	queue_free()
 "
 
@@ -23,22 +33,10 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
+tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -1.5)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -47,45 +45,19 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_xkd57"]
 resource_name = "toast"
-length = 5.0
+length = 4.0
 step = 1.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
+tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2, 2.2, 2.4, 2.6, 2.8, 3, 3.2, 3.4, 3.6, 3.8, 4, 4.2, 4.4, 4.6, 4.8, 5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.1, 0.13333334, 0.16666667, 0.2, 0.23333333, 0.26666668, 0.3, 0.33333334, 0.36666667, 0.4, 0.43333334, 0.46666667, 0.5, 0.53333336, 0.56666666, 0.6, 0.6333333, 0.6666667, 0.7, 0.73333335, 0.76666665, 0.8, 0.8333333, 0.8666667, 0.9, 0.93333334, 0.96666664, 1, 1.0333333, 1.0666667, 1.1, 1.1333333, 1.1666666, 1.2, 1.2333333, 1.2666667, 1.3, 1.3333334, 1.3666667, 1.4, 1.4333333, 1.4666667, 1.5, 1.5333333, 1.5666667, 1.6, 1.6333333, 1.6666666, 1.7, 1.7333333, 1.7666667, 1.8, 1.8333334, 1.8666667, 1.9, 1.9333333, 1.9666667, 2, 2.0333333, 2.0666666, 2.1, 2.1333334, 2.1666667, 2.2, 2.2333333, 2.2666667, 2.3, 2.3333333, 2.3666666, 2.4, 2.4333334, 2.4666667, 2.5, 2.5333333, 2.5666666, 2.6, 2.6333334, 2.6666667, 2.7, 2.7333333, 2.7666667, 2.8, 2.8333333, 2.8666666, 2.9, 2.9333334, 2.9666667, 3, 3.0333333, 3.0666666, 3.1, 3.1333334, 3.1666667, 3.2, 3.2333333, 3.2666667, 3.3, 3.3333333, 3.3666666, 3.4, 3.4333334, 3.4666667, 3.5, 3.5333333, 3.5666666, 3.6, 3.6333334, 3.6666667, 3.7, 3.7333333, 3.7666667, 3.8, 3.8333333, 3.8666666, 3.9, 3.9333334, 3.9666667, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0, -1.5), Vector2(0, -16.64899), Vector2(0, -28.12978), Vector2(0, -36.83059), Vector2(0, -43.424572), Vector2(0, -48.421875), Vector2(0, -52.209126), Vector2(0, -55.07932), Vector2(0, -57.254524), Vector2(0, -58.903015), Vector2(0, -60.152344), Vector2(0, -61.09916), Vector2(0, -61.816704), Vector2(0, -62.360508), Vector2(0, -62.77263), Vector2(0, -63.08496), Vector2(0, -63.321667), Vector2(0, -63.50105), Vector2(0, -63.637), Vector2(0, -63.740032), Vector2(0, -63.818115), Vector2(0, -63.877293), Vector2(0, -63.92214), Vector2(0, -63.956123), Vector2(0, -63.981884), Vector2(0, -64)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2, 2.2, 2.4, 2.6, 2.8, 3, 3.2, 3.4, 3.6, 3.8, 4, 4.2, 4.4, 4.6, 4.8, 5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.75761616), Color(1, 1, 1, 0.5739235), Color(1, 1, 1, 0.43471056), Color(1, 1, 1, 0.32920682), Color(1, 1, 1, 0.24925), Color(1, 1, 1, 0.188654), Color(1, 1, 1, 0.14273089), Color(1, 1, 1, 0.10792762), Color(1, 1, 1, 0.08155173), Color(1, 1, 1, 0.06156248), Color(1, 1, 1, 0.04641348), Color(1, 1, 1, 0.034932733), Color(1, 1, 1, 0.026231885), Color(1, 1, 1, 0.019637942), Color(1, 1, 1, 0.014640629), Color(1, 1, 1, 0.01085335), Color(1, 1, 1, 0.007983208), Color(1, 1, 1, 0.005807996), Color(1, 1, 1, 0.00415951), Color(1, 1, 1, 0.0029101372), Color(1, 1, 1, 0.0019633174), Color(1, 1, 1, 0.0012457967), Color(1, 1, 1, 0.0007020235), Color(1, 1, 1, 0.0002898574), Color(1, 1, 1, 0)]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(5),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"_remove"
-}]
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.99993056), Color(1, 1, 1, 0.99972224), Color(1, 1, 1, 0.999375), Color(1, 1, 1, 0.9988889), Color(1, 1, 1, 0.9982639), Color(1, 1, 1, 0.9975), Color(1, 1, 1, 0.99659723), Color(1, 1, 1, 0.9955556), Color(1, 1, 1, 0.994375), Color(1, 1, 1, 0.9930556), Color(1, 1, 1, 0.99159724), Color(1, 1, 1, 0.99), Color(1, 1, 1, 0.9882639), Color(1, 1, 1, 0.98638886), Color(1, 1, 1, 0.984375), Color(1, 1, 1, 0.9822222), Color(1, 1, 1, 0.9799306), Color(1, 1, 1, 0.9775), Color(1, 1, 1, 0.9749306), Color(1, 1, 1, 0.9722222), Color(1, 1, 1, 0.969375), Color(1, 1, 1, 0.9663889), Color(1, 1, 1, 0.96326387), Color(1, 1, 1, 0.96), Color(1, 1, 1, 0.9565972), Color(1, 1, 1, 0.95305556), Color(1, 1, 1, 0.94937503), Color(1, 1, 1, 0.94555557), Color(1, 1, 1, 0.9415972), Color(1, 1, 1, 0.9375), Color(1, 1, 1, 0.9332639), Color(1, 1, 1, 0.92888886), Color(1, 1, 1, 0.924375), Color(1, 1, 1, 0.9197222), Color(1, 1, 1, 0.9149306), Color(1, 1, 1, 0.90999997), Color(1, 1, 1, 0.90493053), Color(1, 1, 1, 0.8997222), Color(1, 1, 1, 0.894375), Color(1, 1, 1, 0.8888889), Color(1, 1, 1, 0.8832639), Color(1, 1, 1, 0.8775), Color(1, 1, 1, 0.87159723), Color(1, 1, 1, 0.8655555), Color(1, 1, 1, 0.859375), Color(1, 1, 1, 0.8530556), Color(1, 1, 1, 0.8465972), Color(1, 1, 1, 0.84), Color(1, 1, 1, 0.8332639), Color(1, 1, 1, 0.8263889), Color(1, 1, 1, 0.819375), Color(1, 1, 1, 0.81222224), Color(1, 1, 1, 0.80493057), Color(1, 1, 1, 0.7975), Color(1, 1, 1, 0.7899306), Color(1, 1, 1, 0.7822222), Color(1, 1, 1, 0.774375), Color(1, 1, 1, 0.7663889), Color(1, 1, 1, 0.7582639), Color(1, 1, 1, 0.75), Color(1, 1, 1, 0.74159724), Color(1, 1, 1, 0.7330556), Color(1, 1, 1, 0.724375), Color(1, 1, 1, 0.71555555), Color(1, 1, 1, 0.7065972), Color(1, 1, 1, 0.6975), Color(1, 1, 1, 0.6882639), Color(1, 1, 1, 0.6788889), Color(1, 1, 1, 0.669375), Color(1, 1, 1, 0.6597222), Color(1, 1, 1, 0.6499306), Color(1, 1, 1, 0.64), Color(1, 1, 1, 0.6299305), Color(1, 1, 1, 0.61972225), Color(1, 1, 1, 0.609375), Color(1, 1, 1, 0.5988889), Color(1, 1, 1, 0.58826387), Color(1, 1, 1, 0.57750005), Color(1, 1, 1, 0.5665972), Color(1, 1, 1, 0.5555555), Color(1, 1, 1, 0.54437494), Color(1, 1, 1, 0.53305554), Color(1, 1, 1, 0.52159727), Color(1, 1, 1, 0.51), Color(1, 1, 1, 0.4982639), Color(1, 1, 1, 0.48638892), Color(1, 1, 1, 0.47437495), Color(1, 1, 1, 0.46222222), Color(1, 1, 1, 0.44993055), Color(1, 1, 1, 0.4375), Color(1, 1, 1, 0.42493057), Color(1, 1, 1, 0.41222227), Color(1, 1, 1, 0.39937502), Color(1, 1, 1, 0.38638884), Color(1, 1, 1, 0.37326384), Color(1, 1, 1, 0.35999995), Color(1, 1, 1, 0.3465972), Color(1, 1, 1, 0.33305556), Color(1, 1, 1, 0.31937504), Color(1, 1, 1, 0.30555558), Color(1, 1, 1, 0.29159725), Color(1, 1, 1, 0.27749997), Color(1, 1, 1, 0.26326388), Color(1, 1, 1, 0.24888885), Color(1, 1, 1, 0.234375), Color(1, 1, 1, 0.21972221), Color(1, 1, 1, 0.2049306), Color(1, 1, 1, 0.19000006), Color(1, 1, 1, 0.17493051), Color(1, 1, 1, 0.15972221), Color(1, 1, 1, 0.14437497), Color(1, 1, 1, 0.1288889), Color(1, 1, 1, 0.113263905), Color(1, 1, 1, 0.097500026), Color(1, 1, 1, 0.08159727), Color(1, 1, 1, 0.06555563), Color(1, 1, 1, 0.049374938), Color(1, 1, 1, 0.033055544), Color(1, 1, 1, 0.016597211), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_m8wgh"]
@@ -95,14 +67,19 @@ _data = {
 }
 
 [node name="ToastLabel" type="Label" unique_id=821388694]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -1.5
-offset_right = -525.0
-offset_bottom = -345.48004
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -181.5
+offset_right = -205.0
+offset_bottom = -165.5
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
 text = "Not enough AP"
 label_settings = SubResource("LabelSettings_xkd57")
 script = SubResource("GDScript_s5ose")

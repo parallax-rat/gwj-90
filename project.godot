@@ -102,7 +102,7 @@ locale/translations=PackedStringArray("res://addons/maaacks_game_template/base/t
 
 2d_render/layer_5="fog"
 2d_physics/layer_1="grid_space"
-2d_navigation/layer_1="traversable"
+2d_navigation/layer_1="monster_waters"
 2d_physics/layer_2="player"
 2d_physics/layer_3="destination"
 2d_physics/layer_4="sea_monster"

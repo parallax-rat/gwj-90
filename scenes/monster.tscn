@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://in2vnhacdmyn"]
+
+[ext_resource type="Script" uid="uid://d1tdjwqdg4y4b" path="res://scenes/monster_nav.gd" id="1_c47ug"]
+[ext_resource type="Texture2D" uid="uid://c46s1no3w86bw" path="res://assets/Scud/DockToDockTileSheet.png" id="2_jlss8"]
+[ext_resource type="Script" uid="uid://d24yhj8d87ic0" path="res://scenes/move_component.gd" id="3_gp4s5"]
+
+[node name="Monster" type="Node2D" unique_id=490001326]
+script = ExtResource("1_c47ug")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1785626512]
+texture = ExtResource("2_jlss8")
+region_enabled = true
+region_rect = Rect2(128, 0, 64, 64)
+
+[node name="MoveComponent" type="Node" parent="." unique_id=1606495288]
+script = ExtResource("3_gp4s5")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=794779660]
+path_desired_distance = 3.0
+target_desired_distance = 3.0
+path_postprocessing = 1
+debug_enabled = true
