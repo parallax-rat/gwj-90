@@ -35,8 +35,8 @@ var current_action_points: int = _ap:
 
 func _ready() -> void:
 	scan_btn.pressed.connect(scan)
-	trap_btn.pressed.connect(trap)
-	TurnManager.start_player_turn.connect(_on_start_player_turn)
+	#trap_btn.pressed.connect(trap)
+	#TurnManager.start_player_turn.connect(_on_start_player_turn)
 	ap_label.text = str(_ap)
 	
 func _on_start_player_turn() -> void:

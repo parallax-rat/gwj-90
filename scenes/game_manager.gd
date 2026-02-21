@@ -22,8 +22,9 @@ func _ready() -> void:
 
 
 func initialize_for_play() -> void:
-	TurnManager.initialize_for_play()
-
+	
+	#TurnManager.initialize_for_play()
+	pass
 
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("select"):

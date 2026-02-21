@@ -14,7 +14,7 @@ var monster_cell: Vector2i
 func _ready() -> void:
 	monster_cell = world_to_cell(global_position)
 	global_position = cell_to_world(monster_cell)
-	movement_manager.player_move_finished.connect(_on_player_moved)
+	#movement_manager.player_move_finished.connect(_on_player_moved)
 
 
 func _on_player_moved(new_player_cell:Vector2i, new_player_position:Vector2) -> void:

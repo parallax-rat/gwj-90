@@ -144,12 +144,6 @@ curve = SubResource("Curve2D_at5dv")
 [node name="Player" parent="MovePath" unique_id=1154284220 instance=ExtResource("2_iyx0m")]
 unique_name_in_owner = true
 loop = false
-starting_action_points = null
-movement_time_duration = null
-rotate_ap_cost = null
-scan_ap_cost = null
-trap_ap_cost = null
-new_turn_ap_refresh = null
 
 [node name="Camera2D" type="Camera2D" parent="MovePath/Player" unique_id=1545285726]
 
