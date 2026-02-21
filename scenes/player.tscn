@@ -13,11 +13,12 @@ light_mask = 16
 visibility_layer = 16
 position = Vector2(3.8146973e-06, 2.861023e-06)
 shadow_enabled = true
-shadow_color = Color(0, 0, 0, 0.68235296)
+shadow_color = Color(0, 0, 0, 0.6392157)
 shadow_item_cull_mask = 16
 texture = ExtResource("2_dqkch")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1531603503]
+light_mask = 16
 visibility_layer = 16
 texture_filter = 1
 texture_repeat = 1

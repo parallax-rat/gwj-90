@@ -3,7 +3,6 @@ class_name Actor extends PathFollow2D
 
 signal action_points_changed(value)
 
-@onready var turn_manager: TurnManager = %TurnManager
 @onready var move_component: MoveComponent = $MoveComponent
 
 @export var me: int = 2
@@ -20,7 +19,7 @@ var current_action_points: int = _ap:
 		return _ap
 
 func _ready() -> void:
-	turn_manager.start_turn.connect(_on_start_actor_turn)
+	TurnManager.start_turn.connect(_on_start_actor_turn)
 	
 func _on_start_actor_turn(turn_number: int, current_turn:int) -> void:
 	if me == current_turn:

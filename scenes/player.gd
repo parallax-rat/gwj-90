@@ -9,7 +9,6 @@ signal action_points_changed(value)
 @onready var scan_btn: Button = %ScanButton
 @onready var trap_btn: Button = %TrapButton
 @onready var ap_label: Label = %CurrentAPLabel
-@onready var turn_manager: TurnManager = %TurnManager
 @onready var map_manager: MapManager = $"../../Managers/MapManager"
 
 @export var starting_action_points: int = 4
@@ -31,7 +30,7 @@ var current_action_points: int = _ap:
 func _ready() -> void:
 	scan_btn.pressed.connect(scan)
 	trap_btn.pressed.connect(trap)
-	turn_manager.start_player_turn.connect(_on_start_player_turn)
+	TurnManager.start_player_turn.connect(_on_start_player_turn)
 	ap_label.text = str(_ap)
 	
 func _on_start_player_turn() -> void:

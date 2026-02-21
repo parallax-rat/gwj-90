@@ -1,10 +1,10 @@
-class_name TurnManager extends Node
+extends Node
 
 signal start_turn(turn_number:int, current_turn:int)
 signal start_player_turn
 
-@onready var current_turn_label: Label = %CurrentTurnLabel
-@onready var player: Player = %Player
+var current_turn_label: Label
+var player: Player
 
 enum State {READY, BUSY}
 enum Turn {PLAYER, ENVIRONMENT}
@@ -13,11 +13,13 @@ var current_state:int = State.READY
 var current_turn:int = Turn.PLAYER
 var turn_number: int = 1
 
-func _ready() -> void:
-	print("turn manager ready")
-	player.action_points_changed.connect(on_action_points_changed)
+
+func initialize_for_play() -> void:
+	current_turn_label = Global.current_scene.get_node("%CurrentTurnLabel")
+	Global.player.action_points_changed.connect(on_action_points_changed)
 	Global.finished_turn.connect(_on_end_turn)
-	
+	print("Turn manager ready")
+
 func on_action_points_changed(ap:int):
 	print("turnmanager checking ap ", ap)
 	if ap <= 0:
@@ -38,7 +40,7 @@ func _end_turn():
 	if current_turn == Turn.PLAYER:
 		current_turn = Turn.ENVIRONMENT
 		print("setting turn text")
-		current_turn_label.text = "Waiting"
+		current_turn_label.text = "Waiting.."
 	elif current_turn == Turn.ENVIRONMENT:
 		current_turn = Turn.PLAYER
 		current_turn_label.text = "PLAYER"

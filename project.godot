@@ -25,11 +25,11 @@ buses/default_bus_layout="uid://bjnt6gx6ev7j7"
 [autoload]
 
 Global="*uid://c0x8jjyjua73k"
-Utils="*uid://dh6cvqgqmxiq8"
 AppConfig="*uid://cjke6crjg14a0"
 SceneLoader="*uid://cbwmrnp0af35y"
 ProjectMusicController="*uid://r5t485lr3p7t"
 ProjectUISoundController="*uid://cc37235kj4384"
+TurnManager="*uid://drdttfm2jfp8j"
 
 [display]
 
@@ -134,3 +134,4 @@ renderer/rendering_method.mobile="gl_compatibility"
 textures/default_filters/anisotropic_filtering_level=0
 textures/decals/filter=0
 textures/light_projectors/filter=0
+environment/defaults/default_clear_color=Color(0.29411766, 0.29411766, 0.5411765, 1)

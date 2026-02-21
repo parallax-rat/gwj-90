@@ -15,9 +15,14 @@ const TOAST_LABEL = preload("uid://cxi7x643863a0")
 
 func _ready() -> void:
 	Global.connect_button_group()
+	call_deferred("initialize_for_play")
 	fog_map.show()
 	dense_fog.show()
 	canvas_modulate.show()
+
+
+func initialize_for_play() -> void:
+	TurnManager.initialize_for_play()
 
 
 func _unhandled_input(event: InputEvent) -> void:
