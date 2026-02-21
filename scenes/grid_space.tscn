@@ -1,26 +1,87 @@
 [gd_scene format=3 uid="uid://cmi6in65o5kab"]
 
-[ext_resource type="Script" uid="uid://ds4fg6makb0pf" path="res://scenes/grid_space.gd" id="1_bnktq"]
-[ext_resource type="Texture2D" uid="uid://mw62i6m4n881" path="res://assets/Scud/BasicSea.png" id="2_htyn4"]
+[ext_resource type="Texture2D" uid="uid://bvhvmn5e4hywc" path="res://assets/icons/icon_thunder.png" id="1_bnktq"]
 
-[node name="GridSpace" type="Area2D" unique_id=94816565 groups=["grid_space"]]
-light_mask = 16
-visibility_layer = 16
-collision_layer = 0
-collision_mask = 0
-script = ExtResource("1_bnktq")
+[sub_resource type="GDScript" id="GDScript_xstns"]
+resource_name = "grid"
+script/source = "extends Polygon2D
 
-[node name="Components" type="Node2D" parent="." unique_id=57922649]
+@export var hide_color: Color
+@export var yes_color: Color
+@export var no_color: Color
+@onready var ap_cost: HBoxContainer = $APCost
+@onready var movement_manager: MovementManager = $\"../Managers/MovementManager\"
 
-[node name="CollisionShape2D" type="CollisionPolygon2D" parent="." unique_id=518778403]
+
+func _ready() -> void:
+	ap_cost.hide()
+
+
+func _process(delta: float) -> void:
+	if movement_manager.moving:
+		hide()
+		return
+	show()
+	var player_position = movement_manager.get_cell_position_from_player()
+	var mouse_position = movement_manager.get_cell_position_from_mouse()
+	if mouse_position == player_position:
+		hide()
+		return
+	if mouse_position.distance_to(player_position) > 64:
+		show()
+		set_no()
+	else:
+		show()
+		set_yes()
+	global_position = mouse_position
+
+
+func set_hide() -> void:
+	color = hide_color
+	ap_cost.hide()
+
+
+func set_yes() -> void:
+	color = yes_color
+	ap_cost.show()
+
+
+func set_no() -> void:
+	color = no_color
+	ap_cost.hide()
+"
+
+[sub_resource type="LabelSettings" id="LabelSettings_bnktq"]
+line_spacing = 1.0
+font_size = 8
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[node name="MoveGridHelper" type="Polygon2D" unique_id=1424249212]
+self_modulate = Color(1, 1, 1, 0.39215687)
+top_level = true
 polygon = PackedVector2Array(-32, -16, 0, -32, 32, -16, 32, 16, 0, 32, -32, 16)
+script = SubResource("GDScript_xstns")
+yes_color = Color(0, 0.64716727, 0.19226319, 1)
+no_color = Color(1, 0, 0, 1)
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1508652628]
-visible = false
-texture_filter = 1
-texture_repeat = 1
-texture = ExtResource("2_htyn4")
+[node name="APCost" type="HBoxContainer" parent="." unique_id=578275676]
+offset_left = -24.0
+offset_top = -24.0
+offset_right = 24.0
+offset_bottom = 24.0
 
-[connection signal="input_event" from="." to="." method="_on_input_event"]
-[connection signal="mouse_entered" from="." to="." method="_show_hover_highlight"]
-[connection signal="mouse_exited" from="." to="." method="_hide_hover_highlight"]
+[node name="Label" type="Label" parent="APCost" unique_id=1326412037]
+self_modulate = Color(1, 1, 1, 0.627451)
+layout_mode = 2
+size_flags_horizontal = 10
+text = "1"
+label_settings = SubResource("LabelSettings_bnktq")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="APCost" unique_id=740226361]
+layout_mode = 2
+size_flags_horizontal = 2
+texture = ExtResource("1_bnktq")
+stretch_mode = 5

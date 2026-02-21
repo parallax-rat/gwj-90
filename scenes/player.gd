@@ -1,46 +1,48 @@
 class_name Player
 extends PathFollow2D
 
-signal action_points_changed(value)
+signal action_points_change(amount)
 signal completed_a_move()
 
+@onready var game_manager: GameManager = $"../.."
 @onready var scan_area: Area2D = $ScanRange
 @onready var passive_fog_reveal: Area2D = $PassiveFogReveal
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var scan_btn: Button = %ScanButton
-@onready var trap_btn: Button = %TrapButton
+@onready var rest_btn: Button = %RestButton
 @onready var ap_label: Label = %CurrentAPLabel
 @onready var map_manager: MapManager = $"../../Managers/MapManager"
 
 @export var starting_action_points: int = 10
 @export var movement_time_duration: float = 1
-@export var rotate_ap_cost: float = 1
-@export var scan_ap_cost: int = 1
-@export var trap_ap_cost: int = 1
-@export var new_turn_ap_refresh: float = 2
+@export var maximum_action_points: int = 10
 
-var grid: AStarGrid2D
 var current_cell: Vector2i
 var target_cell: Vector2i
 var move_points: Array
 
-var _ap: int = starting_action_points
-var current_action_points: int = _ap:
+var current_action_points: int:
 	set(value):
-		_ap = value
-		action_points_changed.emit(_ap)
-		ap_label.text = str(_ap)
+		current_action_points = value
+		action_points_change.emit(current_action_points)
+		ap_label.text = str(current_action_points)
 	get:
-		return _ap
+		return current_action_points
 
 func _ready() -> void:
 	scan_btn.pressed.connect(scan)
-	trap_btn.pressed.connect(trap)
-	TurnManager.start_player_turn.connect(_on_start_player_turn)
-	ap_label.text = str(_ap)
-	
-func _on_start_player_turn() -> void:
-	current_action_points += new_turn_ap_refresh
+	rest_btn.pressed.connect(rest)
+	#action_points_change.connect(_on_action_points_change)
+	current_action_points = starting_action_points
+
+
+func reduce_action_points(amount:int) -> void:
+	current_action_points -= amount
+
+
+func increase_action_points(amount:int) -> void:
+	current_action_points += amount
+
 
 func get_ap_cost(destination:Vector2) -> float:
 	var distance = position.distance_to(destination)
@@ -53,33 +55,30 @@ func move_along_path() -> void:
 	var move_tween = get_tree().create_tween()
 	move_tween.tween_property(self, "progress_ratio", 1.0, movement_time_duration).set_ease(Tween.EASE_IN_OUT)
 	await move_tween.finished
-	current_action_points -= 1
 	completed_a_move.emit()
+	reduce_action_points(1)
 	
 
 func scan() -> void:
-	if current_action_points <= 0:
+	if current_action_points == 0:
+		game_manager.create_toast_message("Must rest first..")
 		return
-		
-	if current_action_points < scan_ap_cost:
-		print("not enough ap for scan")
-		return
-		
-	print('scan')
-	current_action_points -= scan_ap_cost
-	for fog in $ScanRange.get_overlapping_areas():
+
+	var fog_in_range: Array[Area2D] = $ScanRange.get_overlapping_areas()
+	var cleared_fog: int
+	for fog in fog_in_range:
+		if current_action_points < 1:
+			break
+		reduce_action_points(1)
 		clear_fog(fog)
-		
+		cleared_fog += 1
+	game_manager.create_toast_message("Scanned " + str(cleared_fog) + " fog hexes..")
+
+
 func rest() -> void:
-	if current_action_points <= 0:
-		return
-	
-	if current_action_points < trap_ap_cost:
-		print("not enough ap for trap")
-		return
-		
-	print('trap')
-	current_action_points -= trap_ap_cost
+	game_manager.create_toast_message("Restored 2 action points..")
+	increase_action_points(2)
+
 
 func clear_fog(area) -> void:
 	map_manager.update_mapped_fog()

@@ -21,10 +21,6 @@ func _ready() -> void:
 	canvas_modulate.show()
 
 
-func initialize_for_play() -> void:
-	TurnManager.initialize_for_play()
-
-
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("select"):
 		print("Unhandled Input @ ", name)
@@ -40,5 +36,5 @@ func create_toast_message(message:String, toast_position: Vector2 = get_local_mo
 		return
 	var toast: Label = TOAST_LABEL.instantiate()
 	toast.text = message
-	ui.add_child(toast)
+	%ToastMessageZone.add_child(toast)
 	toast_timer.start()

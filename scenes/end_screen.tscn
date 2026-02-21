@@ -107,152 +107,69 @@ vertical_alignment = 1
 
 [node name="StatsVbox" type="VBoxContainer" parent="StatsMargin/Panel/MarginContainer/VBoxContainer" unique_id=282952078]
 layout_mode = 2
+size_flags_vertical = 3
 
-[node name="Stat" type="HBoxContainer" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox" unique_id=2052660536]
+[node name="Mapped" type="HBoxContainer" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox" unique_id=2052660536]
 layout_mode = 2
+size_flags_vertical = 3
 
-[node name="Name" type="Label" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox/Stat" unique_id=1308313111]
+[node name="Name" type="Label" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox/Mapped" unique_id=1308313111]
 layout_mode = 2
 size_flags_horizontal = 6
 text = "Ocean Mapped:"
 label_settings = SubResource("LabelSettings_vj8vg")
 
-[node name="Value" type="Label" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox/Stat" unique_id=1114017296]
-layout_mode = 2
-size_flags_horizontal = 6
-text = "0%"
-label_settings = SubResource("LabelSettings_vj8vg")
-
-[node name="Stat2" type="HBoxContainer" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox" unique_id=55949262]
-layout_mode = 2
-
-[node name="Name" type="Label" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox/Stat2" unique_id=401412908]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Ocean Mapped:"
-label_settings = SubResource("LabelSettings_vj8vg")
-
-[node name="Value" type="Label" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox/Stat2" unique_id=1852429331]
+[node name="Value" type="Label" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox/Mapped" unique_id=1114017296]
 layout_mode = 2
 size_flags_horizontal = 6
 text = "0%"
 label_settings = SubResource("LabelSettings_vj8vg")
 
-[node name="Stat3" type="HBoxContainer" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox" unique_id=190567398]
+[node name="Moves" type="HBoxContainer" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox" unique_id=740855107]
 layout_mode = 2
+size_flags_vertical = 3
 
-[node name="Name" type="Label" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox/Stat3" unique_id=557007586]
+[node name="Name" type="Label" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox/Moves" unique_id=1570335550]
 layout_mode = 2
-size_flags_horizontal = 3
-text = "Ocean Mapped:"
+size_flags_horizontal = 6
+text = "Total Moves:"
 label_settings = SubResource("LabelSettings_vj8vg")
 
-[node name="Value" type="Label" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox/Stat3" unique_id=888302130]
+[node name="Value" type="Label" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox/Moves" unique_id=453205875]
 layout_mode = 2
 size_flags_horizontal = 6
 text = "0%"
 label_settings = SubResource("LabelSettings_vj8vg")
 
-[node name="Stat4" type="HBoxContainer" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox" unique_id=1080307239]
+[node name="Scans" type="HBoxContainer" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox" unique_id=756399320]
 layout_mode = 2
+size_flags_vertical = 3
 
-[node name="Name" type="Label" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox/Stat4" unique_id=1958439139]
+[node name="Name" type="Label" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox/Scans" unique_id=339161809]
 layout_mode = 2
-size_flags_horizontal = 3
-text = "Ocean Mapped:"
+size_flags_horizontal = 6
+text = "Total Scans:"
 label_settings = SubResource("LabelSettings_vj8vg")
+horizontal_alignment = 2
 
-[node name="Value" type="Label" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox/Stat4" unique_id=1164204275]
+[node name="Value" type="Label" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox/Scans" unique_id=2036626795]
 layout_mode = 2
 size_flags_horizontal = 6
 text = "0%"
 label_settings = SubResource("LabelSettings_vj8vg")
 
-[node name="Stat5" type="HBoxContainer" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox" unique_id=407959879]
+[node name="Rested" type="HBoxContainer" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox" unique_id=1324947203]
 layout_mode = 2
+size_flags_vertical = 3
 
-[node name="Name" type="Label" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox/Stat5" unique_id=1428078061]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Ocean Mapped:"
-label_settings = SubResource("LabelSettings_vj8vg")
-
-[node name="Value" type="Label" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox/Stat5" unique_id=1436051876]
+[node name="Name" type="Label" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox/Rested" unique_id=772097]
 layout_mode = 2
 size_flags_horizontal = 6
-text = "0%"
+text = "Times Rested:"
 label_settings = SubResource("LabelSettings_vj8vg")
+horizontal_alignment = 2
 
-[node name="Stat6" type="HBoxContainer" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox" unique_id=138967428]
-layout_mode = 2
-
-[node name="Name" type="Label" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox/Stat6" unique_id=1741703906]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Ocean Mapped:"
-label_settings = SubResource("LabelSettings_vj8vg")
-
-[node name="Value" type="Label" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox/Stat6" unique_id=1036298311]
-layout_mode = 2
-size_flags_horizontal = 6
-text = "0%"
-label_settings = SubResource("LabelSettings_vj8vg")
-
-[node name="Stat7" type="HBoxContainer" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox" unique_id=1258453379]
-layout_mode = 2
-
-[node name="Name" type="Label" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox/Stat7" unique_id=594412176]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Ocean Mapped:"
-label_settings = SubResource("LabelSettings_vj8vg")
-
-[node name="Value" type="Label" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox/Stat7" unique_id=1606582632]
-layout_mode = 2
-size_flags_horizontal = 6
-text = "0%"
-label_settings = SubResource("LabelSettings_vj8vg")
-
-[node name="Stat8" type="HBoxContainer" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox" unique_id=154231638]
-layout_mode = 2
-
-[node name="Name" type="Label" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox/Stat8" unique_id=1927243072]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Ocean Mapped:"
-label_settings = SubResource("LabelSettings_vj8vg")
-
-[node name="Value" type="Label" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox/Stat8" unique_id=2131747977]
-layout_mode = 2
-size_flags_horizontal = 6
-text = "0%"
-label_settings = SubResource("LabelSettings_vj8vg")
-
-[node name="Stat9" type="HBoxContainer" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox" unique_id=674495077]
-layout_mode = 2
-
-[node name="Name" type="Label" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox/Stat9" unique_id=124311506]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Ocean Mapped:"
-label_settings = SubResource("LabelSettings_vj8vg")
-
-[node name="Value" type="Label" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox/Stat9" unique_id=1239244342]
-layout_mode = 2
-size_flags_horizontal = 6
-text = "0%"
-label_settings = SubResource("LabelSettings_vj8vg")
-
-[node name="Stat10" type="HBoxContainer" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox" unique_id=1631319637]
-layout_mode = 2
-
-[node name="Name" type="Label" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox/Stat10" unique_id=131440015]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Ocean Mapped:"
-label_settings = SubResource("LabelSettings_vj8vg")
-
-[node name="Value" type="Label" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox/Stat10" unique_id=493945349]
+[node name="Value" type="Label" parent="StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox/Rested" unique_id=697987579]
 layout_mode = 2
 size_flags_horizontal = 6
 text = "0%"

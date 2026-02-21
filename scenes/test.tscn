@@ -10,17 +10,18 @@
 [ext_resource type="Theme" uid="uid://fbwgj6t26a11" path="res://resources/theme.tres" id="8_xrtyr"]
 [ext_resource type="LabelSettings" uid="uid://y2tljxqbbf3t" path="res://resources/action_points_label.tres" id="9_5jxlq"]
 [ext_resource type="Texture2D" uid="uid://bvhvmn5e4hywc" path="res://assets/icons/icon_thunder.png" id="10_xrtyr"]
-[ext_resource type="ButtonGroup" uid="uid://bdeuumsmidur2" path="res://resources/actions_button_group.tres" id="11_ff6ho"]
 [ext_resource type="Script" uid="uid://cytpwbi3kx3lf" path="res://scenes/movement_manager.gd" id="14_7mbro"]
 [ext_resource type="PackedScene" uid="uid://in2vnhacdmyn" path="res://scenes/monster.tscn" id="17_5jxlq"]
+[ext_resource type="PackedScene" uid="uid://cmi6in65o5kab" path="res://scenes/grid_space.tscn" id="18_xrtyr"]
 [ext_resource type="Script" uid="uid://bm36chihyvubi" path="res://scenes/monster.gd" id="20_si7kk"]
 [ext_resource type="Texture2D" uid="uid://c46s1no3w86bw" path="res://assets/Scud/DockToDockTileSheet.png" id="21_pn65j"]
 [ext_resource type="Script" uid="uid://d24yhj8d87ic0" path="res://scenes/move_component.gd" id="22_5f8cm"]
-[ext_resource type="Texture2D" uid="uid://dta02i3y5m7ws" path="res://assets/Scud/Screenshot_2026-02-20_162019.png" id="22_si7kk"]
 
 [sub_resource type="Environment" id="Environment_uacia"]
 background_mode = 4
 ambient_light_source = 1
+
+[sub_resource type="Curve2D" id="Curve2D_gm488"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_7yos8"]
 resource_name = "Fog"
@@ -93,8 +94,6 @@ action = &"trap"
 [sub_resource type="Shortcut" id="Shortcut_daiq8"]
 events = [SubResource("InputEventAction_xrtyr")]
 
-[sub_resource type="Curve2D" id="Curve2D_gm488"]
-
 [node name="GameManager" type="Node2D" unique_id=1470933273]
 script = ExtResource("6_lpvoh")
 
@@ -114,6 +113,39 @@ metadata/_edit_lock_ = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=295511451]
 environment = SubResource("Environment_uacia")
 
+[node name="MonsterPath" type="Path2D" parent="." unique_id=13908955]
+visible = false
+position = Vector2(64, 0)
+curve = SubResource("Curve2D_gm488")
+
+[node name="Monster" type="PathFollow2D" parent="MonsterPath" unique_id=37895140]
+script = ExtResource("20_si7kk")
+
+[node name="MoveComponent" type="Node" parent="MonsterPath/Monster" unique_id=1606495288]
+unique_name_in_owner = true
+script = ExtResource("22_5f8cm")
+
+[node name="Sprite2D" type="Sprite2D" parent="MonsterPath/Monster" unique_id=1785626512]
+texture = ExtResource("21_pn65j")
+region_enabled = true
+region_rect = Rect2(128, 0, 64, 64)
+
+[node name="GoalDock" type="Area2D" parent="." unique_id=1980325163]
+position = Vector2(448, -192)
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GoalDock" unique_id=2093853857]
+polygon = PackedVector2Array(-16, 0, 0, -16, 16, 0, 0, 16)
+
+[node name="Monster" parent="." unique_id=490001326 instance=ExtResource("17_5jxlq")]
+position = Vector2(256, 0)
+
+[node name="MoveGridHelper" parent="." unique_id=1424249212 instance=ExtResource("18_xrtyr")]
+position = Vector2(160, 48)
+color = Color(0, 0.64716727, 0.19226319, 1)
+hide_color = Color(1, 1, 1, 0)
+
 [node name="OceanLayer" type="TileMapLayer" parent="." unique_id=339087602 groups=["navigation_polygon_source_geometry_group", "tile_maps"]]
 unique_name_in_owner = true
 position = Vector2(-32, -32)
@@ -124,7 +156,6 @@ metadata/_edit_lock_ = true
 [node name="FogLayer" type="TileMapLayer" parent="." unique_id=30611358 groups=["tile_maps"]]
 unique_name_in_owner = true
 visible = false
-z_index = 1
 position = Vector2(-32, -32)
 tile_map_data = PackedByteArray("AAD9//3/AAAAAAAAAQD+//z/AAAAAAAAAQD///z/AAAAAAAAAQD///v/AAAAAAAAAQABAPv/AAAAAAAAAQAAAPv/AAAAAAAAAQADAPv/AAAAAAAAAQAEAPv/AAAAAAAAAQAIAPv/AAAAAAAAAQAJAPz/AAAAAAAAAQAJAP3/AAAAAAAAAQAKAP7/AAAAAAAAAQAKAP//AAAAAAAAAQAKAAAAAAAAAAAAAQAKAAEAAAAAAAAAAQAKAAIAAAAAAAAAAQAKAAMAAAAAAAAAAQAKAAQAAAAAAAAAAQAJAAUAAAAAAAAAAQAJAAYAAAAAAAAAAQAIAAYAAAAAAAAAAQAHAAYAAAAAAAAAAQAGAAYAAAAAAAAAAQAFAAYAAAAAAAAAAQAEAAYAAAAAAAAAAQADAAYAAAAAAAAAAQACAAYAAAAAAAAAAQABAAYAAAAAAAAAAQAAAAYAAAAAAAAAAQD//wUAAAAAAAAAAQD//wQAAAAAAAAAAQD+/wQAAAAAAAAAAQD9/wMAAAAAAAAAAQD+/wIAAAAAAAAAAQD9/wEAAAAAAAAAAQD9/wAAAAAAAAAAAQD9////AAAAAAAAAQD9//7/AAAAAAAAAQACAAEAAAAAAAAAAQADAAAAAAAAAAAAAQADAP//AAAAAAAAAQAEAP7/AAAAAAAAAQAEAP3/AAAAAAAAAQAFAPz/AAAAAAAAAQAFAPv/AAAAAAAAAQAGAPz/AAAAAAAAAQAGAPv/AAAAAAAAAQAHAPz/AAAAAAAAAQAHAPv/AAAAAAAAAQAIAPz/AAAAAAAAAQAHAP3/AAAAAAAAAQAGAP3/AAAAAAAAAQAFAP3/AAAAAAAAAQAFAP7/AAAAAAAAAQAEAP//AAAAAAAAAQAEAAAAAAAAAAAAAQADAAEAAAAAAAAAAQADAAIAAAAAAAAAAQACAAIAAAAAAAAAAQABAAEAAAAAAAAAAQACAAAAAAAAAAAAAQACAP//AAAAAAAAAQADAP7/AAAAAAAAAQADAP3/AAAAAAAAAQAEAPz/AAAAAAAAAQADAPz/AAAAAAAAAQACAPv/AAAAAAAAAQACAPz/AAAAAAAAAQABAPz/AAAAAAAAAQAAAPz/AAAAAAAAAQD///3/AAAAAAAAAQD+//3/AAAAAAAAAQD+//7/AAAAAAAAAQD+////AAAAAAAAAQD///7/AAAAAAAAAQAAAP7/AAAAAAAAAQAAAP3/AAAAAAAAAQABAP7/AAAAAAAAAQABAP3/AAAAAAAAAQACAP7/AAAAAAAAAQACAP3/AAAAAAAAAQABAP//AAAAAAAAAQD+/wAAAAAAAAAAAQD+/wEAAAAAAAAAAQD//wIAAAAAAAAAAQAAAAIAAAAAAAAAAQABAAIAAAAAAAAAAQAAAAMAAAAAAAAAAQD//wMAAAAAAAAAAQD+/wMAAAAAAAAAAQAAAAQAAAAAAAAAAQAAAAUAAAAAAAAAAQABAAQAAAAAAAAAAQABAAMAAAAAAAAAAQACAAQAAAAAAAAAAQACAAMAAAAAAAAAAQADAAQAAAAAAAAAAQADAAMAAAAAAAAAAQAEAAIAAAAAAAAAAQAEAAEAAAAAAAAAAQAFAAAAAAAAAAAAAQAFAP//AAAAAAAAAQAGAP7/AAAAAAAAAQAGAP//AAAAAAAAAQAHAP7/AAAAAAAAAQAHAP//AAAAAAAAAQAIAP7/AAAAAAAAAQAIAP3/AAAAAAAAAQAJAP7/AAAAAAAAAQAIAP//AAAAAAAAAQAIAAAAAAAAAAAAAQAHAAAAAAAAAAAAAQAGAAAAAAAAAAAAAQAFAAEAAAAAAAAAAQAFAAIAAAAAAAAAAQAEAAMAAAAAAAAAAQAEAAQAAAAAAAAAAQADAAUAAAAAAAAAAQACAAUAAAAAAAAAAQABAAUAAAAAAAAAAQAEAAUAAAAAAAAAAQAFAAQAAAAAAAAAAQAFAAMAAAAAAAAAAQAGAAIAAAAAAAAAAQAGAAEAAAAAAAAAAQAHAAIAAAAAAAAAAQAHAAEAAAAAAAAAAQAIAAIAAAAAAAAAAQAIAAEAAAAAAAAAAQAJAAAAAAAAAAAAAQAJAP//AAAAAAAAAQAJAAEAAAAAAAAAAQAJAAIAAAAAAAAAAQAIAAMAAAAAAAAAAQAHAAMAAAAAAAAAAQAGAAMAAAAAAAAAAQAGAAQAAAAAAAAAAQAFAAUAAAAAAAAAAQAGAAUAAAAAAAAAAQAHAAQAAAAAAAAAAQAHAAUAAAAAAAAAAQAIAAQAAAAAAAAAAQAIAAUAAAAAAAAAAQAJAAQAAAAAAAAAAQAJAAMAAAAAAAAAAQA=")
 tile_set = SubResource("TileSet_5jxlq")
@@ -144,18 +175,20 @@ curve = SubResource("Curve2D_at5dv")
 [node name="Player" parent="MovePath" unique_id=1154284220 instance=ExtResource("2_iyx0m")]
 unique_name_in_owner = true
 loop = false
-starting_action_points = null
-movement_time_duration = null
-rotate_ap_cost = null
-scan_ap_cost = null
-trap_ap_cost = null
-new_turn_ap_refresh = null
 
 [node name="Camera2D" type="Camera2D" parent="MovePath/Player" unique_id=1545285726]
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=1975627024]
 unique_name_in_owner = true
 layer = 5
+
+[node name="ToastMessageZone" type="MarginContainer" parent="UI" unique_id=1616401667]
+unique_name_in_owner = true
+offset_top = 256.0
+offset_right = 224.0
+offset_bottom = 304.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="UIManager" type="Control" parent="UI" unique_id=323848602]
 layout_mode = 3
@@ -252,7 +285,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_5jxlq")
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 6
-text = "1"
+text = "10"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -345,50 +378,6 @@ theme = ExtResource("8_xrtyr")
 shortcut = SubResource("Shortcut_daiq8")
 text = "REST"
 
-[node name="Debug" type="Node2D" parent="." unique_id=851506827]
-
-[node name="NullButton" type="Button" parent="Debug" unique_id=1779921777 groups=["button"]]
-unique_name_in_owner = true
-visible = false
-offset_left = -586.0
-offset_top = -398.0
-offset_right = -578.0
-offset_bottom = -390.0
-mouse_filter = 2
-toggle_mode = true
-button_group = ExtResource("11_ff6ho")
-
 [node name="ToastTimer" type="Timer" parent="." unique_id=404106981]
+wait_time = 0.35
 one_shot = true
-
-[node name="MonsterPath" type="Path2D" parent="." unique_id=13908955]
-visible = false
-position = Vector2(64, 0)
-curve = SubResource("Curve2D_gm488")
-
-[node name="Monster" type="PathFollow2D" parent="MonsterPath" unique_id=37895140]
-script = ExtResource("20_si7kk")
-
-[node name="MoveComponent" type="Node" parent="MonsterPath/Monster" unique_id=1606495288]
-unique_name_in_owner = true
-script = ExtResource("22_5f8cm")
-
-[node name="Sprite2D" type="Sprite2D" parent="MonsterPath/Monster" unique_id=1785626512]
-texture = ExtResource("21_pn65j")
-region_enabled = true
-region_rect = Rect2(128, 0, 64, 64)
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1269936917]
-position = Vector2(296, 508)
-texture = ExtResource("22_si7kk")
-
-[node name="GoalDock" type="Area2D" parent="." unique_id=1980325163]
-position = Vector2(448, -192)
-collision_layer = 4
-collision_mask = 2
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GoalDock" unique_id=2093853857]
-polygon = PackedVector2Array(-16, 0, 0, -16, 16, 0, 0, 16)
-
-[node name="Monster" parent="." unique_id=490001326 instance=ExtResource("17_5jxlq")]
-position = Vector2(64, 0)

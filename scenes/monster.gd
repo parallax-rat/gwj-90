@@ -16,9 +16,6 @@ var current_action_points: int = _ap:
 		action_points_changed.emit(_ap)
 	get:
 		return _ap
-
-func _ready() -> void:
-	TurnManager.start_turn.connect(_on_start_actor_turn)
 	
 func _on_start_actor_turn(turn_number: int, current_turn:int) -> void:
 	if me == current_turn:

@@ -14,22 +14,18 @@ var scan_button: Button
 var rest_button: Button
 var current_action: Actions = Actions.MOVE
 
+# stats
+var mapped: float = 0
+var moves: int = 0
+var scans: int = 0
+var times_rested: int = 0
+
 
 func connect_button_group() -> void:
 	current_scene = get_tree().current_scene
 	scan_button =  current_scene.get_node("%ScanButton")
 	rest_button =  current_scene.get_node("%RestButton")
 	player = current_scene.get_node("%Player")
-	scan_button.pressed.connect(_on_scan_button_pressed)
-	rest_button.pressed.connect(_on_rest_button_pressed)
-
-
-func _on_scan_button_pressed() -> void:
-	player.scan()
-
-
-func _on_rest_button_pressed() -> void:
-	player.rest()
 
 
 func _on_button_group_pressed(button: BaseButton) -> void:

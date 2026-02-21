@@ -2,11 +2,11 @@ class_name Monster extends CharacterBody2D
 
 @onready var movement_manager: Node = $"../Managers/MovementManager"
 @onready var ocean_layer: TileMapLayer = %OceanLayer
-@onready var player: Player = Global.player
+@onready var player: Player = %Player
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
-var player_move_counter: int = 0
-var player_moves_to_wait_for: int = 2
+var player_ap_counter: int = 0
+var player_ap_to_wait_for: int = 2
 var player_cell: Vector2i
 var player_position: Vector2
 var monster_cell: Vector2i
@@ -15,15 +15,21 @@ func _ready() -> void:
 	monster_cell = world_to_cell(global_position)
 	global_position = cell_to_world(monster_cell)
 	movement_manager.player_move_finished.connect(_on_player_moved)
+	player.action_points_change.connect(_on_player_ap_changed)
+
 
 
 func _on_player_moved(new_player_cell:Vector2i, new_player_position:Vector2) -> void:
 	player_cell = new_player_cell
 	player_position = new_player_position
-	player_move_counter += 1
-	if player_move_counter < player_moves_to_wait_for:
+
+
+func _on_player_ap_changed(amount) -> void:
+	var val = abs(amount)
+	player_ap_counter += val
+	if player_ap_counter < player_ap_to_wait_for:
 		return
-	player_move_counter = 0
+	player_ap_counter = 0
 	time_to_move()
 
 

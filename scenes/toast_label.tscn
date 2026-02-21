@@ -15,15 +15,16 @@ shadow_offset = Vector2(2, 2)
 resource_name = "Toast"
 script/source = "extends Label
 
-var vertical_slide: float = 64
-var toast_time: float = 5
+@onready var toast_message_zone: Control = %ToastMessageZone
+
+var vertical_slide: float = 1.01
+var toast_time: float = 20
 
 func _ready() -> void:
 	var tween = get_tree().create_tween()
-	var spawn_position = get_global_mouse_position()
-	var center_position = Vector2(get_viewport().size.x / 2,get_viewport().size.y / 2)
-	global_position = spawn_position
-	tween.tween_property(self,\"position\",position - Vector2(0,vertical_slide),toast_time)
+	#var spawn_position = get_global_mouse_position()
+	#var center_position = Vector2(get_viewport().size.x / 4,get_viewport().size.y / 4)
+	tween.tween_property(self,\"global_position\",global_position * (Vector2.UP * vertical_slide),toast_time)
 	await tween.finished
 	queue_free()
 "
@@ -73,9 +74,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -320.0
-offset_top = -181.5
-offset_right = -205.0
-offset_bottom = -165.5
+offset_top = -180.0
+offset_right = -176.0
+offset_bottom = -167.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 6
