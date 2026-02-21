@@ -1,6 +1,5 @@
 extends Node
-
-@onready var root: GameManager = $"/"
+@onready var game_manager: GameManager = $"../.."
 @onready var player: Player = %Player
 @onready var move_path: Path2D = $"../../MovePath"
 @onready var ocean_layer: TileMapLayer = %OceanLayer
@@ -13,7 +12,7 @@ func _ready() -> void:
 	move_path.curve.clear_points()
 	move_path.curve.add_point(move_path_origin)
 
-func _on_move_request(root:Node2D) -> void:
+func _on_move_request() -> void:
 	var current_position: Vector2 = get_cell_position_from_player()
 	var destination_position: Vector2 = get_cell_position_from_mouse()
 	var destination_cell: Vector2i = get_cell_coords_from_mouse()
@@ -27,13 +26,13 @@ func _on_move_request(root:Node2D) -> void:
 	var ap_cost = player.get_ap_cost(destination_position)
 	print("Current AP: ",player.current_action_points)
 	if player.current_action_points >= player.get_ap_cost(destination_position):
-		await set_path_destination(destination_position)
+		set_path_destination(destination_position)
 		reset_player_progress()
 		await player.move_along_path()
 		reset_path_origin()
 		print("Move completed.")
 	else:
-		root.create_toast_message("Insufficient AP")
+		game_manager.create_toast_message("Insufficient AP")
 
 
 func get_cell_coords_from_mouse() -> Vector2i:
@@ -55,7 +54,7 @@ func get_cell_position_from_player() -> Vector2:
 	var cell_coords: Vector2i = player.global_position
 	var local_cell_position: Vector2i = ocean_layer.map_to_local(cell_coords)
 	var global_cell_position: Vector2 = ocean_layer.to_global(local_cell_position) # Centered global_position of the selected cell
-	return cell_coords
+	return global_cell_position
 
 
 func show_helper_marker(position) -> void:

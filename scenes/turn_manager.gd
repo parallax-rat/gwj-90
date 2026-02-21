@@ -4,7 +4,6 @@ signal start_turn(turn_number:int, current_turn:int)
 signal start_player_turn
 
 @onready var current_turn_label: Label = %CurrentTurnLabel
-@onready var finish_turn_button: Button = %FinishTurnButton
 @onready var player: Player = %Player
 
 enum State {READY, BUSY}

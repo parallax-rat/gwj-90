@@ -10,6 +10,7 @@ signal action_points_changed(value)
 @onready var trap_btn: Button = %TrapButton
 @onready var ap_label: Label = %CurrentAPLabel
 @onready var turn_manager: TurnManager = %TurnManager
+@onready var map_manager: MapManager = $"../../Managers/MapManager"
 
 @export var starting_action_points: int = 4
 @export var movement_time_duration: float = 1.0
@@ -74,6 +75,7 @@ func trap() -> void:
 	current_action_points -= trap_ap_cost
 
 func clear_fog(area) -> void:
+	map_manager.update_mapped_fog()
 	var tween = get_tree().create_tween()
 	tween.tween_property(area,"modulate:a",0.0,0.5)
 	await tween.finished
