@@ -17,14 +17,14 @@ var turn_number: int = 1
 func _ready() -> void:
 	print("turn manager ready")
 	player.action_points_changed.connect(on_action_points_changed)
-	Global.finished_turn.connect(_on_finish_turn)
+	Global.finished_turn.connect(_on_end_turn)
 	
 func on_action_points_changed(ap:int):
 	print("turnmanager checking ap ", ap)
 	if ap <= 0:
-		_finish_turn()
+		_end_turn()
 	
-func _on_finish_turn(who:Global.Actors):
+func _on_end_turn(who:Global.Actors):
 	print("got signal")
 	print(who)
 	print(Global.Actors.PLAYER)
@@ -33,13 +33,13 @@ func _on_finish_turn(who:Global.Actors):
 	else:
 		print("Environment ending turn")
 	if current_state == State.READY:
-		_finish_turn()
+		_end_turn()
 
-func _finish_turn():
+func _end_turn():
 	if current_turn == Turn.PLAYER:
 		current_turn = Turn.ENVIRONMENT
 		print("setting turn text")
-		current_turn_label.text = "ENVIRONMENT"
+		current_turn_label.text = "Waiting"
 	elif current_turn == Turn.ENVIRONMENT:
 		current_turn = Turn.PLAYER
 		current_turn_label.text = "PLAYER"

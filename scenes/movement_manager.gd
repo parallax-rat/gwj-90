@@ -1,6 +1,6 @@
 extends Node
 
-@onready var root: GameManager = $"../.."
+@onready var root: GameManager = $"/"
 @onready var player: Player = %Player
 @onready var move_path: Path2D = $"../../MovePath"
 @onready var ocean_layer: TileMapLayer = %OceanLayer

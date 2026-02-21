@@ -1,4 +1,4 @@
-class_name MapManager extends Node2D
+class_name MapManager extends Node
 
 @onready var fog_layer: TileMapLayer = %FogLayer
 

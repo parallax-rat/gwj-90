@@ -8,6 +8,7 @@ const TOAST_LABEL = preload("uid://cxi7x643863a0")
 @onready var player: Player = get_tree().get_nodes_in_group("player")[0]
 @onready var movement_manager: Node = $Managers/MovementManager
 @onready var toast_timer: Timer = $ToastTimer
+@onready var ap_label: Label = %CurrentAPLabel
 
 
 func _ready() -> void:
@@ -24,10 +25,11 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func create_toast_message(message:String, toast_position: Vector2 = get_local_mouse_position()) -> void:
+	print("create toast")
 	if !toast_timer.is_stopped():
 		return
 	var toast: Label = TOAST_LABEL.instantiate()
 	toast.text = message
 	toast.global_position = toast_position
-	self.add_child(toast)
+	ap_label.add_child(toast)
 	toast_timer.start()
