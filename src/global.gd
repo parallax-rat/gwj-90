@@ -11,18 +11,26 @@ enum Actions{NONE, ROTATE, MOVE, SCAN, PLACE_TRAP, FINISH_TURN}
 var current_scene: Node
 var player: Player
 var scan_button: Button
-var trap_button: Button
-var button_group: ButtonGroup 
-
+var rest_button: Button
 var current_action: Actions = Actions.MOVE
 
 
 func connect_button_group() -> void:
 	current_scene = get_tree().current_scene
 	scan_button =  current_scene.get_node("%ScanButton")
-	trap_button =  current_scene.get_node("%TrapButton")
+	rest_button =  current_scene.get_node("%RestButton")
 	player = current_scene.get_node("%Player")
-	#button_group.pressed.connect(_on_button_group_pressed)
+	scan_button.pressed.connect(_on_scan_button_pressed)
+	rest_button.pressed.connect(_on_rest_button_pressed)
+
+
+func _on_scan_button_pressed() -> void:
+	player.scan()
+
+
+func _on_rest_button_pressed() -> void:
+	player.rest()
+
 
 func _on_button_group_pressed(button: BaseButton) -> void:
 	match button:
@@ -35,14 +43,13 @@ func _on_button_group_pressed(button: BaseButton) -> void:
 				#_set_action(Actions.MOVE)
 		scan_button:
 			_set_action(Actions.SCAN)
-		trap_button:
+		rest_button:
 			_set_action(Actions.PLACE_TRAP)
 
 
 func _set_action(action: Actions) -> void:
 	if current_action == action:
 		return
-	
 	current_action = action
 	
 	print(current_action)

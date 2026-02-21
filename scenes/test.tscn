@@ -12,8 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bvhvmn5e4hywc" path="res://assets/icons/icon_thunder.png" id="10_xrtyr"]
 [ext_resource type="ButtonGroup" uid="uid://bdeuumsmidur2" path="res://resources/actions_button_group.tres" id="11_ff6ho"]
 [ext_resource type="Script" uid="uid://cytpwbi3kx3lf" path="res://scenes/movement_manager.gd" id="14_7mbro"]
-[ext_resource type="PackedScene" uid="uid://cif073xnmb8m" path="res://scenes/global_mouse_marker.tscn" id="16_7yos8"]
-[ext_resource type="PackedScene" uid="uid://cmus8jhoraepm" path="res://scenes/tile_map_cell_marker.tscn" id="17_5jxlq"]
+[ext_resource type="PackedScene" uid="uid://in2vnhacdmyn" path="res://scenes/monster.tscn" id="17_5jxlq"]
 [ext_resource type="Script" uid="uid://bm36chihyvubi" path="res://scenes/monster.gd" id="20_si7kk"]
 [ext_resource type="Texture2D" uid="uid://c46s1no3w86bw" path="res://assets/Scud/DockToDockTileSheet.png" id="21_pn65j"]
 [ext_resource type="Script" uid="uid://d24yhj8d87ic0" path="res://scenes/move_component.gd" id="22_5f8cm"]
@@ -30,6 +29,7 @@ scenes/1/scene = ExtResource("5_ff6ho")
 [sub_resource type="TileSet" id="TileSet_5jxlq"]
 tile_shape = 3
 tile_size = Vector2i(64, 64)
+navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetScenesCollectionSource_7yos8")
 
 [sub_resource type="Curve2D" id="Curve2D_at5dv"]
@@ -114,10 +114,10 @@ metadata/_edit_lock_ = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=295511451]
 environment = SubResource("Environment_uacia")
 
-[node name="OceanLayer" type="TileMapLayer" parent="." unique_id=339087602 groups=["tile_maps"]]
+[node name="OceanLayer" type="TileMapLayer" parent="." unique_id=339087602 groups=["navigation_polygon_source_geometry_group", "tile_maps"]]
 unique_name_in_owner = true
 position = Vector2(-32, -32)
-tile_map_data = PackedByteArray("AAD9//3/AgAAAAIAAAD9//7/AgAAAAIAAAD9////AgAAAAIAAAD9/wAAAgAAAAIAAAD9/wEAAgAAAAIAAAD9/wMAAgAAAAIAAAD+//z/AgAAAAIAAAD+//3/AgAAAAAAAAD+//7/AgAAAAEAAAD+////AgAAAAAAAAD+/wAAAgAAAAEAAAD+/wEAAgAAAAAAAAD+/wIAAgAAAAIAAAD+/wMAAgAAAAEAAAD+/wQAAgAAAAIAAAD///v/AgAAAAIAAAD///z/AgAAAAIAAAD///3/AgAAAAAAAAD///7/AgAAAAAAAAD/////AgAAAAAAAAD//wAAAgAAAAAAAAD//wEAAgAAAAAAAAD//wIAAgAAAAAAAAD//wMAAgAAAAAAAAD//wQAAgAAAAIAAAD//wUAAgAAAAIAAAAAAPv/AgAAAAIAAAAAAPz/AgAAAAEAAAAAAP3/AgAAAAAAAAAAAP7/AgAAAAAAAAAAAP//AgAAAAAAAAAAAAAAAgAAAAAAAAAAAAEAAgAAAAAAAAAAAAIAAgAAAAAAAAAAAAMAAgAAAAAAAAAAAAQAAgAAAAAAAAAAAAUAAgAAAAEAAAAAAAYAAgAAAAIAAAABAPv/AgAAAAIAAAABAPz/AgAAAAAAAAABAP3/AgAAAAAAAAABAP7/AgAAAAAAAAABAP//AgAAAAAAAAABAAAAAgAAAAAAAAABAAEAAgAAAAAAAAABAAIAAgADAAAAAAABAAMAAgAAAAEAAAABAAQAAgAAAAEAAAABAAUAAgABAAAAAAABAAYAAgAAAAIAAAACAPv/AgABAAIAAAACAPz/AgAAAAEAAAACAP3/AgAAAAAAAAACAP7/AgAAAAAAAAACAP//AgAAAAAAAAACAAAAAgAAAAAAAAACAAEAAgAAAAAAAAACAAIAAgAAAAAAAAACAAMAAgAAAAEAAAACAAQAAgAAAAAAAAACAAUAAgAAAAEAAAACAAYAAgAAAAIAAAADAPv/AgAAAAIAAAADAPz/AgAAAAAAAAADAP3/AgAAAAEAAAADAP7/AgAAAAAAAAADAP//AgAAAAAAAAADAAAAAgADAAAAAAADAAEAAgADAAAAAAADAAIAAgAAAAAAAAADAAMAAgAAAAAAAAADAAQAAgAAAAAAAAADAAUAAgAAAAEAAAADAAYAAgAAAAIAAAAEAPv/AgAAAAIAAAAEAPz/AgAAAAEAAAAEAP3/AgADAAAAAAAEAP7/AgAAAAAAAAAEAP//AgADAAAAAAAEAAAAAgAAAAAAAAAEAAEAAgADAAAAAAAEAAIAAgADAAAAAAAEAAMAAgAAAAAAAAAEAAQAAgAAAAAAAAAEAAUAAgAAAAAAAAAEAAYAAgAAAAIAAAAFAPv/AgABAAEAAAAFAPz/AgAAAAAAAAAFAP3/AgAAAAAAAAAFAP7/AgAAAAAAAAAFAP//AgAAAAAAAAAFAAAAAgADAAAAAAAFAAEAAgAAAAAAAAAFAAIAAgAAAAAAAAAFAAMAAgAAAAAAAAAFAAQAAgAAAAAAAAAFAAUAAgAAAAAAAAAFAAYAAgAAAAIAAAAGAPv/AgACAAEAAAAGAPz/AgADAAIAAAAGAP3/AgAAAAAAAAAGAP7/AgAAAAAAAAAGAP//AgAAAAAAAAAGAAAAAgAAAAAAAAAGAAEAAgAAAAAAAAAGAAIAAgAAAAAAAAAGAAMAAgAAAAAAAAAGAAQAAgAAAAAAAAAGAAUAAgAAAAAAAAAGAAYAAgAAAAIAAAAHAPv/AgADAAEAAAAHAPz/AgACAAIAAAAHAP3/AgAAAAAAAAAHAP7/AgAAAAAAAAAHAP//AgAAAAEAAAAHAAAAAgADAAAAAAAHAAEAAgAAAAAAAAAHAAIAAgAAAAAAAAAHAAMAAgAAAAAAAAAHAAQAAgAAAAAAAAAHAAUAAgAAAAEAAAAHAAYAAgAAAAIAAAAIAPv/AgAAAAIAAAAIAPz/AgAAAAAAAAAIAP3/AgAAAAAAAAAIAP7/AgAAAAEAAAAIAP//AgABAAAAAAAIAAAAAgAAAAEAAAAIAAEAAgAAAAAAAAAIAAIAAgAAAAAAAAAIAAMAAgAAAAAAAAAIAAQAAgAAAAAAAAAIAAUAAgAAAAEAAAAIAAYAAgAAAAIAAAAJAPz/AgAAAAIAAAAJAP3/AgAAAAIAAAAJAP7/AgAAAAEAAAAJAP//AgAAAAAAAAAJAAAAAgAAAAAAAAAJAAEAAgAAAAEAAAAJAAIAAgADAAAAAAAJAAMAAgAAAAEAAAAJAAQAAgAAAAAAAAAJAAUAAgAAAAIAAAAJAAYAAgAAAAIAAAAKAP7/AgAAAAIAAAAKAP//AgAAAAIAAAAKAAAAAgAAAAIAAAAKAAEAAgAAAAIAAAAKAAIAAgAAAAIAAAAKAAMAAgAAAAIAAAAKAAQAAgAAAAIAAAA=")
+tile_map_data = PackedByteArray("AAD9//3/AgAAAAIAAAD9//7/AgAAAAIAAAD9////AgAAAAIAAAD9/wAAAgAAAAIAAAD9/wEAAgAAAAIAAAD9/wMAAgAAAAIAAAD+//z/AgAAAAIAAAD+//3/AgAAAAAAAAD+//7/AgAAAAEAAAD+////AgAAAAAAAAD+/wAAAgAAAAEAAAD+/wEAAgAAAAAAAAD+/wIAAgAAAAIAAAD+/wMAAgAAAAEAAAD+/wQAAgAAAAIAAAD///v/AgAAAAIAAAD///z/AgAAAAIAAAD///3/AgAAAAAAAAD///7/AgAAAAAAAAD/////AgAAAAAAAAD//wAAAgAAAAAAAAD//wEAAgAAAAAAAAD//wIAAgAAAAAAAAD//wMAAgAAAAAAAAD//wQAAgAAAAIAAAD//wUAAgAAAAIAAAAAAPv/AgAAAAIAAAAAAPz/AgAAAAEAAAAAAP3/AgAAAAAAAAAAAP7/AgAAAAAAAAAAAP//AgAAAAAAAAAAAAAAAgAAAAAAAAAAAAEAAgAAAAAAAAAAAAIAAgAAAAAAAAAAAAMAAgAAAAAAAAAAAAQAAgAAAAAAAAAAAAUAAgAAAAEAAAAAAAYAAgAAAAIAAAABAPv/AgAAAAIAAAABAPz/AgAAAAAAAAABAP3/AgAAAAAAAAABAP7/AgAAAAAAAAABAP//AgAAAAAAAAABAAAAAgAAAAAAAAABAAEAAgAAAAAAAAABAAIAAgAAAAAAAAABAAMAAgAAAAEAAAABAAQAAgAAAAAAAAABAAUAAgABAAAAAAABAAYAAgAAAAIAAAACAPv/AgABAAIAAAACAPz/AgAAAAEAAAACAP3/AgAAAAAAAAACAP7/AgAAAAAAAAACAP//AgAAAAAAAAACAAAAAgAAAAAAAAACAAEAAgAAAAAAAAACAAIAAgAAAAAAAAACAAMAAgAAAAEAAAACAAQAAgAAAAAAAAACAAUAAgAAAAEAAAACAAYAAgAAAAIAAAADAPv/AgAAAAIAAAADAPz/AgAAAAAAAAADAP3/AgAAAAEAAAADAP7/AgAAAAAAAAADAP//AgAAAAAAAAADAAAAAgAAAAAAAAADAAEAAgAAAAAAAAADAAIAAgAAAAAAAAADAAMAAgAAAAAAAAADAAQAAgAAAAAAAAADAAUAAgAAAAEAAAADAAYAAgAAAAIAAAAEAPv/AgAAAAIAAAAEAPz/AgAAAAEAAAAEAP3/AgAAAAAAAAAEAP7/AgAAAAAAAAAEAP//AgAAAAAAAAAEAAAAAgAAAAAAAAAEAAEAAgAAAAAAAAAEAAIAAgAAAAAAAAAEAAMAAgAAAAAAAAAEAAQAAgAAAAAAAAAEAAUAAgAAAAAAAAAEAAYAAgAAAAIAAAAFAPv/AgABAAEAAAAFAPz/AgAAAAAAAAAFAP3/AgAAAAAAAAAFAP7/AgAAAAAAAAAFAP//AgAAAAAAAAAFAAAAAgAAAAAAAAAFAAEAAgAAAAAAAAAFAAIAAgAAAAAAAAAFAAMAAgAAAAAAAAAFAAQAAgAAAAAAAAAFAAUAAgAAAAAAAAAFAAYAAgAAAAIAAAAGAPv/AgACAAEAAAAGAPz/AgADAAIAAAAGAP3/AgAAAAAAAAAGAP7/AgAAAAAAAAAGAP//AgAAAAAAAAAGAAAAAgAAAAAAAAAGAAEAAgAAAAAAAAAGAAIAAgAAAAAAAAAGAAMAAgAAAAAAAAAGAAQAAgAAAAAAAAAGAAUAAgAAAAAAAAAGAAYAAgAAAAIAAAAHAPv/AgADAAEAAAAHAPz/AgACAAIAAAAHAP3/AgAAAAAAAAAHAP7/AgAAAAAAAAAHAP//AgAAAAEAAAAHAAAAAgAAAAAAAAAHAAEAAgAAAAAAAAAHAAIAAgAAAAAAAAAHAAMAAgAAAAAAAAAHAAQAAgAAAAAAAAAHAAUAAgAAAAEAAAAHAAYAAgAAAAIAAAAIAPv/AgAAAAIAAAAIAPz/AgAAAAAAAAAIAP3/AgAAAAAAAAAIAP7/AgAAAAEAAAAIAP//AgABAAAAAAAIAAAAAgAAAAEAAAAIAAEAAgAAAAAAAAAIAAIAAgAAAAAAAAAIAAMAAgAAAAAAAAAIAAQAAgAAAAAAAAAIAAUAAgAAAAEAAAAIAAYAAgAAAAIAAAAJAPz/AgAAAAIAAAAJAP3/AgAAAAIAAAAJAP7/AgAAAAEAAAAJAP//AgAAAAAAAAAJAAAAAgAAAAAAAAAJAAEAAgAAAAEAAAAJAAIAAgAAAAAAAAAJAAMAAgAAAAEAAAAJAAQAAgAAAAAAAAAJAAUAAgAAAAIAAAAJAAYAAgAAAAIAAAAKAP7/AgAAAAIAAAAKAP//AgAAAAIAAAAKAAAAAgAAAAIAAAAKAAEAAgAAAAIAAAAKAAIAAgAAAAIAAAAKAAMAAgAAAAIAAAAKAAQAAgAAAAIAAAA=")
 tile_set = ExtResource("1_at5dv")
 metadata/_edit_lock_ = true
 
@@ -144,6 +144,12 @@ curve = SubResource("Curve2D_at5dv")
 [node name="Player" parent="MovePath" unique_id=1154284220 instance=ExtResource("2_iyx0m")]
 unique_name_in_owner = true
 loop = false
+starting_action_points = null
+movement_time_duration = null
+rotate_ap_cost = null
+scan_ap_cost = null
+trap_ap_cost = null
+new_turn_ap_refresh = null
 
 [node name="Camera2D" type="Camera2D" parent="MovePath/Player" unique_id=1545285726]
 
@@ -322,7 +328,7 @@ theme = ExtResource("8_xrtyr")
 shortcut = SubResource("Shortcut_5jxlq")
 text = "SCAN"
 
-[node name="Trap" type="MarginContainer" parent="UI/UIManager/PanelContainer/HBoxContainer/Actions/HBoxContainer" unique_id=2019675804]
+[node name="Rest" type="MarginContainer" parent="UI/UIManager/PanelContainer/HBoxContainer/Actions/HBoxContainer" unique_id=2019675804]
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_constants/margin_left = 4
@@ -330,14 +336,14 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="TrapButton" type="Button" parent="UI/UIManager/PanelContainer/HBoxContainer/Actions/HBoxContainer/Trap" unique_id=100476301 groups=["button"]]
+[node name="RestButton" type="Button" parent="UI/UIManager/PanelContainer/HBoxContainer/Actions/HBoxContainer/Rest" unique_id=100476301 groups=["button"]]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 size_flags_vertical = 4
 theme = ExtResource("8_xrtyr")
 shortcut = SubResource("Shortcut_daiq8")
-text = "TRAP"
+text = "REST"
 
 [node name="Debug" type="Node2D" parent="." unique_id=851506827]
 
@@ -352,31 +358,25 @@ mouse_filter = 2
 toggle_mode = true
 button_group = ExtResource("11_ff6ho")
 
-[node name="GlobalMouseMarker" parent="." unique_id=583158080 instance=ExtResource("16_7yos8")]
-unique_name_in_owner = true
-visible = false
-
-[node name="TileMapCellMarker" parent="." unique_id=1358414077 instance=ExtResource("17_5jxlq")]
-unique_name_in_owner = true
-visible = false
-
 [node name="ToastTimer" type="Timer" parent="." unique_id=404106981]
 one_shot = true
 
 [node name="MonsterPath" type="Path2D" parent="." unique_id=13908955]
+visible = false
 position = Vector2(64, 0)
 curve = SubResource("Curve2D_gm488")
 
 [node name="Monster" type="PathFollow2D" parent="MonsterPath" unique_id=37895140]
 script = ExtResource("20_si7kk")
 
+[node name="MoveComponent" type="Node" parent="MonsterPath/Monster" unique_id=1606495288]
+unique_name_in_owner = true
+script = ExtResource("22_5f8cm")
+
 [node name="Sprite2D" type="Sprite2D" parent="MonsterPath/Monster" unique_id=1785626512]
 texture = ExtResource("21_pn65j")
 region_enabled = true
 region_rect = Rect2(128, 0, 64, 64)
-
-[node name="MoveComponent" type="Node" parent="MonsterPath/Monster" unique_id=1606495288]
-script = ExtResource("22_5f8cm")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1269936917]
 position = Vector2(296, 508)
@@ -389,3 +389,6 @@ collision_mask = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GoalDock" unique_id=2093853857]
 polygon = PackedVector2Array(-16, 0, 0, -16, 16, 0, 0, 16)
+
+[node name="Monster" parent="." unique_id=490001326 instance=ExtResource("17_5jxlq")]
+position = Vector2(64, 0)

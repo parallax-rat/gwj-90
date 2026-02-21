@@ -1,4 +1,7 @@
 extends Node
+
+signal player_spent_ap(cell:Vector2i, position:Vector2)
+
 @onready var game_manager: GameManager = $"../.."
 @onready var player: Player = %Player
 @onready var move_path: Path2D = $"../../MovePath"
@@ -27,6 +30,7 @@ func _on_move_request() -> void:
 		set_path_destination(destination_position)
 		reset_player_progress()
 		await player.move_along_path()
+		player_spent_ap.emit(destination_cell, destination_position)
 		reset_path_origin()
 		print("Move completed.")
 	else:
@@ -53,10 +57,6 @@ func get_cell_position_from_player() -> Vector2:
 	var local_cell_position: Vector2i = ocean_layer.map_to_local(cell_coords)
 	var global_cell_position: Vector2 = ocean_layer.to_global(local_cell_position) # Centered global_position of the selected cell
 	return global_cell_position
-
-
-func show_helper_marker(position) -> void:
-	global_mouse_marker.global_position = position # Helper debug visual
 
 
 func is_tile_traversable(clicked_cell) -> bool:

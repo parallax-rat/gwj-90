@@ -1,7 +1,7 @@
 class_name MoveComponent extends Node
 
-@onready var entity: Actor = self.get_parent()
-@onready var move_path: Path2D = self.get_parent().get_parent()
+@onready var entity = self.get_parent()
+@onready var move_path = self.get_parent().get_parent()
 @onready var ocean_layer: TileMapLayer = %OceanLayer
 @onready var global_mouse_marker: Polygon2D = %GlobalMouseMarker
 @onready var tile_map_cell_marker: Polygon2D = %TileMapCellMarker
@@ -9,8 +9,9 @@ class_name MoveComponent extends Node
 var move_path_origin:= Vector2.ZERO
 
 func _ready() -> void:
-	move_path.curve.clear_points()
-	move_path.curve.add_point(move_path_origin)
+	pass
+	#move_path.curve.clear_points()
+	#move_path.curve.add_point(move_path_origin)
 
 func move(from: Vector2, to: Vector2) -> void:
 	var current_position: Vector2 = from

@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://835n3cpedbjf"]
+[gd_resource type="TileSet" format=3 uid="uid://835n3cpedbjf"]
 
 [ext_resource type="Texture2D" uid="uid://chflmixx241ld" path="res://addons/wfc/examples/assets/Underearth/set.png" id="1_awtrr"]
 

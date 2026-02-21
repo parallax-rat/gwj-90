@@ -1,22 +1,76 @@
 [gd_scene format=3 uid="uid://in2vnhacdmyn"]
 
 [ext_resource type="Script" uid="uid://d1tdjwqdg4y4b" path="res://scenes/monster_nav.gd" id="1_c47ug"]
-[ext_resource type="Texture2D" uid="uid://c46s1no3w86bw" path="res://assets/Scud/DockToDockTileSheet.png" id="2_jlss8"]
-[ext_resource type="Script" uid="uid://d24yhj8d87ic0" path="res://scenes/move_component.gd" id="3_gp4s5"]
+[ext_resource type="Texture2D" uid="uid://36ublx8vd15j" path="res://assets/Scud/SeaMonsterSprite.png" id="2_c47ug"]
+[ext_resource type="Texture2D" uid="uid://bx24od0buacmu" path="res://assets/Scud/SeaMonsterSprite_shadow.png" id="2_jlss8"]
+[ext_resource type="Texture2D" uid="uid://ckhear5otygmp" path="res://assets/Scud/SeaMonsterSprite_shadow_BodyOnly.png" id="3_gdl1p"]
 
-[node name="Monster" type="Node2D" unique_id=490001326]
+[sub_resource type="CircleShape2D" id="CircleShape2D_jlss8"]
+radius = 20.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jlss8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_c47ug")
+}],
+"loop": false,
+"name": &"AboveWaterIdle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_gdl1p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_jlss8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_c47ug")
+}],
+"loop": false,
+"name": &"GoAbove",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_c47ug")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_jlss8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_gdl1p")
+}],
+"loop": false,
+"name": &"GoBelow",
+"speed": 5.0
+}]
+
+[node name="Monster" type="CharacterBody2D" unique_id=154052261]
 script = ExtResource("1_c47ug")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1785626512]
+[node name="SpriteBelowWaterOnlyBody" type="Sprite2D" parent="." unique_id=950876218]
+visible = false
+self_modulate = Color(0, 0, 0, 0.39215687)
+texture = ExtResource("3_gdl1p")
+
+[node name="SpriteBelowWater" type="Sprite2D" parent="." unique_id=1596182562]
+visible = false
+self_modulate = Color(0, 0, 0, 0.78431374)
 texture = ExtResource("2_jlss8")
-region_enabled = true
+
+[node name="SpriteAboveWater" type="Sprite2D" parent="." unique_id=1785626512]
+visible = false
+texture = ExtResource("2_c47ug")
 region_rect = Rect2(128, 0, 64, 64)
 
-[node name="MoveComponent" type="Node" parent="." unique_id=1606495288]
-script = ExtResource("3_gp4s5")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=150000734]
+visible = false
+shape = SubResource("CircleShape2D_jlss8")
+debug_color = Color(0.95493466, 1.0588765e-06, 0.5483776, 0.41960785)
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=794779660]
-path_desired_distance = 3.0
-target_desired_distance = 3.0
-path_postprocessing = 1
-debug_enabled = true
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=433577143]
+sprite_frames = SubResource("SpriteFrames_jlss8")
+animation = &"AboveWaterIdle"
+autoplay = "AboveWaterIdle"
