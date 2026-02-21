@@ -76,6 +76,12 @@ action = &"scan"
 [sub_resource type="Shortcut" id="Shortcut_5jxlq"]
 events = [SubResource("InputEventAction_7yos8")]
 
+[sub_resource type="LabelSettings" id="LabelSettings_7mbro"]
+line_spacing = 1.0
+font = ExtResource("7_5jxlq")
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
 [sub_resource type="InputEventAction" id="InputEventAction_xrtyr"]
 action = &"trap"
 
@@ -94,12 +100,6 @@ action = &"end_turn"
 [sub_resource type="Shortcut" id="Shortcut_n74k2"]
 events = [SubResource("InputEventAction_c6rvn")]
 
-[sub_resource type="LabelSettings" id="LabelSettings_7mbro"]
-line_spacing = 1.0
-font = ExtResource("7_5jxlq")
-outline_size = 8
-outline_color = Color(0, 0, 0, 1)
-
 [sub_resource type="LabelSettings" id="LabelSettings_ff6ho"]
 line_spacing = 1.0
 font = ExtResource("7_5jxlq")
@@ -113,6 +113,7 @@ script = ExtResource("6_lpvoh")
 [node name="Managers" type="Node" parent="." unique_id=1141824964]
 
 [node name="TurnManager" type="Node" parent="Managers" unique_id=1704065964]
+unique_name_in_owner = true
 script = ExtResource("9_yk7ts")
 
 [node name="MovementManager" type="Node" parent="Managers" unique_id=729219967]
@@ -202,6 +203,7 @@ theme_override_constants/separation = 40
 alignment = 1
 
 [node name="MarginContainer3" type="MarginContainer" parent="CanvasLayer/UIManager/PanelContainer/HBoxContainer/HBoxContainer" unique_id=2042224147]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
@@ -223,6 +225,7 @@ text = "SPIN"
 icon = ExtResource("11_daiq8")
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/UIManager/PanelContainer/HBoxContainer/HBoxContainer" unique_id=611508647]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
@@ -277,6 +280,19 @@ button_group = ExtResource("11_ff6ho")
 shortcut = SubResource("Shortcut_5jxlq")
 text = "SCAN"
 icon = ExtResource("12_daiq8")
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/UIManager/PanelContainer/HBoxContainer/HBoxContainer" unique_id=827631985]
+layout_mode = 2
+
+[node name="CurrentAPLabel" type="Label" parent="CanvasLayer/UIManager/PanelContainer/HBoxContainer/HBoxContainer/MarginContainer2" unique_id=1954912142]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+text = "1"
+label_settings = SubResource("LabelSettings_7mbro")
+horizontal_alignment = 1
+vertical_alignment = 3
 
 [node name="MarginContainer4" type="MarginContainer" parent="CanvasLayer/UIManager/PanelContainer/HBoxContainer/HBoxContainer" unique_id=2019675804]
 layout_mode = 2
@@ -367,20 +383,6 @@ button_group = ExtResource("11_ff6ho")
 shortcut = SubResource("Shortcut_n74k2")
 text = "END TURN"
 icon = ExtResource("13_5jxlq")
-
-[node name="CurrentAPLabel" type="Label" parent="CanvasLayer/UIManager" unique_id=1954912142]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 304.0
-offset_top = 332.0
-offset_right = 336.0
-offset_bottom = 358.0
-size_flags_horizontal = 4
-size_flags_vertical = 6
-text = "1"
-label_settings = SubResource("LabelSettings_7mbro")
-horizontal_alignment = 1
-vertical_alignment = 3
 
 [node name="Label" type="Label" parent="CanvasLayer/UIManager" unique_id=1386207426]
 layout_mode = 0

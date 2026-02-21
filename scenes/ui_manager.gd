@@ -1,9 +1,7 @@
 extends Node
 #region Buttons
 
-var player: Player
-@onready var move_button: Button = %MoveButton
-@onready var rotate_button: Button = %RotateButton
+@onready var player: Player = %Player
 @onready var trap_button: Button = %TrapButton
 @onready var current_ap_label: Label = %CurrentAPLabel
 
@@ -11,7 +9,6 @@ var player: Player
 
 
 func _ready() -> void:
-	player = get_tree().get_nodes_in_group("player")[0]
 	player.action_points_changed.connect(_update_ap_label)
 
 func _update_ap_label(new_ap_value:int) -> void:
