@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://drkcyg2y1jydl"]
+
+[ext_resource type="PackedScene" uid="uid://b0hog3ngstqbs" path="res://scenes/fog.tscn" id="1_5d8xe"]
+
+[node name="DenseFog" unique_id=94816565 instance=ExtResource("1_5d8xe")]
+collision_layer = 0

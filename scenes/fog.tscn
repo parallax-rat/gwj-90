@@ -30,7 +30,3 @@ region_rect = Rect2(0, 192, 64, 64)
 self_modulate = Color(1, 1, 1, 0.5882353)
 occluder = SubResource("OccluderPolygon2D_e072f")
 occluder_light_mask = 16
-
-[connection signal="input_event" from="." to="." method="_on_input_event"]
-[connection signal="mouse_entered" from="." to="." method="_show_hover_highlight"]
-[connection signal="mouse_exited" from="." to="." method="_hide_hover_highlight"]

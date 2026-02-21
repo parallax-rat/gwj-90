@@ -33,7 +33,7 @@ func _on_move_request(root:Node2D) -> void:
 		reset_path_origin()
 		print("Move completed.")
 	else:
-		root.create_toast_message_at_mouse("Insufficient AP")
+		root.create_toast_message("Insufficient AP")
 
 
 func get_cell_coords_from_mouse() -> Vector2i:
