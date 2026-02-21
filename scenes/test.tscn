@@ -6,14 +6,12 @@
 [ext_resource type="Script" uid="uid://c2peannp5s8an" path="res://scenes/ui_manager.gd" id="4_j5jx5"]
 [ext_resource type="PackedScene" uid="uid://b0hog3ngstqbs" path="res://scenes/fog.tscn" id="5_ff6ho"]
 [ext_resource type="Script" uid="uid://dmevx4ufycew7" path="res://scenes/game_manager.gd" id="6_lpvoh"]
-[ext_resource type="FontFile" uid="uid://csvh533g0b3te" path="res://assets/fonts/Righteous.ttf" id="7_5jxlq"]
+[ext_resource type="Shader" uid="uid://b52j5sx36e7xo" path="res://scenes/resources/outline.gdshader" id="8_daiq8"]
 [ext_resource type="Theme" uid="uid://fbwgj6t26a11" path="res://resources/theme.tres" id="8_xrtyr"]
-[ext_resource type="Texture2D" uid="uid://dbm2qoidiyix0" path="res://assets/kenney/tile_0085.png" id="11_daiq8"]
+[ext_resource type="LabelSettings" uid="uid://y2tljxqbbf3t" path="res://resources/action_points_label.tres" id="9_5jxlq"]
+[ext_resource type="Texture2D" uid="uid://bvhvmn5e4hywc" path="res://assets/icons/icon_thunder.png" id="10_xrtyr"]
 [ext_resource type="ButtonGroup" uid="uid://bdeuumsmidur2" path="res://resources/actions_button_group.tres" id="11_ff6ho"]
-[ext_resource type="Texture2D" uid="uid://cqfk5gjyq0pys" path="res://assets/kenney/tile_0087.png" id="12_daiq8"]
-[ext_resource type="Texture2D" uid="uid://dv8ovxnvoy561" path="res://assets/kenney/tile_0088.png" id="13_c6rvn"]
 [ext_resource type="Script" uid="uid://cytpwbi3kx3lf" path="res://scenes/movement_manager.gd" id="14_7mbro"]
-[ext_resource type="Texture2D" uid="uid://chxgvwsvyiloo" path="res://assets/kenney/tile_0086.png" id="14_n74k2"]
 [ext_resource type="PackedScene" uid="uid://cif073xnmb8m" path="res://scenes/global_mouse_marker.tscn" id="16_7yos8"]
 [ext_resource type="PackedScene" uid="uid://cmus8jhoraepm" path="res://scenes/tile_map_cell_marker.tscn" id="17_5jxlq"]
 [ext_resource type="Script" uid="uid://bm36chihyvubi" path="res://scenes/monster.gd" id="20_si7kk"]
@@ -40,6 +38,18 @@ _data = {
 }
 point_count = 1
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c6rvn"]
+shader = ExtResource("8_daiq8")
+shader_parameter/color = Color(0, 0, 0, 0.6862745)
+shader_parameter/thickness = 1.0
+shader_parameter/tolerance = 0.0
+shader_parameter/diagonals = true
+shader_parameter/rounded = true
+
+[sub_resource type="LabelSettings" id="LabelSettings_xrtyr"]
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
 [sub_resource type="Gradient" id="Gradient_5jxlq"]
 offsets = PackedFloat32Array(0, 0.12566845, 0.54278076, 0.8716577, 0.96524066)
 colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.23529412, 0, 0, 0, 0.5882353, 0, 0, 0, 0.23644078, 0, 0, 0, 0)
@@ -48,19 +58,28 @@ colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.23529412, 0, 0, 0, 0.5882353, 0
 gradient = SubResource("Gradient_5jxlq")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_daiq8"]
+content_margin_top = 4.0
+content_margin_bottom = 4.0
 texture = SubResource("GradientTexture1D_xrtyr")
 
-[sub_resource type="InputEventAction" id="InputEventAction_ff6ho"]
-action = &"rotate"
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5jxlq"]
+bg_color = Color(0.019607844, 0.019607844, 0.039215688, 0.5882353)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8, 0.8, 0.8, 0.5882353)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+expand_margin_left = 8.0
+expand_margin_right = 8.0
 
-[sub_resource type="Shortcut" id="Shortcut_7yos8"]
-events = [SubResource("InputEventAction_ff6ho")]
-
-[sub_resource type="InputEventAction" id="InputEventAction_7mbro"]
-action = &"move"
-
-[sub_resource type="Shortcut" id="Shortcut_ff6ho"]
-events = [SubResource("InputEventAction_7mbro")]
+[sub_resource type="LabelSettings" id="LabelSettings_daiq8"]
+font_size = 8
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="InputEventAction" id="InputEventAction_7yos8"]
 action = &"scan"
@@ -68,33 +87,11 @@ action = &"scan"
 [sub_resource type="Shortcut" id="Shortcut_5jxlq"]
 events = [SubResource("InputEventAction_7yos8")]
 
-[sub_resource type="LabelSettings" id="LabelSettings_7mbro"]
-line_spacing = 1.0
-font = ExtResource("7_5jxlq")
-outline_size = 8
-outline_color = Color(0, 0, 0, 1)
-
 [sub_resource type="InputEventAction" id="InputEventAction_xrtyr"]
 action = &"trap"
 
 [sub_resource type="Shortcut" id="Shortcut_daiq8"]
 events = [SubResource("InputEventAction_xrtyr")]
-
-[sub_resource type="LabelSettings" id="LabelSettings_daiq8"]
-font_size = 8
-outline_size = 8
-outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_xrtyr"]
-outline_size = 10
-outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_ff6ho"]
-line_spacing = 1.0
-font = ExtResource("7_5jxlq")
-font_size = 8
-outline_size = 8
-outline_color = Color(0.047058824, 0.047058824, 0.047058824, 1)
 
 [sub_resource type="Curve2D" id="Curve2D_gm488"]
 
@@ -161,143 +158,20 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
+mouse_filter = 1
 script = ExtResource("4_j5jx5")
 metadata/_edit_lock_ = true
 
-[node name="PanelContainer" type="PanelContainer" parent="UI/UIManager" unique_id=293610361]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -32.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxTexture_daiq8")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/UIManager/PanelContainer" unique_id=644943242]
-layout_mode = 2
-theme_override_constants/separation = 4
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/UIManager/PanelContainer/HBoxContainer" unique_id=181629816]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 40
-alignment = 1
-
-[node name="MarginContainer3" type="MarginContainer" parent="UI/UIManager/PanelContainer/HBoxContainer/HBoxContainer" unique_id=2042224147]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 8
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
-
-[node name="RotateButton" type="Button" parent="UI/UIManager/PanelContainer/HBoxContainer/HBoxContainer/MarginContainer3" unique_id=1715090365 groups=["button"]]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(64, 0)
-layout_mode = 2
-size_flags_vertical = 8
-theme = ExtResource("8_xrtyr")
-toggle_mode = true
-button_group = ExtResource("11_ff6ho")
-shortcut = SubResource("Shortcut_7yos8")
-text = "SPIN"
-icon = ExtResource("11_daiq8")
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/UIManager/PanelContainer/HBoxContainer/HBoxContainer" unique_id=611508647]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 8
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
-
-[node name="MoveButton" type="Button" parent="UI/UIManager/PanelContainer/HBoxContainer/HBoxContainer/MarginContainer" unique_id=1893158417 groups=["button"]]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(64, 0)
-layout_mode = 2
-size_flags_vertical = 4
-theme = ExtResource("8_xrtyr")
-toggle_mode = true
-button_group = ExtResource("11_ff6ho")
-shortcut = SubResource("Shortcut_ff6ho")
-text = "MOVE"
-icon = ExtResource("14_n74k2")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/UIManager/PanelContainer/HBoxContainer/HBoxContainer" unique_id=883665790]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 8
-alignment = 1
-
-[node name="AP" type="MarginContainer" parent="UI/UIManager/PanelContainer/HBoxContainer/HBoxContainer/VBoxContainer" unique_id=2017902032]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 3
-theme_override_constants/margin_top = 4
-
-[node name="AP" type="VBoxContainer" parent="UI/UIManager/PanelContainer/HBoxContainer/HBoxContainer/VBoxContainer/AP" unique_id=1012248894]
-layout_mode = 2
-
-[node name="MarginContainer5" type="MarginContainer" parent="UI/UIManager/PanelContainer/HBoxContainer/HBoxContainer" unique_id=1412526914]
-layout_mode = 2
-size_flags_vertical = 8
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
-
-[node name="ScanButton" type="Button" parent="UI/UIManager/PanelContainer/HBoxContainer/HBoxContainer/MarginContainer5" unique_id=875389075 groups=["button"]]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(64, 0)
-layout_mode = 2
-size_flags_vertical = 4
-theme = ExtResource("8_xrtyr")
-toggle_mode = true
-button_group = ExtResource("11_ff6ho")
-shortcut = SubResource("Shortcut_5jxlq")
-text = "SCAN"
-icon = ExtResource("12_daiq8")
-
-[node name="MarginContainer2" type="MarginContainer" parent="UI/UIManager/PanelContainer/HBoxContainer/HBoxContainer" unique_id=827631985]
-layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="CurrentAPLabel" type="Label" parent="UI/UIManager/PanelContainer/HBoxContainer/HBoxContainer/MarginContainer2" unique_id=1954912142]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
-text = "1"
-label_settings = SubResource("LabelSettings_7mbro")
-horizontal_alignment = 1
-vertical_alignment = 3
-
-[node name="MarginContainer4" type="MarginContainer" parent="UI/UIManager/PanelContainer/HBoxContainer/HBoxContainer" unique_id=2019675804]
-layout_mode = 2
-size_flags_vertical = 8
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
-
-[node name="TrapButton" type="Button" parent="UI/UIManager/PanelContainer/HBoxContainer/HBoxContainer/MarginContainer4" unique_id=100476301 groups=["button"]]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(64, 0)
-layout_mode = 2
-size_flags_vertical = 4
-theme = ExtResource("8_xrtyr")
-toggle_mode = true
-button_group = ExtResource("11_ff6ho")
-shortcut = SubResource("Shortcut_daiq8")
-text = "TRAP"
-icon = ExtResource("13_c6rvn")
+[node name="APIcon" type="TextureRect" parent="UI/UIManager" unique_id=423813941]
+material = SubResource("ShaderMaterial_c6rvn")
+layout_mode = 0
+offset_left = -3.0
+offset_top = 306.0
+offset_right = 45.0
+offset_bottom = 354.0
+texture = ExtResource("10_xrtyr")
+expand_mode = 3
+stretch_mode = 4
 
 [node name="Screen" type="MarginContainer" parent="UI/UIManager" unique_id=1693039061]
 unique_name_in_owner = true
@@ -308,53 +182,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 metadata/_edit_lock_ = true
-
-[node name="Panel" type="PanelContainer" parent="UI/UIManager/Screen" unique_id=947459502]
-layout_mode = 2
-size_flags_vertical = 0
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_daiq8")
-
-[node name="ProgressContainer" type="VBoxContainer" parent="UI/UIManager/Screen/Panel" unique_id=1572344244]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(320, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="Turn" type="MarginContainer" parent="UI/UIManager/Screen/Panel/ProgressContainer" unique_id=1191418228]
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 6
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/UIManager/Screen/Panel/ProgressContainer/Turn" unique_id=1320721490]
-layout_mode = 2
-size_flags_vertical = 4
-theme_override_constants/separation = 12
-
-[node name="Label" type="Label" parent="UI/UIManager/Screen/Panel/ProgressContainer/Turn/HBoxContainer" unique_id=1139047805]
-layout_mode = 2
-size_flags_horizontal = 10
-size_flags_vertical = 1
-text = "Ocean Mapped"
-label_settings = SubResource("LabelSettings_daiq8")
-horizontal_alignment = 1
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/UIManager/Screen/Panel/ProgressContainer" unique_id=1984193702]
-layout_mode = 2
-theme_override_constants/margin_bottom = 4
-
-[node name="MappingProgress" type="ProgressBar" parent="UI/UIManager/Screen/Panel/ProgressContainer/MarginContainer" unique_id=2029118038]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-theme = ExtResource("8_xrtyr")
-value = 30.4
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/UIManager/Screen" unique_id=540295926]
 layout_mode = 2
@@ -371,21 +198,146 @@ text = "Player"
 label_settings = SubResource("LabelSettings_xrtyr")
 horizontal_alignment = 1
 
-[node name="ActionPoints" type="Label" parent="UI/UIManager" unique_id=1386207426]
+[node name="PanelContainer" type="PanelContainer" parent="UI/UIManager" unique_id=293610361]
 layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
+anchors_preset = 12
+anchor_top = 1.0
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = 140.0
-offset_right = -416.0
-offset_bottom = 153.0
+anchor_bottom = 1.0
+offset_top = -51.0
 grow_horizontal = 2
-grow_vertical = 2
-text = "ACTION POINTS"
-label_settings = SubResource("LabelSettings_ff6ho")
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxTexture_daiq8")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/UIManager/PanelContainer" unique_id=181629816]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="ActionPoints" type="MarginContainer" parent="UI/UIManager/PanelContainer/HBoxContainer" unique_id=497182043]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_right = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/UIManager/PanelContainer/HBoxContainer/ActionPoints" unique_id=740587762]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="APLabel" type="MarginContainer" parent="UI/UIManager/PanelContainer/HBoxContainer/ActionPoints/HBoxContainer" unique_id=969948973]
+layout_mode = 2
+
+[node name="ActionPoints" type="Label" parent="UI/UIManager/PanelContainer/HBoxContainer/ActionPoints/HBoxContainer/APLabel" unique_id=1386207426]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "ACTION
+POINTS"
+label_settings = ExtResource("9_5jxlq")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="UI/UIManager/PanelContainer/HBoxContainer/ActionPoints/HBoxContainer" unique_id=1081136334]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5jxlq")
+
+[node name="CurrentAPLabel" type="Label" parent="UI/UIManager/PanelContainer/HBoxContainer/ActionPoints/HBoxContainer/PanelContainer" unique_id=1954912142]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 6
+text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/UIManager/PanelContainer/HBoxContainer/ActionPoints/HBoxContainer/PanelContainer" unique_id=948718130]
+layout_mode = 2
+
+[node name="APValue" type="MarginContainer" parent="UI/UIManager/PanelContainer/HBoxContainer/ActionPoints/HBoxContainer/PanelContainer/HBoxContainer" unique_id=827631985]
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="ProgressContainer" type="VBoxContainer" parent="UI/UIManager/PanelContainer/HBoxContainer" unique_id=1572344244]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="OceanMapped" type="MarginContainer" parent="UI/UIManager/PanelContainer/HBoxContainer/ProgressContainer" unique_id=1191418228]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/UIManager/PanelContainer/HBoxContainer/ProgressContainer/OceanMapped" unique_id=1320721490]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="UI/UIManager/PanelContainer/HBoxContainer/ProgressContainer/OceanMapped/HBoxContainer" unique_id=1139047805]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 1
+text = "Ocean Mapped"
+label_settings = SubResource("LabelSettings_daiq8")
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/UIManager/PanelContainer/HBoxContainer/ProgressContainer" unique_id=1984193702]
+layout_mode = 2
+theme_override_constants/margin_bottom = 4
+
+[node name="MappingProgress" type="ProgressBar" parent="UI/UIManager/PanelContainer/HBoxContainer/ProgressContainer/MarginContainer" unique_id=2029118038]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("8_xrtyr")
+value = 30.4
+
+[node name="Actions" type="MarginContainer" parent="UI/UIManager/PanelContainer/HBoxContainer" unique_id=2139799194]
+layout_mode = 2
+theme_override_constants/margin_right = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/UIManager/PanelContainer/HBoxContainer/Actions" unique_id=666993106]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Scan" type="MarginContainer" parent="UI/UIManager/PanelContainer/HBoxContainer/Actions/HBoxContainer" unique_id=1412526914]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="ScanButton" type="Button" parent="UI/UIManager/PanelContainer/HBoxContainer/Actions/HBoxContainer/Scan" unique_id=875389075 groups=["button"]]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("8_xrtyr")
+shortcut = SubResource("Shortcut_5jxlq")
+text = "SCAN"
+
+[node name="Trap" type="MarginContainer" parent="UI/UIManager/PanelContainer/HBoxContainer/Actions/HBoxContainer" unique_id=2019675804]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="TrapButton" type="Button" parent="UI/UIManager/PanelContainer/HBoxContainer/Actions/HBoxContainer/Trap" unique_id=100476301 groups=["button"]]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("8_xrtyr")
+shortcut = SubResource("Shortcut_daiq8")
+text = "TRAP"
 
 [node name="Debug" type="Node2D" parent="." unique_id=851506827]
 
@@ -427,7 +379,7 @@ region_rect = Rect2(128, 0, 64, 64)
 script = ExtResource("22_5f8cm")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1269936917]
-position = Vector2(224, -416)
+position = Vector2(296, 508)
 texture = ExtResource("22_si7kk")
 
 [node name="GoalDock" type="Area2D" parent="." unique_id=1980325163]

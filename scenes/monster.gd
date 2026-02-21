@@ -22,6 +22,7 @@ func _ready() -> void:
 	
 func _on_start_actor_turn(turn_number: int, current_turn:int) -> void:
 	if me == current_turn:
+		print("monster")
 		current_action_points += new_turn_ap_refresh
 		# check for collitions with trap
 		# if trap consume ap and quefree trap
