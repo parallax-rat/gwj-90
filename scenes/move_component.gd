@@ -3,8 +3,8 @@ class_name MoveComponent extends Node
 @onready var entity = self.get_parent()
 @onready var move_path = self.get_parent().get_parent()
 @onready var ocean_layer: TileMapLayer = %OceanLayer
-@onready var global_mouse_marker: Polygon2D = %GlobalMouseMarker
-@onready var tile_map_cell_marker: Polygon2D = %TileMapCellMarker
+#@onready var global_mouse_marker: Polygon2D = %GlobalMouseMarker
+#@onready var tile_map_cell_marker: Polygon2D = %TileMapCellMarker
 
 var move_path_origin:= Vector2.ZERO
 
@@ -47,8 +47,8 @@ func get_cell_position_from_pos(pos: Vector2) -> Vector2:
 	var global_cell_position: Vector2 = ocean_layer.to_global(local_cell_position) # Centered global_position of the selected cell
 	return global_cell_position
 
-func show_helper_marker(position) -> void:
-	global_mouse_marker.global_position = position # Helper debug visual
+#func show_helper_marker(position) -> void:
+	#global_mouse_marker.global_position = position # Helper debug visual
 
 func is_tile_traversable(cell: Vector2i) -> bool:
 	var data = ocean_layer.get_cell_tile_data(cell)

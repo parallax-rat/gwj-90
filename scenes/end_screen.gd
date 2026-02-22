@@ -7,6 +7,7 @@ extends Control
 @onready var score: Label = $StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox/Score/Value
 
 @onready var play_again_btn: Button = $StatsMargin/Panel/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/PlayAgain
+@onready var menu_btn: Button = $StatsMargin/Panel/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/Menu
 @onready var exit_btn: Button = $StatsMargin/Panel/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/Exit
 
 func _ready() -> void:
@@ -16,6 +17,7 @@ func _ready() -> void:
 	rested.text = str(Global.times_rested)
 	score.text = str(int(calculate_score()))
 	play_again_btn.pressed.connect(play_again)
+	menu_btn.pressed.connect(menu)
 	exit_btn.pressed.connect(exit)
 
 func calculate_score():
@@ -28,8 +30,14 @@ func calculate_score():
 	return score
 
 func play_again():
+	GameState.reset()
 	Global.reset_stats()
 	SceneLoader.load_scene("res://scenes/test.tscn")
+
+func menu():
+	GameState.reset()
+	Global.reset_stats()
+	SceneLoader.load_scene("res://scenes/main_menu_with_animations.tscn")
 
 func exit():
 	get_tree().quit()

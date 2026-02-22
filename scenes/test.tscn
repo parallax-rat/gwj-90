@@ -381,3 +381,6 @@ text = "REST"
 [node name="ToastTimer" type="Timer" parent="." unique_id=404106981]
 wait_time = 0.35
 one_shot = true
+
+[node name="StartPos" type="Node2D" parent="." unique_id=675361562]
+unique_name_in_owner = true

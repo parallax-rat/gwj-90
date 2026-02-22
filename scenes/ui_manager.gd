@@ -2,7 +2,7 @@ extends Node
 #region Buttons
 
 @onready var player: Player = %Player
-@onready var trap_button: Button = %TrapButton
+#@onready var trap_button: Button = %TrapButton
 @onready var current_ap_label: Label = %CurrentAPLabel
 
 #endregion

@@ -12,6 +12,7 @@ signal completed_a_move()
 @onready var rest_btn: Button = %RestButton
 @onready var ap_label: Label = %CurrentAPLabel
 @onready var map_manager: MapManager = $"../../Managers/MapManager"
+@onready var start_pos: Node2D = %StartPos
 
 @export var starting_action_points: int = 10
 @export var movement_time_duration: float = 1
@@ -35,6 +36,7 @@ func _ready() -> void:
 	rest_btn.pressed.connect(rest)
 	#action_points_change.connect(_on_action_points_change)
 	current_action_points = starting_action_points
+	global_position = start_pos.global_position
 
 
 func reduce_action_points(amount:int) -> void:
@@ -101,4 +103,5 @@ func _on_passive_fog_reveal_area_entered(area: Area2D) -> void:
 		clear_fog(area)
 	
 func load_ending_scene() -> void:
+	global_position = start_pos.global_position
 	SceneLoader.load_scene("res://scenes/end_screen.tscn")
