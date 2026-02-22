@@ -20,6 +20,11 @@ var moves: int = 0
 var scans: int = 0
 var times_rested: int = 0
 
+func reset_stats():
+	mapped = 0.0
+	moves = 0
+	scans = 0
+	times_rested = 0
 
 func connect_button_group() -> void:
 	current_scene = get_tree().current_scene

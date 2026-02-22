@@ -25,4 +25,5 @@ func calculate_score():
 	return score
 
 func play_again():
+	Global.reset_stats()
 	SceneLoader.load_scene("res://scenes/test.tscn")
