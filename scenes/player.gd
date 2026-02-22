@@ -85,8 +85,8 @@ func rest() -> void:
 	increase_action_points(2)
 
 
-func clear_fog(area) -> void:
-	map_manager.update_mapped_fog()
+func clear_fog(area: Area2D) -> void:
+	map_manager.update_mapped_fog(area)
 	var tween = get_tree().create_tween()
 	tween.tween_property(area,"modulate:a",0.0,0.5)
 	await tween.finished
