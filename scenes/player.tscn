@@ -16,7 +16,6 @@ top_level = true
 [node name="FogLight" type="PointLight2D" parent="." unique_id=1492517084]
 light_mask = 16
 visibility_layer = 16
-position = Vector2(0, -16)
 shadow_enabled = true
 shadow_color = Color(0, 0, 0, 0.6392157)
 shadow_item_cull_mask = 16
@@ -42,7 +41,7 @@ polygon = PackedVector2Array(-28.216951, -5.0086956, -41.233902, 0.5565214, -47.
 
 [node name="PassiveFogReveal" type="Area2D" parent="." unique_id=1345862567]
 collision_layer = 34
-collision_mask = 16
+collision_mask = 20
 input_pickable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PassiveFogReveal" unique_id=1946267791]
@@ -53,4 +52,3 @@ shape = SubResource("CapsuleShape2D_dqkch")
 script = ExtResource("4_dqkch")
 
 [connection signal="area_entered" from="PassiveFogReveal" to="." method="_on_passive_fog_reveal_area_entered"]
-[connection signal="body_entered" from="PassiveFogReveal" to="." method="_on_passive_fog_reveal_body_entered"]

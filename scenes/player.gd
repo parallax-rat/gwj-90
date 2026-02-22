@@ -16,6 +16,7 @@ signal completed_a_move()
 @export var starting_action_points: int = 10
 @export var movement_time_duration: float = 1
 @export var maximum_action_points: int = 10
+@export_file("*.tscn") var ending_scene_path : String
 
 var current_cell: Vector2i
 var target_cell: Vector2i
@@ -91,4 +92,11 @@ func clear_fog(area) -> void:
 
 func _on_passive_fog_reveal_area_entered(area: Area2D) -> void:
 	print("FOG AREA",area)
-	clear_fog(area)
+	if area.name == "GoalDock":
+		print("end game")
+		load_ending_scene()
+	else:
+		clear_fog(area)
+	
+func load_ending_scene() -> void:
+	SceneLoader.load_scene("res://scenes/end_screen.tscn")
