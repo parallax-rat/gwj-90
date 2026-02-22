@@ -17,7 +17,12 @@ func _ready() -> void:
 
 func calculate_score():
 	#TODO make a good calculation
-	return Global.mapped-Global.moves-Global.scans-Global.times_rested
+	var score: float = 0.0
+	score += Global.mapped
+	score -= Global.moves
+	score -= Global.scans
+	score -= Global.times_rested
+	return score
 
 func play_again():
 	SceneLoader.load_scene("res://scenes/test.tscn")
