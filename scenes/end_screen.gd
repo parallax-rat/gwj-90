@@ -5,7 +5,9 @@ extends Control
 @onready var scans: Label = $StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox/Scans/Value
 @onready var rested: Label = $StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox/Rested/Value
 @onready var score: Label = $StatsMargin/Panel/MarginContainer/VBoxContainer/StatsVbox/Score/Value
+
 @onready var play_again_btn: Button = $StatsMargin/Panel/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/PlayAgain
+@onready var exit_btn: Button = $StatsMargin/Panel/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/Exit
 
 func _ready() -> void:
 	mapped.text = str(int(Global.mapped))+'%'
@@ -14,6 +16,7 @@ func _ready() -> void:
 	rested.text = str(Global.times_rested)
 	score.text = str(int(calculate_score()))
 	play_again_btn.pressed.connect(play_again)
+	exit_btn.pressed.connect(exit)
 
 func calculate_score():
 	#TODO make a good calculation
@@ -27,3 +30,6 @@ func calculate_score():
 func play_again():
 	Global.reset_stats()
 	SceneLoader.load_scene("res://scenes/test.tscn")
+
+func exit():
+	get_tree().quit()
