@@ -18,6 +18,7 @@ func get_cell_count() -> float:
 
 func update_map_progress_bar() -> void:
 	var _progress = (fog_mapped / fog_to_map) * 100
+	Global.mapped = _progress
 	var tween = get_tree().create_tween()
 	tween.tween_property(mapping_progress,"value",_progress,1.0)
 

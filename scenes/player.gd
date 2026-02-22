@@ -64,7 +64,8 @@ func scan() -> void:
 	if current_action_points == 0:
 		game_manager.create_toast_message("Must rest first..")
 		return
-
+	
+	Global.scans += 1
 	var fog_in_range: Array[Area2D] = $ScanRange.get_overlapping_areas()
 	var cleared_fog: int
 	for fog in fog_in_range:
@@ -77,6 +78,7 @@ func scan() -> void:
 
 
 func rest() -> void:
+	Global.times_rested += 1
 	game_manager.create_toast_message("Restored 2 action points..")
 	increase_action_points(2)
 

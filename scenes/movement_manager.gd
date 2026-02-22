@@ -38,6 +38,7 @@ func _on_move_request() -> void:
 	#if player.global_position.distance_to(destination_position) > 64:
 		 
 	if player.current_action_points >= player.get_ap_cost(destination_position):
+		Global.moves += 1
 		set_path_destination(destination_position)
 		reset_player_progress()
 		await player.move_along_path()

@@ -8,11 +8,11 @@ extends Control
 @onready var play_again_btn: Button = $StatsMargin/Panel/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/PlayAgain
 
 func _ready() -> void:
-	mapped.text = str(Global.mapped)
+	mapped.text = str(int(Global.mapped))+'%'
 	moves.text = str(Global.moves)
 	scans.text = str(Global.scans)
 	rested.text = str(Global.times_rested)
-	score.text = str(calculate_score())
+	score.text = str(int(calculate_score()))
 	play_again_btn.pressed.connect(play_again)
 
 func calculate_score():
