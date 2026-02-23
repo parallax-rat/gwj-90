@@ -1,0 +1,228 @@
+[gd_scene format=3 uid="uid://byp8cu20kjpuq"]
+
+[ext_resource type="Script" uid="uid://danna2uxfldua" path="res://scenes/ui/ui.gd" id="1_0dwhk"]
+[ext_resource type="Shader" uid="uid://b52j5sx36e7xo" path="res://scenes/resources/outline.gdshader" id="2_pfayw"]
+[ext_resource type="Texture2D" uid="uid://bvhvmn5e4hywc" path="res://assets/icons/icon_thunder.png" id="3_7vp6q"]
+[ext_resource type="LabelSettings" uid="uid://y2tljxqbbf3t" path="res://resources/action_points_label.tres" id="4_jcn1r"]
+[ext_resource type="Theme" uid="uid://fbwgj6t26a11" path="res://resources/theme.tres" id="5_uegxj"]
+
+[sub_resource type="Gradient" id="Gradient_5jxlq"]
+offsets = PackedFloat32Array(0, 0.12566845, 0.54278076, 0.8716577, 0.96524066)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.23529412, 0, 0, 0, 0.5882353, 0, 0, 0, 0.23644078, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xrtyr"]
+gradient = SubResource("Gradient_5jxlq")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_daiq8"]
+content_margin_top = 4.0
+content_margin_bottom = 4.0
+texture = SubResource("GradientTexture1D_xrtyr")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c6rvn"]
+shader = ExtResource("2_pfayw")
+shader_parameter/color = Color(0, 0, 0, 0.6862745)
+shader_parameter/thickness = 1.0
+shader_parameter/tolerance = 0.0
+shader_parameter/diagonals = true
+shader_parameter/rounded = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5jxlq"]
+bg_color = Color(0.019607844, 0.019607844, 0.039215688, 0.5882353)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8, 0.8, 0.8, 0.5882353)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+expand_margin_left = 8.0
+expand_margin_right = 8.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_daiq8"]
+font_size = 8
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="InputEventAction" id="InputEventAction_7yos8"]
+action = &"scan"
+
+[sub_resource type="Shortcut" id="Shortcut_5jxlq"]
+events = [SubResource("InputEventAction_7yos8")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_xrtyr"]
+action = &"trap"
+
+[sub_resource type="Shortcut" id="Shortcut_daiq8"]
+events = [SubResource("InputEventAction_xrtyr")]
+
+[node name="UI" type="Control" unique_id=2090082481 node_paths=PackedStringArray("toast_message_zone", "action_points_value", "mapping_progress", "scan_button", "rest_button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_0dwhk")
+toast_message_zone = NodePath("ToastMessageZone")
+action_points_value = NodePath("BottomBar/HBoxContainer/ActionPoints/HBoxContainer/PanelContainer/ActionPointsValue")
+mapping_progress = NodePath("BottomBar/HBoxContainer/ProgressContainer/MarginContainer/MappingProgress")
+scan_button = NodePath("BottomBar/HBoxContainer/Actions/HBoxContainer/Scan/ScanButton")
+rest_button = NodePath("BottomBar/HBoxContainer/Actions/HBoxContainer/Rest/RestButton")
+metadata/_edit_lock_ = true
+
+[node name="Screen" type="MarginContainer" parent="." unique_id=1582430315]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="ToastMessageZone" type="MarginContainer" parent="." unique_id=905524451]
+layout_mode = 0
+offset_top = 256.0
+offset_right = 224.0
+offset_bottom = 304.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="BottomBar" type="PanelContainer" parent="." unique_id=298847247]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -56.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxTexture_daiq8")
+
+[node name="APIcon" type="TextureRect" parent="BottomBar" unique_id=702995244]
+material = SubResource("ShaderMaterial_c6rvn")
+layout_mode = 2
+texture = ExtResource("3_7vp6q")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BottomBar" unique_id=317347374]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="ActionPoints" type="MarginContainer" parent="BottomBar/HBoxContainer" unique_id=1163771107]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_right = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BottomBar/HBoxContainer/ActionPoints" unique_id=837178021]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="APLabel" type="MarginContainer" parent="BottomBar/HBoxContainer/ActionPoints/HBoxContainer" unique_id=349623979]
+layout_mode = 2
+
+[node name="ActionPoints" type="Label" parent="BottomBar/HBoxContainer/ActionPoints/HBoxContainer/APLabel" unique_id=2113698306]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "ACTION
+POINTS"
+label_settings = ExtResource("4_jcn1r")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="BottomBar/HBoxContainer/ActionPoints/HBoxContainer" unique_id=1544191446]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5jxlq")
+
+[node name="ActionPointsValue" type="Label" parent="BottomBar/HBoxContainer/ActionPoints/HBoxContainer/PanelContainer" unique_id=1295553692]
+layout_mode = 2
+size_flags_vertical = 6
+text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ProgressContainer" type="VBoxContainer" parent="BottomBar/HBoxContainer" unique_id=425914272]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="OceanMapped" type="MarginContainer" parent="BottomBar/HBoxContainer/ProgressContainer" unique_id=473386494]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BottomBar/HBoxContainer/ProgressContainer/OceanMapped" unique_id=786813753]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="BottomBar/HBoxContainer/ProgressContainer/OceanMapped/HBoxContainer" unique_id=692403005]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 1
+text = "Ocean Mapped"
+label_settings = SubResource("LabelSettings_daiq8")
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="BottomBar/HBoxContainer/ProgressContainer" unique_id=1333626056]
+layout_mode = 2
+theme_override_constants/margin_bottom = 4
+
+[node name="MappingProgress" type="ProgressBar" parent="BottomBar/HBoxContainer/ProgressContainer/MarginContainer" unique_id=2146675595]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("5_uegxj")
+value = 30.4
+
+[node name="Actions" type="MarginContainer" parent="BottomBar/HBoxContainer" unique_id=1422329746]
+layout_mode = 2
+theme_override_constants/margin_right = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BottomBar/HBoxContainer/Actions" unique_id=1442820098]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Scan" type="MarginContainer" parent="BottomBar/HBoxContainer/Actions/HBoxContainer" unique_id=1597799048]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="ScanButton" type="Button" parent="BottomBar/HBoxContainer/Actions/HBoxContainer/Scan" unique_id=1459671115 groups=["button"]]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("5_uegxj")
+shortcut = SubResource("Shortcut_5jxlq")
+text = "SCAN"
+
+[node name="Rest" type="MarginContainer" parent="BottomBar/HBoxContainer/Actions/HBoxContainer" unique_id=1380583415]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="RestButton" type="Button" parent="BottomBar/HBoxContainer/Actions/HBoxContainer/Rest" unique_id=390469656 groups=["button"]]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("5_uegxj")
+shortcut = SubResource("Shortcut_daiq8")
+text = "REST"

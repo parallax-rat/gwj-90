@@ -1,22 +1,16 @@
 extends Node
 
-signal finished_turn(who:Actors)
-
-const HEX_SIZE_I = 64
-const HEX_SIZE_V = Vector2(HEX_SIZE_I,HEX_SIZE_I)
-
-enum Actors{PLAYER, ENVIRONMENT}
-enum Actions{NONE, ROTATE, MOVE, SCAN, PLACE_TRAP, FINISH_TURN}
+const HEX_SIZE = 64
 
 var current_scene: Node
 var player: Player
-var scan_button: Button
-var rest_button: Button
-var current_action: Actions = Actions.MOVE
+var ui: UI
+var tile_map_layers: Dictionary[String, TileMapLayer]
 
 # stats
 var mapped: float = 0
 var moves: int = 0
+var fog_cleared: int = 0
 var scans: int = 0
 var times_rested: int = 0
 
@@ -26,35 +20,23 @@ func reset_stats():
 	scans = 0
 	times_rested = 0
 
-func connect_button_group() -> void:
+func connect_scenes() -> void:
 	current_scene = get_tree().current_scene
-	scan_button =  current_scene.get_node("%ScanButton")
-	rest_button =  current_scene.get_node("%RestButton")
+	ui =  current_scene.get_node("%UI")
 	player = current_scene.get_node("%Player")
+	tile_map_layers["Ocean"] = current_scene.get_node("%OceanLayer")
+	tile_map_layers["Fog"] = current_scene.get_node("%FogLayer")
+	tile_map_layers["DenseFog"] = current_scene.get_node("%DenseFogLayer")
 
 
-func _on_button_group_pressed(button: BaseButton) -> void:
-	match button:
-		#null_button:
-			#_set_action(Actions.NONE)
-		#move_button:
-			#if current_action == Actions.MOVE:
-				#_set_action(Actions.NONE)
-			#else:
-				#_set_action(Actions.MOVE)
-		scan_button:
-			_set_action(Actions.SCAN)
-		rest_button:
-			_set_action(Actions.PLACE_TRAP)
+func get_player_cell_position() -> Vector2:
+	return GridUtils.get_cell_position_from_world_position(tile_map_layers["Ocean"],player.global_position)
 
+func get_player_cell_coords() -> Vector2i:
+	return GridUtils.get_cell_coords_from_world_position(tile_map_layers["Ocean"],player.global_position)
 
-func _set_action(action: Actions) -> void:
-	if current_action == action:
-		return
-	current_action = action
-	
-	print(current_action)
-	match current_action:
-		Actions.FINISH_TURN:
-			finished_turn.emit(Actors.PLAYER)
-			print("Sent signal")
+func get_mouse_cell_position() -> Vector2:
+	return GridUtils.get_cell_position_from_mouse(tile_map_layers["Ocean"])
+
+func get_mouse_cell_coords() -> Vector2i:
+	return GridUtils.get_cell_coords_from_world_position(tile_map_layers["Ocean"],get_tree().get_root().get_mouse_position())

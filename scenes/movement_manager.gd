@@ -2,53 +2,22 @@ class_name MovementManager extends Node
 
 signal player_move_finished(cell:Vector2i, position:Vector2)
 
-const GRID_SPACE = preload("uid://cmi6in65o5kab")
-
-@onready var game_manager: GameManager = $"../.."
+@onready var game_manager: GameManager = %GameManager
 @onready var player: Player = %Player
-@onready var move_path: Path2D = $"../../MovePath"
 @onready var ocean_layer: TileMapLayer = %OceanLayer
-#@onready var global_mouse_marker: Polygon2D = %GlobalMouseMarker
-#@onready var tile_map_cell_marker: Polygon2D = %TileMapCellMarker
 
-var move_path_origin:= Vector2.ZERO
-var moving: bool = false
 
-func _ready() -> void:
-	move_path.curve.clear_points()
-	move_path.curve.add_point(move_path_origin)
+func _unhandled_input(_event: InputEvent) -> void:
+	if Input.is_action_just_pressed("select"):
+		if player.moving or get_hex_distance(Global.get_mouse_cell_position(),Global.get_player_cell_position()) > Global.HEX_SIZE:
+			return
+		_on_move_request(Global.get_mouse_cell_coords(), Global.get_mouse_cell_position())
 
-func _on_move_request() -> void:
-	if moving:
-		return
-	moving = true
-	var current_position: Vector2 = get_cell_position_from_player()
-	print(current_position)
-	var destination_position: Vector2 = get_cell_position_from_mouse()
-	var destination_cell: Vector2i = get_cell_coords_from_mouse()
-	if destination_position == current_position:
-		print("Cannot move to current location")
-		moving = false
-		return
-	if !is_tile_traversable(destination_cell):
-		game_manager.create_toast_message("Not traversable")
-		moving = false
-		return
-	#var ap_cost = player.get_ap_cost(destination_position)
-	#if player.global_position.distance_to(destination_position) > 64:
-		 
-	if player.current_action_points >= player.get_ap_cost(destination_position):
-		Global.moves += 1
-		set_path_destination(destination_position)
-		reset_player_progress()
-		await player.move_along_path()
-		player_move_finished.emit(destination_cell, destination_position)
-		reset_path_origin()
-		print("Move completed.")
-		moving = false
-	else:
-		game_manager.create_toast_message("Insufficient AP")
-		moving = false
+
+
+func _on_move_request(coords: Vector2i, destination:Vector2) -> void:
+	if tile_is_traversable(coords) and player.current_action_points >= 1:
+		player.move(destination)
 
 
 func get_cell_coords_from_mouse() -> Vector2i:
@@ -56,6 +25,13 @@ func get_cell_coords_from_mouse() -> Vector2i:
 	var local_mouse_position: Vector2
 	local_mouse_position = ocean_layer.get_local_mouse_position()
 	cell_coords = ocean_layer.local_to_map(local_mouse_position) # TileMap coordinates for the selected cell
+	return cell_coords
+
+
+func get_cell_coords_from_player() -> Vector2i:
+	var cell_coords: Vector2i
+	var player_position: Vector2 = %Player.global_position
+	cell_coords = ocean_layer.local_to_map(player_position) # TileMap coordinates for the player
 	return cell_coords
 
 
@@ -67,33 +43,39 @@ func get_cell_position_from_mouse() -> Vector2:
 
 
 func get_cell_position_from_player() -> Vector2:
-	return move_path.curve.get_point_position(0)
-	var cell_coords: Vector2i = move_path.curve.get_point_position(0)
+	var cell_coords: Vector2i = get_cell_coords_from_player()
 	var local_cell_position: Vector2i = ocean_layer.map_to_local(cell_coords)
-	var global_cell_position: Vector2 = ocean_layer.to_global(local_cell_position) # Centered global_position of the selected cell
+	var global_cell_position: Vector2 = ocean_layer.to_global(local_cell_position) # Centered global_position of the player
 	return global_cell_position
 
 
-#func show_helper_marker(position) -> void:
-	#global_mouse_marker.global_position = position # Helper debug visual
+static func get_hex_distance(a: Vector2i, b: Vector2i) -> int:
+	var ac: Vector3i = _odd_r_to_cube(a)
+	var bc: Vector3i = _odd_r_to_cube(b)
+	return _cube_distance(ac, bc)
 
 
-func is_tile_traversable(clicked_cell) -> bool:
-	var data = ocean_layer.get_cell_tile_data(clicked_cell)
+static func _odd_r_to_cube(h: Vector2i) -> Vector3i:
+	var q: int = h.x
+	var r: int = h.y
+	var x: int = q - ((r - (r & 1)) / 2)
+	var z: int = r
+	var y: int = -x - z
+	return Vector3i(x, y, z)
+
+
+static func _cube_distance(a: Vector3i, b: Vector3i) -> int:
+	var dx: int = abs(a.x - b.x)
+	var dy: int = abs(a.y - b.y)
+	var dz: int = abs(a.z - b.z)
+	return (dx + dy + dz) / 2
+
+
+func tile_is_traversable(_coords:Vector2i) -> bool:
+	if Global.get_player_cell_coords() == _coords:
+		return false
+	var data: TileData = Global.tile_map_layers["Ocean"].get_cell_tile_data(_coords)
 	if data:
 		return data.get_custom_data("can_traverse")
 	else:
 		return false
-
-
-func reset_path_origin() -> void:
-	move_path.curve.set_point_position(0,move_path.curve.get_point_position(1))
-	move_path.curve.remove_point(1)
-
-
-func set_path_destination(destination) -> void:
-	move_path.curve.add_point(destination)
-
-
-func reset_player_progress() -> void:
-	player.progress_ratio = 0.0 
