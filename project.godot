@@ -48,7 +48,7 @@ player=""
 grid_space=""
 tile_maps=""
 button=""
-navigation_polygon_source_geometry_group=""
+navigation=""
 
 [gui]
 
@@ -103,8 +103,9 @@ locale/translations=PackedStringArray("res://addons/maaacks_game_template/base/t
 
 2d_render/layer_5="fog"
 2d_physics/layer_1="grid_space"
-2d_navigation/layer_1="monster_waters"
+2d_navigation/layer_1="traversable_waters"
 2d_physics/layer_2="player"
+2d_navigation/layer_2="no_travel"
 2d_physics/layer_3="destination"
 2d_physics/layer_4="sea_monster"
 2d_physics/layer_5="fog"
@@ -112,7 +113,7 @@ locale/translations=PackedStringArray("res://addons/maaacks_game_template/base/t
 2d_physics/layer_7="fog_scan"
 2d_physics/layer_8="helper"
 2d_physics/layer_9="treasure"
-2d_physics/layer_10="rocks"
+2d_physics/layer_10="no_navigation"
 2d_physics/layer_11="whirlpool"
 
 [maaacks_game_template]

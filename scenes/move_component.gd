@@ -17,20 +17,15 @@ func move(from: Vector2, to: Vector2) -> void:
 	var current_position: Vector2 = from
 	var destination_position: Vector2 = to
 	var destination_cell: Vector2i = get_cell_coords_from_pos(to)
-	prints("Move Destination:", destination_position, destination_cell)
 	if destination_position == current_position:
-		print("Cannot move to current location")
 		return
 	if !is_tile_traversable(destination_cell):
-		print("Not traversable")
 		return
-	print("Current AP: ",entity.current_action_points)
 	if entity.current_action_points >= entity.get_ap_cost(destination_position):
 		set_path_destination(destination_position)
 		reset_entity_progress()
 		await entity.move_along_path()
 		reset_path_origin()
-		print("Move completed.")
 
 
 func get_cell_coords_from_pos(pos: Vector2) -> Vector2i:

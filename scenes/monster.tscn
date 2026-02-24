@@ -5,9 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://bx24od0buacmu" path="res://assets/Scud/SeaMonsterSprite_shadow.png" id="2_jlss8"]
 [ext_resource type="Texture2D" uid="uid://ckhear5otygmp" path="res://assets/Scud/SeaMonsterSprite_shadow_BodyOnly.png" id="3_gdl1p"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_jlss8"]
-radius = 20.0
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_jlss8"]
 animations = [{
 "frames": [{
@@ -47,8 +44,13 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Monster" type="CharacterBody2D" unique_id=154052261]
+[sub_resource type="CircleShape2D" id="CircleShape2D_gp4s5"]
+radius = 16.0
+
+[node name="Monster" type="Node2D" unique_id=1319247341 node_paths=PackedStringArray("agent", "area")]
 script = ExtResource("1_c47ug")
+agent = NodePath("NavigationAgent2D")
+area = NodePath("MonsterArea")
 
 [node name="SpriteBelowWaterOnlyBody" type="Sprite2D" parent="." unique_id=950876218]
 visible = false
@@ -65,12 +67,19 @@ visible = false
 texture = ExtResource("2_c47ug")
 region_rect = Rect2(128, 0, 64, 64)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=150000734]
-visible = false
-shape = SubResource("CircleShape2D_jlss8")
-debug_color = Color(0.95493466, 1.0588765e-06, 0.5483776, 0.41960785)
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=433577143]
 sprite_frames = SubResource("SpriteFrames_jlss8")
 animation = &"AboveWaterIdle"
 autoplay = "AboveWaterIdle"
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=413181074]
+
+[node name="MonsterArea" type="Area2D" parent="." unique_id=1451961615]
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MonsterArea" unique_id=1503894697]
+visible = false
+shape = SubResource("CircleShape2D_gp4s5")
+
+[connection signal="area_entered" from="MonsterArea" to="." method="_on_monster_area_area_entered"]

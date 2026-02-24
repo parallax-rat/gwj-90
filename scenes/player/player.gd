@@ -20,14 +20,12 @@ var moving: bool = false
 var current_action_points: int:
 	set(value):
 		current_action_points = value
-		action_points_change.emit(current_action_points)
 		Global.ui.action_points_value.text = str(current_action_points)
 	get:
 		return current_action_points
 
 
 func _ready() -> void:
-	current_action_points = starting_action_points
 	global_position = start_pos.global_position
 	call_deferred("connect_to_external")
 
@@ -35,14 +33,17 @@ func _ready() -> void:
 func connect_to_external() -> void:
 	Global.ui.scan_button.pressed.connect(scan)
 	Global.ui.rest_button.pressed.connect(rest)
+	current_action_points = starting_action_points
 
 
 func reduce_action_points(amount:int) -> void:
 	current_action_points -= amount
+	action_points_change.emit(amount)
 
 
 func increase_action_points(amount:int) -> void:
 	current_action_points += amount
+	action_points_change.emit(amount)
 
 
 func move(destination: Vector2) -> void:

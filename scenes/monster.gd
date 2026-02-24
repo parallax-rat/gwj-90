@@ -19,7 +19,6 @@ var current_action_points: int = _ap:
 	
 func _on_start_actor_turn(turn_number: int, current_turn:int) -> void:
 	if me == current_turn:
-		print("monster")
 		current_action_points += new_turn_ap_refresh
 		# check for collitions with trap
 		# if trap consume ap and quefree trap
@@ -32,9 +31,7 @@ func _on_start_actor_turn(turn_number: int, current_turn:int) -> void:
 
 func get_ap_cost(destination:Vector2) -> float:
 	var distance = position.distance_to(destination)
-	print(distance)
 	var ap_cost = floor(distance / Global.HEX_SIZE_I)
-	print("AP Cost: ", ap_cost)
 	return clampf(ap_cost,1.0,99.0)
 
 func move_along_path() -> void:

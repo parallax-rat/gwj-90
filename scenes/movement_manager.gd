@@ -1,7 +1,5 @@
 class_name MovementManager extends Node
 
-signal player_move_finished(cell:Vector2i, position:Vector2)
-
 @onready var game_manager: GameManager = %GameManager
 @onready var player: Player = %Player
 @onready var ocean_layer: TileMapLayer = %OceanLayer
