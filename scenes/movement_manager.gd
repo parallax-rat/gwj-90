@@ -7,9 +7,9 @@ class_name MovementManager extends Node
 
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("select"):
-		if player.moving or get_hex_distance(Global.get_mouse_cell_position(),Global.get_player_cell_position()) > Global.HEX_SIZE:
+		if player.busy or get_hex_distance(game_manager.get_mouse_cell_position(),game_manager.get_player_cell_position()) > game_manager.HEX_SIZE:
 			return
-		_on_move_request(Global.get_mouse_cell_coords(), Global.get_mouse_cell_position())
+		_on_move_request(game_manager.get_mouse_cell_coords(), game_manager.get_mouse_cell_position())
 
 
 
@@ -70,9 +70,9 @@ static func _cube_distance(a: Vector3i, b: Vector3i) -> int:
 
 
 func tile_is_traversable(_coords:Vector2i) -> bool:
-	if Global.get_player_cell_coords() == _coords:
+	if game_manager.get_player_cell_coords() == _coords:
 		return false
-	var data: TileData = Global.tile_map_layers["Ocean"].get_cell_tile_data(_coords)
+	var data: TileData = game_manager.tile_map_layers["Ocean"].get_cell_tile_data(_coords)
 	if data:
 		return data.get_custom_data("can_traverse")
 	else:

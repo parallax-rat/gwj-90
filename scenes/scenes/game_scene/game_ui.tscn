@@ -57,6 +57,7 @@ grow_vertical = 2
 stretch = true
 
 [node name="ConfigurableSubViewport" type="SubViewport" parent="ViewportContainer" unique_id=204786699]
+handle_input_locally = false
 audio_listener_enable_2d = true
 audio_listener_enable_3d = true
 size = Vector2i(640, 360)

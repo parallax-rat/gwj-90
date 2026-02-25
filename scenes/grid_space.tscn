@@ -9,8 +9,7 @@ script/source = "extends Polygon2D
 @export var hide_color: Color
 @export var yes_color: Color
 @export var no_color: Color
-
-@onready var player: Player = %Player
+@onready var game_manager: GameManager = %GameManager
 @onready var ap_cost: HBoxContainer = $APCost
 @onready var movement_manager: MovementManager = $\"../Managers/MovementManager\"
 
@@ -20,14 +19,14 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	if player.moving:
+	if game_manager.player.busy:
 		hide()
 		return
 	show()
 
-	var mouse_coords = GridUtils.get_cell_coords_from_mouse(Global.tile_map_layers[\"Ocean\"])
-	var mouse_position = GridUtils.get_cell_position_from_mouse(Global.tile_map_layers[\"Ocean\"])
-	var player_coords = GridUtils.get_cell_coords_from_world_position(Global.tile_map_layers[\"Ocean\"],Global.player.global_position)
+	var mouse_coords = GridUtils.get_cell_coords_from_mouse(game_manager.tile_map_layers[\"Ocean\"])
+	var mouse_position = GridUtils.get_cell_position_from_mouse(game_manager.tile_map_layers[\"Ocean\"])
+	var player_coords = GridUtils.get_cell_coords_from_world_position(game_manager.tile_map_layers[\"Ocean\"],game_manager.player.global_position)
 	if mouse_coords == player_coords:
 		hide()
 		return

@@ -30,7 +30,7 @@ func connect_nodes() -> void:
 
 
 func _on_player_ap_changed(amount) -> void:
-	var val = abs(amount)
+	var val = clamp(abs(amount),0,2)
 	player_ap_counter += val
 	if player_ap_counter >= player_ap_to_wait_for:
 		player_ap_counter = 0
@@ -53,8 +53,8 @@ func move():
 	if player_caught:
 		return
 	await submerge()
-	var start_cell: Vector2i = GridUtils.get_cell_coords_from_world_position(Global.tile_map_layers["Ocean"],global_position)
-	var path_cells: Array[Vector2i] = _get_path_cells_to_target(Global.get_player_cell_coords())
+	var start_cell: Vector2i = GridUtils.get_cell_coords_from_world_position(game_manager.tile_map_layers["Ocean"],global_position)
+	var path_cells: Array[Vector2i] = _get_path_cells_to_target()
 	if path_cells.is_empty():
 		return
 	if path_cells[0] == start_cell:
@@ -70,8 +70,8 @@ func move():
 	await emerge()
 
 
-func _get_path_cells_to_target(target_cell: Vector2i) -> Array[Vector2i]:
-	var target_pos: Vector2 = Global.get_player_cell_position()
+func _get_path_cells_to_target() -> Array[Vector2i]:
+	var target_pos: Vector2 = game_manager.get_player_cell_position()
 	agent.target_position = target_pos
 	agent.get_next_path_position()
 	var pts: PackedVector2Array = agent.get_current_navigation_path()
@@ -82,7 +82,7 @@ func _path_points_to_cells(points: PackedVector2Array) -> Array[Vector2i]:
 	var out: Array[Vector2i] = []
 	var last: Vector2i = Vector2i(2147483647, 2147483647)
 	for p: Vector2 in points:
-		var cell: Vector2i = Global.tile_map_layers["Ocean"].local_to_map(Global.tile_map_layers["Ocean"].to_local(p))
+		var cell: Vector2i = game_manager.tile_map_layers["Ocean"].local_to_map(game_manager.tile_map_layers["Ocean"].to_local(p))
 		if cell != last:
 			out.append(cell)
 			last = cell
@@ -90,11 +90,11 @@ func _path_points_to_cells(points: PackedVector2Array) -> Array[Vector2i]:
 
 
 func _cell_center_global(cell: Vector2i) -> Vector2:
-	return Global.tile_map_layers["Ocean"].to_global(Global.tile_map_layers["Ocean"].map_to_local(cell))
+	return game_manager.tile_map_layers["Ocean"].to_global(game_manager.tile_map_layers["Ocean"].map_to_local(cell))
 
 
 func _on_monster_area_area_entered(area: Area2D) -> void:
-	if !submerge_timer.is_stoped():
+	if !submerge_timer.is_stopped():
 		await submerge_timer.timeout
 	player_caught = true
 	caught_player.emit()

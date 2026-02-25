@@ -45,7 +45,7 @@ signal opened
 @onready var title_margin : MarginContainer = %TitleMargin
 @onready var description_label : RichTextLabel = %DescriptionLabel
 @onready var close_button : Button = %CloseButton
-@onready var menu_buttons : BoxContainer = %MenuButtons
+@onready var menu_buttons : GridContainer = %MenuButtons
 
 func _ready() -> void:
 	update_content = update_content

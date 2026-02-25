@@ -96,6 +96,5 @@ stream = ExtResource("5_gdl1p")
 stream = ExtResource("6_v8ewj")
 
 [node name="SubmergeTime" type="Timer" parent="." unique_id=1770113585]
-wait_time = 0.3
 
 [connection signal="area_entered" from="MonsterArea" to="." method="_on_monster_area_area_entered"]

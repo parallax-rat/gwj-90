@@ -110,7 +110,7 @@ tile_set = ExtResource("4_vou6s")
 physics_quadrant_size = 1
 metadata/_edit_lock_ = true
 
-[node name="DenseFogLayer" type="TileMapLayer" parent="." unique_id=638456289 groups=["tile_maps"]]
+[node name="ThickFogLayer" type="TileMapLayer" parent="." unique_id=638456289 groups=["tile_maps"]]
 unique_name_in_owner = true
 visible = false
 position = Vector2(-32, -32)

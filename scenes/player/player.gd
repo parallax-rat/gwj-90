@@ -16,11 +16,11 @@ signal completed_a_move()
 @export var maximum_action_points: int = 10
 @export_file("*.tscn") var ending_scene_path : String
 
-var moving: bool = false
+var busy: bool = false
 var current_action_points: int:
 	set(value):
 		current_action_points = value
-		Global.ui.action_points_value.text = str(current_action_points)
+		game_manager.ui.action_points_value.text = str(current_action_points)
 	get:
 		return current_action_points
 
@@ -31,8 +31,8 @@ func _ready() -> void:
 
 
 func connect_to_external() -> void:
-	Global.ui.scan_button.pressed.connect(scan)
-	Global.ui.rest_button.pressed.connect(rest)
+	game_manager.ui.scan_button.pressed.connect(scan)
+	game_manager.ui.rest_button.pressed.connect(rest)
 	current_action_points = starting_action_points
 
 
@@ -47,37 +47,43 @@ func increase_action_points(amount:int) -> void:
 
 
 func move(destination: Vector2) -> void:
-	moving = true
+	busy = true
 	look_at(destination)
-	Global.moves += 1
+	game_manager.moves += 1
 	var move_tween = get_tree().create_tween()
 	move_tween.tween_property(self, "global_position", destination, movement_time_duration).set_ease(Tween.EASE_IN_OUT)
 	await move_tween.finished
 	reduce_action_points(1)
-	moving = false
+	busy = false
 	completed_a_move.emit()
 
 
 func scan() -> void:
-	if current_action_points == 0:
+	if busy:
+		return
+	if current_action_points <= 0:
 		game_manager.create_toast_message("No remaining action points.")
 		return
-	Global.scans += 1
+	var spent_ap: int = 0
 	var fog_in_range: Array[Area2D] = $ScanRange.get_overlapping_areas()
 	var _fog_scanned:int = 0
+	game_manager.scans += 1
+	busy = true
 	for fog in fog_in_range:
 		if current_action_points < 1:
 			break
 		clear_fog(fog)
 		_fog_scanned += 1
-		Global.fog_cleared += 1
+		game_manager.fog_cleared += 1
 		if _fog_scanned % 2 == 0:  # <- 1 AP for every 2 hexes cleared
-			reduce_action_points(1)
-	game_manager.create_toast_message("Scanned " + str(_fog_scanned) + " fog hexes. -")
+			spent_ap += 1
+	reduce_action_points(spent_ap)
+	game_manager.create_toast_message("Scanned " + str(_fog_scanned) + " fog hexes. -" + str(spent_ap) + " action points.")
+	busy = false
 
 
 func rest() -> void:
-	Global.times_rested += 1
+	game_manager.times_rested += 1
 	game_manager.create_toast_message("Restored 2 action points by resting.")
 	increase_action_points(2)
 
@@ -93,7 +99,7 @@ func clear_fog(area: Area2D) -> void:
 
 func _on_passive_fog_reveal_area_entered(area: Area2D) -> void:
 	if area.name == "GoalDock":
-		if moving:
+		if busy:
 			await completed_a_move
 		load_ending_scene()
 	else:
