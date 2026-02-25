@@ -2,7 +2,6 @@ extends Node
 
 const HEX_SIZE = 64
 
-var current_scene: Node
 var player: Player
 var ui: UI
 var tile_map_layers: Dictionary[String, TileMapLayer]
@@ -19,14 +18,6 @@ func reset_stats():
 	moves = 0
 	scans = 0
 	times_rested = 0
-
-func connect_scenes() -> void:
-	current_scene = get_tree().current_scene
-	ui =  current_scene.get_node("%UI")
-	player = current_scene.get_node("%Player")
-	tile_map_layers["Ocean"] = current_scene.get_node("%OceanLayer")
-	tile_map_layers["Fog"] = current_scene.get_node("%FogLayer")
-	tile_map_layers["DenseFog"] = current_scene.get_node("%DenseFogLayer")
 
 
 func get_player_cell_position() -> Vector2:

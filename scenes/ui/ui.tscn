@@ -57,7 +57,22 @@ action = &"trap"
 [sub_resource type="Shortcut" id="Shortcut_daiq8"]
 events = [SubResource("InputEventAction_xrtyr")]
 
-[node name="UI" type="Control" unique_id=2090082481 node_paths=PackedStringArray("toast_message_zone", "action_points_value", "mapping_progress", "scan_button", "rest_button")]
+[sub_resource type="GDScript" id="GDScript_0dwhk"]
+script/source = "extends ColorRect
+
+@export var fade_time: float = 2.0
+
+func fade_out() -> void:
+	var t = get_tree().create_tween()
+	t.tween_property(self,\"modulate:a\",0,fade_time)
+
+
+func fade_in() -> void:
+	var t = get_tree().create_tween()
+	t.tween_property(self,\"modulate:a\",1,fade_time)
+"
+
+[node name="UI" type="Control" unique_id=2090082481 node_paths=PackedStringArray("toast_message_zone", "action_points_value", "mapping_progress", "scan_button", "rest_button", "screen_cover")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -71,6 +86,7 @@ action_points_value = NodePath("BottomBar/HBoxContainer/ActionPoints/HBoxContain
 mapping_progress = NodePath("BottomBar/HBoxContainer/ProgressContainer/MarginContainer/MappingProgress")
 scan_button = NodePath("BottomBar/HBoxContainer/Actions/HBoxContainer/Scan/ScanButton")
 rest_button = NodePath("BottomBar/HBoxContainer/Actions/HBoxContainer/Rest/RestButton")
+screen_cover = NodePath("ScreenCover")
 metadata/_edit_lock_ = true
 
 [node name="Screen" type="MarginContainer" parent="." unique_id=1582430315]
@@ -226,3 +242,14 @@ size_flags_vertical = 4
 theme = ExtResource("5_uegxj")
 shortcut = SubResource("Shortcut_daiq8")
 text = "REST"
+
+[node name="ScreenCover" type="ColorRect" parent="." unique_id=1502840615]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+script = SubResource("GDScript_0dwhk")

@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://kd0pghd0tsgm"
+path="res://.godot/imported/You win LOOP.ogg-6a9f209985fec0b1db7749fa7f0fca17.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/music/You win LOOP.ogg"
+dest_files=["res://.godot/imported/You win LOOP.ogg-6a9f209985fec0b1db7749fa7f0fca17.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

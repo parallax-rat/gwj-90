@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://32wvjk3khyf5"
+path="res://.godot/imported/Calm Sea DANGER LAYER 2nd Half.ogg-61e4bdac98e4d84dd0f7be3e0739d6f3.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/music/Calm Sea DANGER LAYER 2nd Half.ogg"
+dest_files=["res://.godot/imported/Calm Sea DANGER LAYER 2nd Half.ogg-61e4bdac98e4d84dd0f7be3e0739d6f3.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

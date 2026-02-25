@@ -68,11 +68,12 @@ func scan() -> void:
 	for fog in fog_in_range:
 		if current_action_points < 1:
 			break
-		reduce_action_points(1)
 		clear_fog(fog)
 		_fog_scanned += 1
 		Global.fog_cleared += 1
-	game_manager.create_toast_message("Scan cleared " + str(_fog_scanned) + " fog hexes.")
+		if _fog_scanned % 2 == 0:  # <- 1 AP for every 2 hexes cleared
+			reduce_action_points(1)
+	game_manager.create_toast_message("Scanned " + str(_fog_scanned) + " fog hexes. -")
 
 
 func rest() -> void:

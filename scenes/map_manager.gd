@@ -2,6 +2,7 @@ class_name MapManager extends Node
 
 @onready var fog_layer: TileMapLayer = %FogLayer
 @onready var ocean_layer: TileMapLayer = %OceanLayer
+@onready var game_manager: GameManager = %GameManager
 
 var fog_to_map: float
 var fog_mapped: float = 0
@@ -13,8 +14,8 @@ func _ready() -> void:
 
 func fog_setup() -> void:
 	fog_to_map = get_cell_count()
-	Global.ui.mapping_progress.max_value = fog_to_map
-	Global.ui.mapping_progress.value = (fog_mapped / fog_to_map) * 100
+	game_manager.ui.mapping_progress.max_value = fog_to_map
+	game_manager.ui.mapping_progress.value = (fog_mapped / fog_to_map) * 100
 
 func get_cell_count() -> float:
 	var count = 0

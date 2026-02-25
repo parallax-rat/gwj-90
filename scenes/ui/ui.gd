@@ -7,3 +7,4 @@ const TOAST_LABEL = preload("uid://cxi7x643863a0")
 @export var mapping_progress: ProgressBar
 @export var scan_button: Button
 @export var rest_button: Button
+@export var screen_cover: ColorRect
